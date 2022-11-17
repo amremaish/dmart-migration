@@ -1,0 +1,68 @@
+{
+  "type": "object",
+  "title": "title",
+  "additionalProperties": false,
+  "properties": {
+    "source": {
+      "type": "object",
+      "properties": {
+        "table": {
+          "type": "string"
+        },
+        "join": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "source": {
+                "type": "string"
+              },
+              "dest": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "source",
+              "dest"
+            ]
+          }
+        }
+      },
+      "required": [
+        "table"
+      ]
+    },
+    "columns_mapper": {
+      "type": "object",
+      "properties": {}
+    },
+    "dest": {
+      "type": "object",
+      "properties": {
+        "space_name": {
+          "type": "string"
+        },
+        "subpath": {
+          "type": "string"
+        },
+        "schema_shortname": {
+          "type": "string"
+        },
+        "resource_type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "space_name",
+        "supath",
+        "schema_shortname",
+        "resource_type"
+      ]
+    }
+  },
+  "required": [
+    "source",
+    "columns_mapper",
+    "dest"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "source": {
+    "table": "POS_USER",
+    "join": [
+      {
+        "source": "POS_USER.ID",
+        "dest": "SIM_TRANSACTION.POS_ID"
+      }
+    ],
+    "columns": ["ID", "USERNAME","EMAIL"]
+  },
+  "columns_mapper": {
+    "USERNAME" : "displayname"
+  },
+  "dest": {
+    "space_name": "management",
+    "subpath": "users",
+    "schema_shortname": "user",
+    "resource_type": "users"
+  }
+}
