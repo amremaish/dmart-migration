@@ -16,7 +16,7 @@ MetaChild = TypeVar("MetaChild", bound=core.Meta)
 class SpaceCreator:
     spaces_path: Path = None
 
-    def load(self):
+    def scan(self):
         # init spaces
         self.spaces_path = Path(str(mappers.dir_path) + '/spaces')
         if not self.spaces_path.is_dir():

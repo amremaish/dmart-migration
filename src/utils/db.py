@@ -1,6 +1,7 @@
 import mysql.connector
 
 from enums import JoinType
+from settings import settings
 
 
 class DbManager:
@@ -9,10 +10,10 @@ class DbManager:
     def connect(self) -> bool:
         try:
             self.db_connect = mysql.connector.connect(
-                host="127.0.0.1",
-                database='zain_test',
-                port=3306,
-                user="root",
+                host=settings.db_host,
+                database=settings.db_database,
+                port=settings.db_port,
+                user=settings.db_user,
                 password="")
 
         except Exception:
