@@ -1,0 +1,10 @@
+attrs==22.1.0
+jsonschema==4.17.0
+mysql-connector-python==8.0.31
+passlib==1.7.4
+prompt-toolkit==3.0.32
+protobuf==3.20.1
+pyrsistent==0.19.2
+python-dotenv==0.21.0
+typing_extensions==4.4.0
+wcwidth==0.2.5
