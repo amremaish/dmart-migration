@@ -1,38 +1,41 @@
 import glob
+import json
+import jsonschema
 from pathlib import Path
-
-from jsonschema.validators import validate
 
 
 class Mappers:
     mappers_path: str = 'mappers'
     mappers: list
-    mappers_abs_path: str = None
+    mappers_abs_path = None
+    dir_path: Path = None
 
     def load_paths(self) -> int:
         if Path(self.mappers_path).absolute().exists():
-            self.mappers_abs_path = str(Path(self.mappers_path).absolute())
+            self.mappers_abs_path = Path(self.mappers_path).absolute()
+            self.dir_path = Path('').absolute()
         elif Path('../' + self.mappers_path).absolute():
-            self.mappers_abs_path = str(Path('../' + self.mappers_path).absolute())
+            self.mappers_abs_path = Path('../' + self.mappers_path).absolute()
+            self.dir_path = Path('').absolute()
         else:
             return -1
 
         self.mappers = glob.glob(str(self.mappers_abs_path) + "/*.json")
         return len(self.mappers)
-    #
-    # def validate_entry(self):
-    #
-    #
-    # def load_mapper_schema(self):
-    #
-    #     if not path.is_file():
-    #         raise api.Exception(
-    #             status_code=status.HTTP_404_NOT_FOUND,
-    #             error=api.Error(type="db", code=12, message="requested object not found"),
-    #         )
-    #
-    # def load_mapper(self, filename):
-    #     validate(instance={"name": "Eggs", "price": 34.99}, schema=schema)
-    #
+
+    def validate_entry(self, json_filename, schema_shortname):
+        schema_path = self.mappers_abs_path / "schema" / f'{schema_shortname}.json'
+        json_path = self.mappers_abs_path / f'{json_filename}.json'
+        if not schema_path.is_file():
+            raise Exception("Schema is not found in this path " + str(schema_path))
+        if not json_path.is_file():
+            raise Exception("json file is not found in this path " + str(schema_path))
+
+        jsonschema.validate(instance=json.loads(json_path.read_bytes()), schema=json.loads(schema_path.read_bytes()))
+
+    def load(self, mapper_name):
+        path = self.mappers_abs_path / f'{mapper_name}.json'
+        return json.loads(path.read_bytes())
+
 
 mappers = Mappers()

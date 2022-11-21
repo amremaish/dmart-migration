@@ -3,14 +3,25 @@
     "table": "POS_USER",
     "join": [
       {
-        "source": "POS_USER.ID",
-        "dest": "SIM_TRANSACTION.POS_ID"
+        "table": "DETAILS",
+        "pk_id": "POS_USER.ID",
+        "fk_id": "DETAILS.POS_USER_ID",
+        "join_type": "inner"
       }
     ],
-    "columns": ["ID", "USERNAME","EMAIL"]
+    "columns": [
+      "POS_USER.USER_ID",
+      "DETAILS.OWNER",
+      "DETAILS.NAME_EN"
+    ]
   },
   "columns_mapper": {
-    "USERNAME" : "displayname"
+    "meta": {
+      "shortname" : "POS_USER.ID"
+    },
+    "body": {
+      "name": "test"
+    }
   },
   "dest": {
     "space_name": "management",
