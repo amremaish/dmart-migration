@@ -4,8 +4,6 @@ import sys
 from pathlib import Path
 from typing import Type, TypeVar
 
-import aiofiles as aiofiles
-
 from dmart import core
 from dmart.helper import branch_path, default_branch, snake_case, camel_case
 from utils.mappers import mappers
