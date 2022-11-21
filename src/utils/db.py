@@ -1,24 +1,39 @@
+import cx_Oracle
 import mysql.connector
 
 from enums import JoinType
-from settings import settings
+from settings import settings, Settings
 
 
 class DbManager:
     db_connect = None
 
     def connect(self) -> bool:
-        try:
-            self.db_connect = mysql.connector.connect(
-                host=settings.db_host,
-                database=settings.db_database,
-                port=settings.db_port,
-                user=settings.db_user,
-                password="")
+        if settings.database_type == Settings.MYSQL:
+            try:
+                self.db_connect = mysql.connector.connect(
+                    host=settings.db_host,
+                    database=settings.db_database,
+                    port=settings.db_port,
+                    user=settings.db_user,
+                    password=settings.db_password)
 
-        except Exception:
-            return False
-        return self.db_connect.is_connected()
+            except Exception:
+                return False
+
+            return self.db_connect.is_connected()
+        elif settings.database_type == Settings.ORACLE:
+            try:
+                self.db_connect = cx_Oracle.connect(
+                    user=settings.db_user,
+                    password=settings.db_password,
+                    dsn=f'{settings.db_host}/{settings.db_database}')
+
+            except Exception:
+                return False
+            return self.db_connect.is_connected()
+        else:
+            raise Exception("Not specified database driver")
 
     def select_query(
             self,
@@ -55,15 +70,21 @@ class DbManager:
         else:
             sql += ';'
 
-        # Creating a cursor object using the cursor() method
-        cursor = self.db_connect.cursor(buffered=True)
-
-        # Executing the query
-        cursor.execute(count_sql + sql)
-        count = cursor.fetchone()
-        cursor.execute(columns_sql + sql + limit_sql)
-        result = cursor.fetchall()
-        self.db_connect.commit()
+        result = None
+        count = (0, 0)
+        if settings.database_type == Settings.MYSQL:
+            # Creating a cursor object using the cursor() method
+            cursor = self.db_connect.cursor(buffered=True)
+            # Executing the query
+            cursor.execute(count_sql + sql)
+            count = cursor.fetchone()
+            cursor.execute(columns_sql + sql + limit_sql)
+            result = cursor.fetchall()
+            self.db_connect.commit()
+        elif settings.database_type == Settings.ORACLE:
+            cursor = self.db_connect.cursor()
+            count = cursor.execute(count_sql + sql)
+            result = cursor.execute(columns_sql + sql + limit_sql)
 
         processed_result: list = []
         # collect result

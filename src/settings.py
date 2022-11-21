@@ -10,7 +10,11 @@ class Settings:
     db_password: str = ''
     db_port: str = 3306
     db_database: str = 'zain_test'
+    database_type = 'oracle'
     fetch_limit = 2
+
+    ORACLE = 'oracle'
+    MYSQL = 'mysql'
 
     def __init__(self):
         load_dotenv("config.env")
