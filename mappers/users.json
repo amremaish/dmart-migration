@@ -17,16 +17,16 @@
   },
   "columns_mapper": {
     "meta": {
-      "shortname" : "POS_USER.ID"
+      "shortname": "POS_USER.USER_ID"
     },
     "body": {
-      "name": "test"
+      "owner_shortname": "DETAILS.NAME_EN"
     }
   },
   "dest": {
     "space_name": "management",
     "subpath": "users",
     "schema_shortname": "user",
-    "resource_type": "users"
+    "resource_type": "user"
   }
 }

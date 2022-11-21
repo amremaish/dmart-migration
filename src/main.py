@@ -26,9 +26,9 @@ def main_loop():
         try:
             serve(text)
         except jsonschema.exceptions.ValidationError as e:
-            prompt.prompt(str(e.message))
+            prompt.prompt(str(e.message) + '\n')
         except Exception as e:
-            prompt.prompt(str(e))
+            prompt.prompt(str(e) + '\n')
         if text in ["exit", "q", "quit"]:
             break
 

@@ -41,15 +41,18 @@ class DbManager:
         # ]
         columns_sql = f'SELECT {" ,".join(columns)} FROM {table_name}'
         count_sql = f'SELECT count(*) FROM {table_name}'
+        limit_sql = ''
         sql = ''
         if join_tables:
             for join in join_tables:
                 if "table" in join and "pk_id" in join and "fk_id" in join:
                     join_type = JoinType.INNER if "table" not in join else join['join_type']
                     sql += f' {join_type} join {join["table"]} on {join["pk_id"]} = {join["fk_id"]}'
+
         if limit != -1:
-            sql += f' LIMIT {limit} OFFSET {offset}'
-        sql += ';'
+            limit_sql = f' LIMIT {limit} OFFSET {offset};'
+        else:
+            sql += ';'
 
         # Creating a cursor object using the cursor() method
         cursor = self.db_connect.cursor(buffered=True)
@@ -57,7 +60,7 @@ class DbManager:
         # Executing the query
         cursor.execute(count_sql + sql)
         count = cursor.fetchone()
-        cursor.execute(columns_sql + sql)
+        cursor.execute(columns_sql + sql + limit_sql)
         result = cursor.fetchall()
         self.db_connect.commit()
 
@@ -71,10 +74,11 @@ class DbManager:
                 idx = +1
             processed_result.append(sub_result)
         return {
-            'query': columns_sql + sql,
+            'query': columns_sql + sql + limit_sql,
             'data': processed_result,
             'returned': len(processed_result),
-            'total': count[0]
+            'total': count[0],
+            'offset': offset
         }
 
 

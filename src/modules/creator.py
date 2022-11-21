@@ -1,9 +1,13 @@
+import json
 import os
+import sys
 from pathlib import Path
 from typing import Type, TypeVar
 
+import aiofiles as aiofiles
+
 from dmart import core
-from dmart.helper import branch_path, default_branch, snake_case
+from dmart.helper import branch_path, default_branch, snake_case, camel_case
 from utils.mappers import mappers
 
 MetaChild = TypeVar("MetaChild", bound=core.Meta)
@@ -23,22 +27,31 @@ class SpaceCreator:
             *,
             space_name: str,
             subpath: str,
-            entry: core.Meta,
-            class_type: Type[MetaChild]):
-
-        meta_path = self.metapath(space_name=space_name,
-                                  subpath=subpath,
-                                  shortname=entry.shortname,
-                                  class_type=class_type,
-                                  schema_shortname=entry.payload.schema_shortname)
+            meta: core.Meta,
+            body: dict,
+            class_type: str
+    ):
+        resource_class = getattr(sys.modules["dmart.core"], camel_case(class_type))
+        path, filename = self.metapath(space_name=space_name,
+                                       subpath=subpath,
+                                       shortname=meta.shortname,
+                                       class_type=resource_class,
+                                       schema_shortname=meta.payload.schema_shortname)
 
         payload_path = self.payload_path(space_name=space_name,
                                          subpath=subpath,
-                                         class_type=class_type,
-                                         schema_shortname=entry.payload.schema_shortname)
+                                         class_type=resource_class,
+                                         schema_shortname=meta.payload.schema_shortname)
+        if not path.is_dir():
+            os.makedirs(path)
 
-        print(meta_path)
-        print(payload_path)
+        # save meta
+        with open(path / filename, "w") as f:
+            f.write(meta.json(exclude_none=True))
+
+        # save payload
+        with open((payload_path / (meta.shortname + '.json')), "w") as f:
+            f.write(json.dumps(body))
 
     def metapath(
             self,
@@ -106,5 +119,6 @@ class SpaceCreator:
         else:
             path = path / subpath
         return path
+
 
 spaces_creator = SpaceCreator()

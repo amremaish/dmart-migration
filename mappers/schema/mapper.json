@@ -41,7 +41,19 @@
     },
     "columns_mapper": {
       "type": "object",
-      "properties": {}
+      "properties": {
+        "meta": {
+          "type": "object",
+          "properties": {}
+        },
+        "body": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      "required": [
+        "meta"
+      ]
     },
     "dest": {
       "type": "object",

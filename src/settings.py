@@ -8,7 +8,7 @@ class Settings:
     db_host: str
     db_port: str
     db_password: str
-
+    fetch_limit = 2
     def __init__(self):
         load_dotenv("config.env")
         self.MY_ENV_VAR = os.environ.get("MY_ENV_VAR")
