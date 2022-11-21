@@ -1,24 +1,19 @@
 import os
 
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
+from pydantic import BaseSettings  # BaseModel,
 
-
-class Settings:
-    # database connection
+class Settings (BaseSettings):
     db_host: str = '127.0.0.1'
     db_user: str = 'root'
     db_password: str = ''
-    db_port: str = 3306
-    db_database: str = 'zain_test'
-    database_type = 'oracle'
+    db_port: str = "3306"
+    db_name: str = 'zain_test'
     fetch_limit = 2
+    db_driver: str = "oracle"
 
-    ORACLE = 'oracle'
-    MYSQL = 'mysql'
-
-    def __init__(self):
-        load_dotenv("config.env")
-        self.MY_ENV_VAR = os.environ.get("MY_ENV_VAR")
-
+    class Config:
+        env_file = os.getenv("BACKEND_ENV", "config.env")
+        env_file_encoding = "utf-8"
 
 settings = Settings()

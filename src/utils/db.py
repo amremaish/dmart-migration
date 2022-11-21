@@ -2,36 +2,41 @@ import cx_Oracle
 import mysql.connector
 
 from enums import JoinType
-from settings import settings, Settings
+from settings import settings
 
+# print(settings.json())
 
 class DbManager:
-    db_connect = None
+    # connection  
 
     def connect(self) -> bool:
-        if settings.database_type == Settings.MYSQL:
+        if settings.db_driver == "mysql":
             try:
-                self.db_connect = mysql.connector.connect(
+                self.connection = mysql.connector.connect(
                     host=settings.db_host,
-                    database=settings.db_database,
+                    database=settings.db_name,
                     port=settings.db_port,
                     user=settings.db_user,
                     password=settings.db_password)
 
-            except Exception:
+            except Exception as ex:
+                print(ex)
                 return False
 
-            return self.db_connect.is_connected()
-        elif settings.database_type == Settings.ORACLE:
+            return self.connection.is_connected()
+        elif settings.db_driver == "oracle":
             try:
-                self.db_connect = cx_Oracle.connect(
+                print(settings.json())
+
+                self.connection = cx_Oracle.connect(
                     user=settings.db_user,
                     password=settings.db_password,
-                    dsn=f'{settings.db_host}/{settings.db_database}')
+                    dsn=f'{settings.db_host}/{settings.db_name}')
 
-            except Exception:
+            except Exception as ex:
+                print(ex)
                 return False
-            return self.db_connect.is_connected()
+            return self.connection.is_connected()
         else:
             raise Exception("Not specified database driver")
 
@@ -72,17 +77,17 @@ class DbManager:
 
         result = None
         count = (0, 0)
-        if settings.database_type == Settings.MYSQL:
+        if settings.db_driver == "mysql":
             # Creating a cursor object using the cursor() method
-            cursor = self.db_connect.cursor(buffered=True)
+            cursor = self.connection.cursor(buffered=True)
             # Executing the query
             cursor.execute(count_sql + sql)
             count = cursor.fetchone()
             cursor.execute(columns_sql + sql + limit_sql)
             result = cursor.fetchall()
-            self.db_connect.commit()
-        elif settings.database_type == Settings.ORACLE:
-            cursor = self.db_connect.cursor()
+            self.connection.commit()
+        elif settings.db_driver == "oracle":
+            cursor = self.connection.cursor()
             count = cursor.execute(count_sql + sql)
             result = cursor.execute(columns_sql + sql + limit_sql)
 
