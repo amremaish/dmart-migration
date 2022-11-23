@@ -4,7 +4,6 @@ import mysql.connector
 from enums import JoinType
 from settings import settings
 
-# print(settings.json())
 
 class DbManager:
     # connection  
@@ -31,12 +30,12 @@ class DbManager:
                 self.connection = cx_Oracle.connect(
                     user=settings.db_user,
                     password=settings.db_password,
-                    dsn=f'{settings.db_host}/{settings.db_name}')
+                    dsn=f'{settings.db_host}:{settings.db_port}/{settings.db_name}')
 
             except Exception as ex:
                 print(ex)
                 return False
-            return self.connection.is_connected()
+            return True
         else:
             raise Exception("Not specified database driver")
 
@@ -45,7 +44,7 @@ class DbManager:
             *,
             table_name: str,
             columns: list,
-            join_tables: dict[list, str] | None = None,
+            join_tables: dict | None = None,
             limit: int = -1,
             offset: int = 0
     ):
@@ -70,14 +69,13 @@ class DbManager:
                     join_type = JoinType.INNER if "table" not in join else join['join_type']
                     sql += f' {join_type} join {join["table"]} on {join["pk_id"]} = {join["fk_id"]}'
 
-        if limit != -1:
-            limit_sql = f' LIMIT {limit} OFFSET {offset};'
-        else:
-            sql += ';'
-
         result = None
         count = (0, 0)
         if settings.db_driver == "mysql":
+            if limit != -1:
+                limit_sql = f' LIMIT {limit} OFFSET {offset};'
+            else:
+                sql += ';'
             # Creating a cursor object using the cursor() method
             cursor = self.connection.cursor(buffered=True)
             # Executing the query
@@ -87,9 +85,15 @@ class DbManager:
             result = cursor.fetchall()
             self.connection.commit()
         elif settings.db_driver == "oracle":
+
+            if limit != -1:
+                limit_sql = f"OFFSET {offset} ROWS FETCH NEXT {limit} ROWS ONLY"
+
             cursor = self.connection.cursor()
-            count = cursor.execute(count_sql + sql)
-            result = cursor.execute(columns_sql + sql + limit_sql)
+            cursor.execute(count_sql + sql)
+            count = cursor.fetchone()
+            cursor.execute(columns_sql + sql + limit_sql)
+            result = cursor.fetchall()
 
         processed_result: list = []
         # collect result

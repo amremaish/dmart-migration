@@ -1,9 +1,7 @@
-from modules.creator import spaces_creator
-from modules.mapper import convert_db_to_meta
+from creator import creator
 from settings import settings
 from utils.db import db_manager
-from utils.docorators import process_mapper
-from utils.prompt import prompt
+from utils.decorators import process_mapper
 
 
 @process_mapper(mapper="users")
@@ -19,13 +17,13 @@ def load(*args, **kwargs):
             limit=settings.fetch_limit,
             offset=offset)
 
-        prompt.print("-> processing query: " + db_result.get('query'))
+        print("-> processing query: " + db_result.get('query'))
         for row in db_result.get('data'):
-            meta, body = convert_db_to_meta(row, mapper_data)
+            meta, body = creator.convert_db_to_meta(row, mapper_data)
             space_name = mapper_data.get('dest').get('space_name')
             subpath = mapper_data.get('dest').get('subpath')
             resource_type = mapper_data.get('dest').get('resource_type')
-            spaces_creator.save(
+            creator.save(
                 space_name=space_name,
                 subpath=subpath,
                 class_type=resource_type,
@@ -35,4 +33,4 @@ def load(*args, **kwargs):
         if db_result['returned'] != settings.fetch_limit:
             break
 
-    prompt.print("Successfully done.")
+    print("Successfully done.")

@@ -10,7 +10,6 @@ from uuid import uuid4
 from pydantic import Field
 from datetime import datetime
 
-from dmart import password_hashing
 from dmart.enums import ContentType, ResourceType, StrEnum, Language, UserType, RequestType
 from dmart.helper import SHORTNAME, default_branch, SUBPATH, camel_case
 
@@ -66,9 +65,6 @@ class Meta(Resource):
             sys.modules["models.core"], camel_case(record.resource_type)
         )
 
-        if issubclass(meta_class, User) and "password" in record.attributes:
-            hashed_pass = password_hashing.hash_password(record.attributes["password"])
-            record.attributes["password"] = hashed_pass
 
         meta_obj = meta_class(
             owner_shortname=owner_shortname,
@@ -89,12 +85,7 @@ class Meta(Resource):
         for field_name, field_value in self.__dict__.items():
             if field_name in record.attributes and field_name not in restricted_fields:
                 if isinstance(self, User) and field_name == "password":
-                    self.__setattr__(
-                        field_name,
-                        password_hashing.hash_password(record.attributes[field_name]),
-                    )
                     continue
-
                 self.__setattr__(field_name, record.attributes[field_name])
 
     def to_record(
