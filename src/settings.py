@@ -14,7 +14,7 @@ class Settings(BaseSettings):
     db_name: str = 'zain_test'
     fetch_limit = 500
     max_records = 2000
-    db_driver: str = DBType.ORACLE
+    db_driver: str = DBType.MYSQL
 
     class Config:
         env_file = os.getenv("BACKEND_ENV", "config.env")

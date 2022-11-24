@@ -27,7 +27,8 @@ class SpaceCreator:
             subpath: str,
             meta: core.Meta,
             body: dict,
-            class_type: str
+            class_type: str,
+            schema_shortname: str
     ):
         resource_class = getattr(sys.modules["dmart.core"], camel_case(class_type))
         path, filename = self.metapath(space_name=space_name,
@@ -40,6 +41,10 @@ class SpaceCreator:
                                          subpath=subpath,
                                          class_type=resource_class,
                                          schema_shortname=meta.payload.schema_shortname)
+
+        # validate payload
+        mappers.validate_body_entry(body, schema_shortname)
+
         if not path.is_dir():
             os.makedirs(path)
 
