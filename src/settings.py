@@ -12,8 +12,8 @@ class Settings(BaseSettings):
     db_password: str = ''
     db_port: str = "3306"
     db_name: str = 'zain_test'
-    fetch_limit = 2
-    db_driver: str = DBType.MYSQL
+    fetch_limit = 500
+    db_driver: str = DBType.ORACLE
 
     class Config:
         env_file = os.getenv("BACKEND_ENV", "config.env")
