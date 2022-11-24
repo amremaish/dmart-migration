@@ -86,8 +86,7 @@ class DbManager:
         elif settings.db_driver == DBType.ORACLE:
 
             if limit != -1:
-                limit_sql = f"OFFSET {offset} ROWS FETCH NEXT {limit} ROWS ONLY"
-
+                limit_sql = f" OFFSET {offset} ROWS FETCH NEXT {limit} ROWS ONLY"
             cursor = self.connection.cursor()
             cursor.execute(count_sql + sql)
             count = cursor.fetchone()
