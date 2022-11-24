@@ -3,6 +3,8 @@ import os
 # from dotenv import load_dotenv
 from pydantic import BaseSettings  # BaseModel,
 
+from enums import DBType
+
 
 class Settings(BaseSettings):
     db_host: str = '127.0.0.1'
@@ -11,7 +13,7 @@ class Settings(BaseSettings):
     db_port: str = "3306"
     db_name: str = 'zain_test'
     fetch_limit = 2
-    db_driver: str = "mysql"
+    db_driver: str = DBType.MYSQL
 
     class Config:
         env_file = os.getenv("BACKEND_ENV", "config.env")

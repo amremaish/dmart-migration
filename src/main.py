@@ -6,14 +6,13 @@ from enum import Enum
 
 from prompt_toolkit import PromptSession
 from prompt_toolkit.history import FileHistory
-
-from creator import creator
 from utils.mappers import mappers
 from utils.db import db_manager
 
 session = PromptSession(
     history=FileHistory(".history")
 )
+
 
 class OperationsType(str, Enum):
     MIGRTAE = "migrate"
@@ -56,7 +55,6 @@ def main_loop():
     if not check or not loaded_number:
         print('Please fix your connection')
         return
-    creator.scan()
 
     while True:
         text = prompt("command: ")

@@ -1,6 +1,7 @@
 import cx_Oracle
 import mysql.connector
 
+from enums import DBType
 from enums import JoinType
 from settings import settings
 
@@ -9,7 +10,7 @@ class DbManager:
     # connection  
 
     def connect(self) -> bool:
-        if settings.db_driver == "mysql":
+        if settings.db_driver == DBType.MYSQL:
             try:
                 self.connection = mysql.connector.connect(
                     host=settings.db_host,
@@ -23,10 +24,8 @@ class DbManager:
                 return False
 
             return self.connection.is_connected()
-        elif settings.db_driver == "oracle":
+        elif settings.db_driver == DBType.ORACLE:
             try:
-                print(settings.json())
-
                 self.connection = cx_Oracle.connect(
                     user=settings.db_user,
                     password=settings.db_password,
@@ -71,7 +70,7 @@ class DbManager:
 
         result = None
         count = (0, 0)
-        if settings.db_driver == "mysql":
+        if settings.db_driver == DBType.MYSQL:
             if limit != -1:
                 limit_sql = f' LIMIT {limit} OFFSET {offset};'
             else:
@@ -84,7 +83,7 @@ class DbManager:
             cursor.execute(columns_sql + sql + limit_sql)
             result = cursor.fetchall()
             self.connection.commit()
-        elif settings.db_driver == "oracle":
+        elif settings.db_driver == DBType.ORACLE:
 
             if limit != -1:
                 limit_sql = f"OFFSET {offset} ROWS FETCH NEXT {limit} ROWS ONLY"

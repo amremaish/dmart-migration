@@ -11,3 +11,8 @@ class JoinType(StrEnum):
     LEFT = "left"
     RIGHT = "right"
     FULL = "full"
+
+
+class DBType(StrEnum):
+    ORACLE = "oracle"
+    MYSQL = "mysql"
