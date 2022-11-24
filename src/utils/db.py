@@ -71,7 +71,7 @@ class DbManager:
         result = None
         count = (0, 0)
         print("-> Processing: " + columns_sql + sql + limit_sql)
-        print("-> Processing count: " + count_sql + sql + limit_sql)
+        print("-> Processing count: " + count_sql + sql)
         if settings.db_driver == DBType.MYSQL:
             if limit != -1:
                 limit_sql = f' LIMIT {limit} OFFSET {offset};'
