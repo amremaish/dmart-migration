@@ -70,6 +70,7 @@ class DbManager:
 
         result = None
         count = (0, 0)
+        print(columns_sql + sql + limit_sql)
         if settings.db_driver == DBType.MYSQL:
             if limit != -1:
                 limit_sql = f' LIMIT {limit} OFFSET {offset};'

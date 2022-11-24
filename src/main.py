@@ -6,6 +6,8 @@ from enum import Enum
 
 from prompt_toolkit import PromptSession
 from prompt_toolkit.history import FileHistory
+
+import creator
 from utils.mappers import mappers
 from utils.db import db_manager
 
@@ -55,7 +57,7 @@ def main_loop():
     if not check or not loaded_number:
         print('Please fix your connection')
         return
-
+    creator.creator.scan()
     while True:
         text = prompt("command: ")
         try:

@@ -1,0 +1,23 @@
+{
+  "source": {
+    "table": "DETAILS",
+    "columns": [
+      "DETAILS.OWNER",
+      "DETAILS.NAME_EN"
+    ]
+  },
+  "columns_mapper": {
+    "meta": {
+      "shortname": "DETAILS.NAME_EN"
+    },
+    "body": {
+      "owner_shortname": "DETAILS.OWNER"
+    }
+  },
+  "dest": {
+    "space_name": "aftersales",
+    "subpath": "details",
+    "schema_shortname": "user",
+    "resource_type": "content"
+  }
+}
