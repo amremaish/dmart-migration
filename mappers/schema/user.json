@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "title": "title",
+  "properties": {
+    "owner_shortname": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "owner_shortname"
+  ]
+}

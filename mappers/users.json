@@ -6,7 +6,7 @@
         "table": "DETAILS",
         "pk_id": "POS_USER.ID",
         "fk_id": "DETAILS.POS_USER_ID",
-        "join_type": "inner"
+        "join_type": "INNER"
       }
     ],
     "columns": [
@@ -17,10 +17,13 @@
   },
   "columns_mapper": {
     "meta": {
-      "shortname": "POS_USER.USER_ID"
+      "shortname": "POS_USER.USER_ID",
+      "owner_shortname": "DETAILS.OWNER"
     },
     "body": {
-      "owner_shortname": "DETAILS.NAME_EN"
+      "owner_shortname": {
+        "owner": "DETAILS.OWNER"
+      }
     }
   },
   "dest": {
