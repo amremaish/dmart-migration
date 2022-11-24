@@ -4,6 +4,8 @@ import sys
 from pathlib import Path
 from typing import Type, TypeVar
 
+import jsonschema
+
 from dmart import core
 from dmart.helper import branch_path, default_branch, snake_case, camel_case
 from utils.mappers import mappers
@@ -42,8 +44,11 @@ class SpaceCreator:
                                          class_type=resource_class,
                                          schema_shortname=meta.payload.schema_shortname)
 
-        # validate payload
-        mappers.validate_body_entry(body, schema_shortname)
+        try:
+            # validate payload
+            mappers.validate_body_entry(body, schema_shortname)
+        except jsonschema.exceptions.ValidationError as e:
+            print(f"waring: this shortname body {meta.shortname} doesn't match {schema_shortname} schema shortname.")
 
         if not path.is_dir():
             os.makedirs(path)
