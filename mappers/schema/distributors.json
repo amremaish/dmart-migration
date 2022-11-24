@@ -1,29 +1,28 @@
-    "region": {
-      "type": "object",
-      "properties": {
-        "key": {
-          "type": "string",
-          "enum": [
-            "arabic_north",
-            "central_east",
-            "kurdistan",
-            "south_west"
-          ]
-        },
-        "arabic": {
-          "type": "string"
-        },
-        "english": {
-          "type": "string"
-        },
-        "kurdish": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "key",
-        "arabic",
-        "english",
-        "kurdish"
+{
+  "type": "object",
+  "properties": {
+    "key": {
+      "type": "string",
+      "enum": [
+        "arabic_north",
+        "central_east",
+        "kurdistan",
+        "south_west"
       ]
     },
+    "arabic": {
+      "type": "string"
+    },
+    "english": {
+      "type": "string"
+    },
+    "kurdish": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "arabic",
+    "english",
+    "kurdish"
+  ]
+}
