@@ -30,6 +30,8 @@ def load(*args, **kwargs):
                 meta=meta,
                 body=body)
         offset += db_result['returned']
+        if offset > settings.max_records:
+            break
         if db_result['returned'] != settings.fetch_limit:
             break
 

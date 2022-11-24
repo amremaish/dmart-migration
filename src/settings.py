@@ -13,6 +13,7 @@ class Settings(BaseSettings):
     db_port: str = "3306"
     db_name: str = 'zain_test'
     fetch_limit = 500
+    max_records = 2000
     db_driver: str = DBType.ORACLE
 
     class Config:
