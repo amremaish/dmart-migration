@@ -47,12 +47,19 @@ class Record(BaseModel):
         return json.loads(self.json())
 
 
+class Translation(Resource):
+    en: str | None = None
+    ar: str | None = None
+    kd: str | None = None
+
+
 class Meta(Resource):
     uuid: UUID = Field(default_factory=uuid4)
     shortname: str
     is_active: bool = False
-    displayname: str | None = None
-    description: str | None = None
+    displayname: Translation | None = None
+    description: Translation | None = None
+    password: str | None = None
     tags: list[str] = []
     created_at: datetime = datetime.now()
     updated_at: datetime = datetime.now()
@@ -64,7 +71,6 @@ class Meta(Resource):
         meta_class = getattr(
             sys.modules["models.core"], camel_case(record.resource_type)
         )
-
 
         meta_obj = meta_class(
             owner_shortname=owner_shortname,
@@ -89,11 +95,11 @@ class Meta(Resource):
                 self.__setattr__(field_name, record.attributes[field_name])
 
     def to_record(
-        self,
-        subpath: str,
-        shortname: str,
-        include: list[str],
-        branch_name: str | None = None,
+            self,
+            subpath: str,
+            shortname: str,
+            include: list[str],
+            branch_name: str | None = None,
     ):
         # Sanity check
         assert self.shortname == shortname
