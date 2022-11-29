@@ -133,7 +133,7 @@ class DbManager:
         postfix = col_name.split(".")[1]
         if len(prefix) > 4:
             prefix = prefix[:4]
-        return f'{col_name} {prefix}_{postfix}'
+        return f'{col_name} {prefix}_{postfix}_'
 
 
 db_manager = DbManager()

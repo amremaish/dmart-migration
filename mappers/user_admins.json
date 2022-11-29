@@ -1,0 +1,39 @@
+{
+  "source": {
+    "table": "USER_ADMIN",
+    "columns": [
+      "USER_ADMIN.NAME",
+      "USER_ADMIN.PHONE_NO",
+      "USER_ADMIN.STATUS",
+      "USER_ADMIN.CREATION_DATE",
+      "USER_ADMIN.UPDATED_DATE",
+      "USER_ADMIN.PASSWORD",
+      "USER_ADMIN.DEPARTMENT",
+      "USER_ADMIN.EMAIL",
+      "USER_ADMIN.USER_NAME"
+    ]
+  },
+  "columns_mapper": {
+    "meta": {
+      "shortname": "USER_ADMIN.NAME",
+      "displayname": {
+        "en": "USER_ADMIN.USER_NAME",
+        "ar": "USER_ADMIN.USER_NAME",
+        "kd": "USER_ADMIN.USER_NAME"
+      },
+      "msisdn": "USER_ADMIN.MSISDN",
+      "updated_at": "USER_ADMIN.UPDATED_DATE",
+      "created_at": "USER_ADMIN.CREATION_DATE",
+      "password": "USER_ADMIN.PASSWORD"
+    },
+    "body": {
+      "department": "USER_ADMIN.DEPARTMENT"
+    }
+  },
+  "dest": {
+    "space_name": "management",
+    "subpath": "users",
+    "schema_shortname": "user_admin",
+    "resource_type": "user"
+  }
+}

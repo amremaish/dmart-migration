@@ -52,6 +52,8 @@ class SpaceCreator:
         except jsonschema.exceptions.ValidationError as e:
             print(
                 f"waring: this shortname body {meta.shortname} doesn't match schema `{schema_shortname}` [{e.message}]")
+        except Exception as e:
+            print(str(e))
 
         if not path.is_dir():
             os.makedirs(path)

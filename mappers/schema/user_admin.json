@@ -1,0 +1,9 @@
+{
+  "type": "object",
+  "title": "title",
+  "properties": {
+    "department": {
+      "type": "string"
+    }
+  }
+}
