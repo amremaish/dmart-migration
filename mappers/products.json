@@ -1,0 +1,53 @@
+{
+  "source": {
+    "table": "PRODUCT",
+    "join": [
+      {
+        "table": "PRODUCT_REGION",
+        "pk_id": "PRODUCT.ID",
+        "fk_id": "PRODUCT_REGION.PRODUCT_ID",
+        "join_type": "INNER"
+      },
+      {
+        "table": "REGION",
+        "pk_id": "REGION.ID",
+        "fk_id": "PRODUCT_REGION.REGION_ID",
+        "join_type": "INNER"
+      },
+      {
+        "table": "PRODUCT_CATEGORY",
+        "pk_id": "PRODUCT.ID",
+        "fk_id": "PRODUCT_CATEGORY.PRODUCT_ID",
+        "join_type": "INNER"
+      },
+      {
+        "table": "CATEGORY",
+        "pk_id": "PRODUCT.ID",
+        "fk_id": "PRODUCT_CATEGORY.PRODUCT_ID",
+        "join_type": "INNER"
+      }
+    ],
+    "columns": [
+      "PRODUCT.CREATION_DATE",
+      "PRODUCT.UPDATED_DATE",
+      "PRODUCT.NAME_AR",
+      "PRODUCT.NAME_KU",
+      "PRODUCT.PRODUCT_NAME",
+      "REGION.ID"
+    ]
+  },
+  "columns_mapper": {
+    "meta": {
+      "shortname": "DETAILS.NAME_EN"
+    },
+    "body": {
+      "owner_shortname": "DETAILS.OWNER"
+    }
+  },
+  "dest": {
+    "space_name": "aftersales",
+    "subpath": "details",
+    "schema_shortname": "user",
+    "resource_type": "content"
+  }
+}

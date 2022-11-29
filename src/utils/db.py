@@ -66,12 +66,11 @@ class DbManager:
             for join in join_tables:
                 if "table" in join and "pk_id" in join and "fk_id" in join:
                     join_type = JoinType.INNER if "table" not in join else join['join_type']
-                    sql += f' {join_type} join {join["table"]} on {join["pk_id"]} = {join["fk_id"]}'
+                    sql += f' {join_type} JOIN {join["table"]} on {join["pk_id"]} = {join["fk_id"]}'
 
         result = None
         count = (0, 0)
-        print("-> Processing: " + columns_sql + sql + limit_sql)
-        print("-> Processing count: " + count_sql + sql)
+
         if settings.db_driver == DBType.MYSQL:
             if limit != -1:
                 limit_sql = f' LIMIT {limit} OFFSET {offset};'
@@ -90,10 +89,14 @@ class DbManager:
             if limit != -1:
                 limit_sql = f" OFFSET {offset} ROWS FETCH NEXT {limit} ROWS ONLY"
             cursor = self.connection.cursor()
+            print("-> Processing count: " + count_sql + sql)
             cursor.execute(count_sql + sql)
             count = cursor.fetchone()
-            cursor.execute(columns_sql + sql + limit_sql)
+            print("-> count executed.")
+            print(f"-> Processing: {columns_sql}{sql}{limit_sql}")
+            cursor.execute(f'{columns_sql}{sql}{limit_sql}')
             result = cursor.fetchall()
+            print("-> query executed.")
 
         processed_result: list = []
         # collect result
