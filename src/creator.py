@@ -9,6 +9,7 @@ import jsonschema
 
 from dmart import core
 from dmart.helper import branch_path, default_branch, snake_case, camel_case
+from utils.db import db_manager
 from utils.mappers import mappers
 
 MetaChild = TypeVar("MetaChild", bound=core.Meta)
@@ -49,8 +50,8 @@ class SpaceCreator:
             # validate payload
             mappers.validate_body_entry(body, schema_shortname)
         except jsonschema.exceptions.ValidationError as e:
-            print(e.message)
-            print(f"waring: this shortname body {meta.shortname} doesn't match {schema_shortname} schema shortname.")
+            print(
+                f"waring: this shortname body {meta.shortname} doesn't match schema `{schema_shortname}` [{e.message}]")
 
         if not path.is_dir():
             os.makedirs(path)
@@ -142,7 +143,7 @@ class SpaceCreator:
             if isinstance(v, dict):
                 self.deep_update(body.get(k, {}), row_data)
             elif isinstance(v, str):
-                aliased_val = f'{v} {v.split(".")[0]}_{v.split(".")[1]}'
+                aliased_val = db_manager.create_alias(v)
                 if aliased_val in row_data:
                     body[k] = row_data[aliased_val]
         return body

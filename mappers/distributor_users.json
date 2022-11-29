@@ -1,0 +1,63 @@
+{
+  "source": {
+    "table": "DISTRIBUTORS_USER",
+    "join": [
+      {
+        "table": "USER_REGION",
+        "pk_id": "DISTRIBUTORS_USER.ID",
+        "fk_id": "USER_REGION.USER_ID",
+        "join_type": "INNER"
+      },
+      {
+        "table": "REGION",
+        "pk_id": "REGION.ID",
+        "fk_id": "USER_REGION.REGION_ID",
+        "join_type": "INNER"
+      }
+    ],
+    "columns": [
+      "DISTRIBUTORS_USER.REGISTRATION_ID",
+      "DISTRIBUTORS_USER.LATITUDE",
+      "DISTRIBUTORS_USER.LONGITUDE",
+      "DISTRIBUTORS_USER.USER_NAME",
+      "DISTRIBUTORS_USER.MSISDN",
+      "DISTRIBUTORS_USER.STATUS",
+      "DISTRIBUTORS_USER.CREATION_DATE",
+      "DISTRIBUTORS_USER.UPDATED_DATE",
+      "DISTRIBUTORS_USER.PASSWORD",
+      "DISTRIBUTORS_USER.DISTRIBUTOR_ID",
+      "DISTRIBUTORS_USER.LANGUAGE_ID",
+      "REGION.NAME_AR",
+      "REGION.NAME_EN",
+      "REGION.NAME_KU"
+    ]
+  },
+  "columns_mapper": {
+    "meta": {
+      "shortname": "DISTRIBUTORS_USER.MSISDN",
+      "displayname": {
+        "en": "DISTRIBUTORS_USER.USER_NAME",
+        "ar": "DISTRIBUTORS_USER.USER_NAME",
+        "kd": "DISTRIBUTORS_USER.USER_NAME"
+      },
+      "updated_at": "DISTRIBUTORS_USER.UPDATED_DATE",
+      "created_at": "DISTRIBUTORS_USER.CREATION_DATE",
+      "password": "DISTRIBUTORS_USER.PASSWORD"
+    },
+    "body": {
+      "language": "DISTRIBUTORS_USER.LANGUAGE_ID",
+      "region": {
+        "arabic": "REGION.NAME_AR",
+        "english": "REGION.NAME_EN",
+        "kurdish": "REGION.NAME_KU"
+      }
+
+    }
+  },
+  "dest": {
+    "space_name": "management",
+    "subpath": "users",
+    "schema_shortname": "distributor_user",
+    "resource_type": "user"
+  }
+}

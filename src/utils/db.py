@@ -122,7 +122,18 @@ class DbManager:
 
     def find_in_row(self, row: dict, key: str):
         key = key.upper()
-        key = f'{key} {key.split(".")[0]}_{key.split(".")[1]}'
+        key = self.create_alias(key)
         return row.get(key)
+
+    def create_aliases(self, cols):
+        return [self.create_alias(col) for col in cols]
+
+    def create_alias(self, col_name: str):
+        prefix = col_name.split(".")[0]
+        postfix = col_name.split(".")[1]
+        if len(prefix) > 4:
+            prefix = prefix[:4]
+        return f'{col_name} {prefix}_{postfix}'
+
 
 db_manager = DbManager()

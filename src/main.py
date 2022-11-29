@@ -1,7 +1,6 @@
 import traceback
-
-import jsonschema
 import re
+import jsonschema
 import jsonschema.exceptions
 
 from enum import Enum
