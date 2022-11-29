@@ -1,3 +1,4 @@
+import copy
 import json
 import os
 import sys
@@ -48,6 +49,7 @@ class SpaceCreator:
             # validate payload
             mappers.validate_body_entry(body, schema_shortname)
         except jsonschema.exceptions.ValidationError as e:
+            print(e.message)
             print(f"waring: this shortname body {meta.shortname} doesn't match {schema_shortname} schema shortname.")
 
         if not path.is_dir():
@@ -131,22 +133,18 @@ class SpaceCreator:
     def convert_db_to_meta(self, row_data: dict, mapper: dict):
         meta = mapper.get('columns_mapper').get('meta')
         body = mapper.get('columns_mapper').get('body')
-        schema_shortname = mapper.get('dest').get('schema_shortname')
-        meta_data: dict = self.deep_update(meta, row_data)
-        body_data: dict = self.deep_update(body, row_data)
-        meta_obj = core.Meta(**meta_data)
-        payload = core.Payload(content_type='json', schema_shortname=schema_shortname,
-                               body=f'{meta_obj.shortname}.json')
-        meta_obj.payload = payload
-        return meta_obj, body_data
+        meta_data: dict = self.deep_update(copy.deepcopy(meta), row_data)
+        body_data: dict = self.deep_update(copy.deepcopy(body), row_data)
+        return meta_data, body_data
 
     def deep_update(self, body: dict, row_data):
         for k, v in body.items():
             if isinstance(v, dict):
                 self.deep_update(body.get(k, {}), row_data)
             elif isinstance(v, str):
-                if v in row_data:
-                    body[k] = row_data[v]
+                aliased_val = f'{v} {v.split(".")[0]}_{v.split(".")[1]}'
+                if aliased_val in row_data:
+                    body[k] = row_data[aliased_val]
         return body
 
 

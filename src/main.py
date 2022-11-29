@@ -1,3 +1,5 @@
+import traceback
+
 import jsonschema
 import re
 import jsonschema.exceptions
@@ -65,7 +67,7 @@ def main_loop():
         except jsonschema.exceptions.ValidationError as e:
             print(str(e.message) + '\n')
         except Exception as e:
-            print(str(e) + '\n')
+            print(traceback.format_exc())
         if text in ["exit", "q", "quit"]:
             break
 

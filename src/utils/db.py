@@ -1,3 +1,5 @@
+from datetime import datetime
+
 import cx_Oracle
 import mysql.connector
 
@@ -104,8 +106,11 @@ class DbManager:
             idx = 0
             sub_result: dict = {}
             for col_name in columns:
-                sub_result[col_name] = item[idx]
-                idx = +1
+                val = item[idx]
+                if type(val) == datetime:
+                    val = item[idx].isoformat()
+                sub_result[col_name] = val
+                idx = idx + 1
             processed_result.append(sub_result)
         return {
             'query': columns_sql + sql + limit_sql,
@@ -115,5 +120,9 @@ class DbManager:
             'offset': offset
         }
 
+    def find_in_row(self, row: dict, key: str):
+        key = key.upper()
+        key = f'{key} {key.split(".")[0]}_{key.split(".")[1]}'
+        return row.get(key)
 
 db_manager = DbManager()

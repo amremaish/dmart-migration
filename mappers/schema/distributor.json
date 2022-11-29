@@ -1,0 +1,25 @@
+{
+  "type": "object",
+  "title": "title",
+  "properties": {
+    "alternative_msisdn": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "distributor_shortnames": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "msisdn": {
+      "type": "string"
+    },
+    "language": {
+      "type": "string"
+    }
+  },
+  "required": []
+}

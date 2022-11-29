@@ -6,8 +6,8 @@ def process_mapper(mapper):
         def wrapper(*args, **kwargs):
             mappers.validate_file_entry(mapper, "mapper")
             kwargs['mapper_data'] = mappers.load(mapper)
-            columns = kwargs['mapper_data'].get('source').get('columns')
-            columns = [f'{col} {col.split(".")[0]}_{col.split(".")[1]}' for col in columns]
+            columns = [f'{col} {col.split(".")[0]}_{col.split(".")[1]}' for col in
+                       kwargs['mapper_data']['source']['columns']]
             kwargs['mapper_data']['source']['columns'] = columns
             kwargs['current_mapper'] = mapper
             function(*args, **kwargs)
