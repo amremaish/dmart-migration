@@ -1,0 +1,79 @@
+{
+  "source": {
+    "table": "POS_USER",
+    "join": [
+      {
+        "table": "USER_REGION",
+        "pk_id": "POS_USER.ID",
+        "fk_id": "USER_REGION.USER_ID",
+        "join_type": "LEFT"
+      },
+      {
+        "table": "REGION",
+        "pk_id": "REGION.ID",
+        "fk_id": "USER_REGION.REGION_ID",
+        "join_type": "LEFT"
+      },
+      {
+        "table": "SECTOR",
+        "pk_id": "POS_USER.SECTOR_ID",
+        "fk_id": "SECTOR.ID",
+        "join_type": "LEFT"
+      }
+    ],
+    "columns": [
+      "POS_USER.REGISTRATION_ID",
+      "POS_USER.USER_ID",
+      "POS_USER.NAME",
+      "POS_USER.USERNAME",
+      "POS_USER.DEVICE_ID",
+      "POS_USER.DEVICE_SERIAL",
+      "POS_USER.SIM_ICCID",
+      "POS_USER.EMAIL",
+      "POS_USER.CREATION_USER",
+      "POS_USER.STATUS",
+      "POS_USER.CREATION_DATE",
+      "POS_USER.UPDATED_DATE",
+      "POS_USER.CITY",
+      "POS_USER.AREA",
+      "POS_USER.PASSWORD",
+      "POS_USER.TYPE_ID",
+      "POS_USER.GOVERNORATE_ID",
+      "POS_USER.LANGUAGE_ID",
+      "POS_USER.LATITUDE",
+      "POS_USER.LONGITUDE",
+      "POS_USER.ADDRESS",
+      "POS_USER.SECTOR_ID",
+      "REGION.NAME_AR",
+      "REGION.NAME_EN",
+      "REGION.NAME_KU",
+      "SECTOR.ID",
+      "SECTOR.NAME_AR",
+      "SECTOR.NAME_EN",
+      "SECTOR.NAME_KU"
+    ]
+  },
+  "columns_mapper": {
+    "meta": {
+      "shortname": "POS_USER.USER_ID",
+      "displayname": {
+        "en": "POS_USER.USERNAME",
+        "ar": "POS_USER.USERNAME",
+        "kd": "POS_USER.USERNAME"
+      },
+      "updated_at": "POS_USER.UPDATED_DATE",
+      "created_at": "POS_USER.CREATION_DATE",
+      "password": "POS_USER.PASSWORD"
+    },
+    "body": {
+      "language": "POS_USER.LANGUAGE_ID",
+      "channel": "POS_USER.NAME"
+    }
+  },
+  "dest": {
+    "space_name": "management",
+    "subpath": "users",
+    "schema_shortname": "pos_channel",
+    "resource_type": "user"
+  }
+}

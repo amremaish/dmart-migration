@@ -1,0 +1,98 @@
+{
+  "title": "Account Details",
+  "description": "Schema definition for Account Details",
+  "additionalProperties": false,
+  "type": "object",
+  "properties": {
+    "language": {
+      "type": "string",
+      "title": "Account language",
+      "description": "Account language of end user"
+    },
+    "channel": {
+      "type": "string",
+      "title": "channel",
+      "description": "channel"
+    },
+    "mothers_name": {
+      "type": "string",
+      "title": "Account holder mother's name",
+      "description": "Captured from the registration of the user and filled from"
+    },
+    "date_of_birth": {
+      "type": "string",
+      "title": "Account holder date of birth",
+      "description": "Captured from the registration of the user and filled from"
+    },
+    "nationality": {
+      "type": "string",
+      "title": "Nationality code",
+      "description": "Captured from the registration of the user and filled from",
+      "properties": {
+        "code": {
+          "type": "string",
+          "title": "Code"
+        }
+      }
+    },
+    "registration_id": {
+      "type": "string"
+    },
+    "device_id": {
+      "type": "string"
+    },
+    "device_serial": {
+      "type": "string"
+    },
+    "sim_iccid": {
+      "type": "string"
+    },
+    "pos_id": {
+      "type": "string"
+    },
+    "address": {
+      "type": "object",
+      "title": "Account holder home address",
+      "description": "Captured from the registration of the user and filled from",
+      "properties": {
+        "line": {
+          "type": "string",
+          "title": "Address line"
+        },
+        "longitude": {
+          "type": "number",
+          "title": "Home address longitude",
+          "description": "Longitude value of the home address"
+        },
+        "latitude": {
+          "type": "number",
+          "title": "Home address latitude",
+          "description": "Latitude value of the home address"
+        },
+        "governorate": {
+          "type": "object",
+          "title": "Governorate",
+          "properties": {
+            "name": {
+              "type": "string",
+              "ttle": "Governerate name"
+            },
+            "sector": {
+              "type": "string",
+              "title": "Sector name"
+            },
+            "sub_sector": {
+              "type": "string",
+              "title": "Sub Sector"
+            },
+            "distributor": {
+              "type": "string",
+              "title": "Distributor"
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": []
+}

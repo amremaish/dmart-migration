@@ -1,0 +1,283 @@
+{
+  "title": "Channel",
+  "description": "Schema definition for all channel details",
+  "additionalProperties": false,
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "title": "Channel type",
+      "enum": [
+          "distributor direct sales",
+          "Franchise store (FS)",
+          "ROS",
+          "Sub-dealer",
+          "Supermarket",
+          "Universal point of sale POS",
+          "Zain Cash"
+      ]
+    },
+    "outlet_type": {
+      "type": "string",
+      "title": "Channel oulet type",
+      "enum": [
+          "exchange office",
+          "mobile shop",
+          "ROS",
+          "Franchise",
+          "sub-dealer"
+      ]
+    },
+    "security_visit_status": {
+      "type": "string",
+      "title": "National security visit status",
+      "enum": [
+          "Completed",
+          "Not Completed"
+      ]
+    },
+    "security_license_number": {
+      "type": "string",
+      "title": "National security license number"
+    },
+    "zain_signage": {
+      "type": "string",
+      "title": "Zain top signage"
+    },
+    "competitor_signage": {
+      "type": "string",
+      "title": "Competitor top signage"
+    },
+    "internet_availability": {
+      "type": "string",
+      "title": "Channel internet availability"
+    },
+    "shop_size" :{
+      "type": "string",
+      "title": "Size of shop"
+    },
+    "population_traffic": {
+      "type": "string",
+      "title": "Channel population traffic",
+      "enum": [
+          "High",
+          "Medium",
+          "Low"
+      ]
+    },
+    "area_income_level": {
+      "type": "string",
+      "title": "Channel area income level",
+      "enum": [
+          "High",
+          "Medium",
+          "Low"
+      ]
+    },
+    "area_profile": {
+      "type": "string",
+      "title": "Channel area profile",
+      "enum": [
+          "Alley",
+          "Bazar",
+          "Intersection",
+          "Main street",
+          "Secondary street",
+          "Shopping mall",
+          "Square"
+      ]
+    },
+    "segmentation": {
+      "type": "string",
+      "title": "Channel segmentation"
+    },
+    "risk_level": {
+      "type": "string",
+      "title": "Channel risk level"
+    },
+    "governorate": {
+      "type": "string",
+      "title": "Channel governorate"
+    },
+    "location": {
+      "type": "object",
+      "title": "Channel address",
+      "description": "Captured from the registration of the user and filled from",
+      "properties": {
+        "line": {
+          "type": "string",
+          "title": "Channel location line address"
+        },
+        "longitude": {
+          "type": "number",
+          "title": "Channel address longitude",
+          "description": "Longitude value of the home address"
+        },
+        "latitude": {
+          "type": "number",
+          "title": "Channel address latitude",
+          "description": "Latitude value of the home address"
+        },
+        "area_type": {
+          "type": "string",
+          "title": "Channel area type",
+          "enum": [
+              "Commercial",
+              "touristic",
+              "industrial",
+              "souq"
+          ]
+        },
+        "governorate": {
+          "type": "string",
+          "title": "Channel governorate",
+          "properties": {
+            "type": "object",
+            "sector": {
+              "type": "string",
+              "title": "Channel sector"
+            },
+            "district": {
+                "type": "string",
+                "title": "district"
+            }
+          }
+        }
+      }
+    },
+    "mobile_number": {
+      "type": "string",
+      "title": "Channel mobile number"
+    },
+    "whatsapp_number": {
+      "type": "string",
+      "title": "Channel WhatsApp number"
+    },
+    "activation_tool_available": {
+      "type": "string",
+      "title": "Activation tool available",
+      "enum": [
+          "Yes",
+          "No"
+      ]
+    },
+    "msisdn_activation_tool": {
+      "type": "string",
+      "title": "MSISDN of activation tool"
+    },
+    "status_activation_tool": {
+      "type": "string",
+      "title": "Status of activation tool",
+      "enum": [
+          "Active",
+          "Inactive"
+      ]
+    },
+    "type_activation_tool": {
+      "type": "string",
+      "title": "Type of activation tool",
+      "enum": [
+          "Mobile",
+          "Tablet"
+      ]
+    },
+    "mvd_line_available": {
+      "type": "string",
+      "title": "MVD line  available",
+      "enum": [
+          "Yes",
+          "No"
+      ]
+    },
+    "msisdn_mvd_line": {
+      "type": "string",
+      "title": "MSISDN of MVD line"
+    },
+    "evd_terminal_available": {
+      "type": "string",
+      "title": "EVD terminal available",
+      "enum": [
+          "Yes",
+          "No"
+      ]
+    },
+    "msisdn_evd_device": {
+      "type": "string",
+      "title": "MSISDN of EVD device"
+    },
+    "serial_evd_device": {
+      "type": "string",
+      "title": "Serial of EVD device"
+    },
+    "zain_cash_service_available": {
+      "type": "string",
+      "title": "ZainCash service available",
+      "enum": [
+          "Yes",
+          "No"
+      ]
+    },
+    "zain_cash_code": {
+      "type": "string",
+      "title": "ZainCash code"
+    },
+    "zain_cash_msisdn": {
+      "type": "string",
+      "title": "ZainCash MSISDN"
+    },
+    "owner_name": {
+      "type": "string",
+      "title": "Channel owner name"
+    },
+    "owner_mothers_name": {
+      "type": "string",
+      "title": "Channel owner mother's name"
+    },
+    "owner_civil_id": {
+      "type": "string",
+      "title": "Channel owner civil ID"
+    },
+    "owner_date_of_birth": {
+      "type": "string",
+      "title": "Channel owner  date of birth"
+    },
+    "owner_mobile_number": {
+      "type": "string",
+      "title": "Channel owner mobile number"
+    },
+    "owner_email_address": {
+      "type": "string",
+      "title": "Channel owner email address"
+    },
+    "owner_address": {
+      "type": "object",
+      "title": "Channel owner home address",
+      "description": "Captured from the registration of the user and filled from",
+      "properties": {
+        "line": {
+          "type": "string",
+          "title": "Owner line address"
+        },
+        "longitude": {
+          "type": "number",
+          "title": "Channel owner address longitude",
+          "description": "Longitude value of the home address"
+        },
+        "latitude": {
+          "type": "number",
+          "title": "Channel owner address latitude",
+          "description": "Latitude value of the home address"
+        }
+      }
+    },
+    "sub_account": {
+      "type": "object",
+      "properties": {
+          "role_department_institution": {
+              "type": "string",
+              "title": "Role/Department at institution"
+          }
+      }
+    }
+  }
+}

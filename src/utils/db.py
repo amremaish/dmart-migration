@@ -129,6 +129,8 @@ class DbManager:
         return [self.create_alias(col) for col in cols]
 
     def create_alias(self, col_name: str):
+        if not col_name:
+            return ''
         prefix = col_name.split(".")[0]
         postfix = col_name.split(".")[1]
         if len(prefix) > 4:

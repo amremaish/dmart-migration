@@ -32,7 +32,8 @@ class SpaceCreator:
             meta: core.Meta,
             body: dict,
             class_type: str,
-            schema_shortname: str
+            schema_shortname: str,
+            only_matched_schema: bool
     ):
         resource_class = getattr(sys.modules["dmart.core"], camel_case(class_type))
         path, filename = self.metapath(space_name=space_name,
@@ -46,14 +47,20 @@ class SpaceCreator:
                                          class_type=resource_class,
                                          schema_shortname=meta.payload.schema_shortname)
 
+        matched_schema = True
         try:
             # validate payload
             mappers.validate_body_entry(body, schema_shortname)
         except jsonschema.exceptions.ValidationError as e:
             print(
                 f"waring: this shortname body {meta.shortname} doesn't match schema `{schema_shortname}` [{e.message}]")
+            matched_schema = False
         except Exception as e:
             print(str(e))
+            matched_schema = False
+
+        if not matched_schema and only_matched_schema:
+            return
 
         if not path.is_dir():
             os.makedirs(path)
@@ -133,11 +140,17 @@ class SpaceCreator:
             path = path / subpath
         return path
 
-    def convert_db_to_meta(self, row_data: dict, mapper: dict):
+    def convert_db_to_meta(self, row_data: dict, mapper: dict, remove_null_field: bool = False):
         meta = mapper.get('columns_mapper').get('meta')
         body = mapper.get('columns_mapper').get('body')
         meta_data: dict = self.deep_update(copy.deepcopy(meta), row_data)
         body_data: dict = self.deep_update(copy.deepcopy(body), row_data)
+        if remove_null_field:
+            # loop it for remove empty dict
+            for i in range(3):
+                self.delete_none(meta_data)
+                self.delete_none(body_data)
+
         return meta_data, body_data
 
     def deep_update(self, body: dict, row_data):
@@ -146,9 +159,26 @@ class SpaceCreator:
                 self.deep_update(body.get(k, {}), row_data)
             elif isinstance(v, str):
                 aliased_val = db_manager.create_alias(v)
-                if aliased_val in row_data:
+                if aliased_val and aliased_val in row_data:
                     body[k] = row_data[aliased_val]
         return body
+
+    def delete_none(self, _dict):
+        """Delete None values recursively from all of the dictionaries"""
+        for key, value in list(_dict.items()):
+            if isinstance(value, dict):
+                if len(value) != 0:
+                    self.delete_none(value)
+                else:
+                    del _dict[key]
+            elif value is None:
+                del _dict[key]
+            elif isinstance(value, list):
+                for v_i in value:
+                    if isinstance(v_i, dict):
+                        self.delete_none(v_i)
+
+        return _dict
 
 
 creator = SpaceCreator()

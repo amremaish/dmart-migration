@@ -7,6 +7,8 @@ from utils.db import db_manager
 def default_loader(args, kwargs, apply_modifier=None):
     # comes from process_mapper decorator
     mapper_data: dict = kwargs['mapper_data']
+    remove_null_field: bool = kwargs['remove_null_field']
+    only_matched_schema: bool = kwargs['only_matched_schema']
     offset: int = 0
     while True:
         db_result = db_manager.select_query(
@@ -20,7 +22,7 @@ def default_loader(args, kwargs, apply_modifier=None):
             schema_shortname = mapper_data.get('dest').get('schema_shortname')
             subpath = mapper_data.get('dest').get('subpath')
             resource_type = mapper_data.get('dest').get('resource_type')
-            meta, body = creator.convert_db_to_meta(row, mapper_data)
+            meta, body = creator.convert_db_to_meta(row, mapper_data, remove_null_field)
             meta['shortname'] = meta['shortname'].strip().lower().replace(' ', '')
             if apply_modifier:
                 modified = apply_modifier(
@@ -54,7 +56,8 @@ def default_loader(args, kwargs, apply_modifier=None):
                 class_type=resource_type,
                 schema_shortname=schema_shortname,
                 meta=meta_obj,
-                body=body
+                body=body,
+                only_matched_schema=only_matched_schema
             )
         offset += db_result['returned']
 
