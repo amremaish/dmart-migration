@@ -42,7 +42,8 @@
       },
       "updated_at": "DISTRIBUTORS_USER.UPDATED_DATE",
       "created_at": "DISTRIBUTORS_USER.CREATION_DATE",
-      "password": "DISTRIBUTORS_USER.PASSWORD"
+      "password": "DISTRIBUTORS_USER.PASSWORD",
+      "is_active":"DISTRIBUTORS_USER.STATUS"
     },
     "body": {
       "language": "DISTRIBUTORS_USER.LANGUAGE_ID",

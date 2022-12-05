@@ -22,27 +22,10 @@
       }
     ],
     "columns": [
-      "POS_USER.REGISTRATION_ID",
       "POS_USER.USER_ID",
       "POS_USER.NAME",
       "POS_USER.USERNAME",
-      "POS_USER.DEVICE_ID",
-      "POS_USER.DEVICE_SERIAL",
-      "POS_USER.SIM_ICCID",
-      "POS_USER.EMAIL",
-      "POS_USER.CREATION_USER",
-      "POS_USER.STATUS",
-      "POS_USER.CREATION_DATE",
-      "POS_USER.UPDATED_DATE",
-      "POS_USER.CITY",
-      "POS_USER.AREA",
-      "POS_USER.PASSWORD",
       "POS_USER.TYPE_ID",
-      "POS_USER.GOVERNORATE_ID",
-      "POS_USER.LANGUAGE_ID",
-      "POS_USER.LATITUDE",
-      "POS_USER.LONGITUDE",
-      "POS_USER.ADDRESS",
       "POS_USER.SECTOR_ID",
       "REGION.NAME_AR",
       "REGION.NAME_EN",
@@ -57,17 +40,15 @@
     "meta": {
       "shortname": "POS_USER.USER_ID",
       "displayname": {
-        "en": "POS_USER.USERNAME",
-        "ar": "POS_USER.USERNAME",
-        "kd": "POS_USER.USERNAME"
-      },
-      "updated_at": "POS_USER.UPDATED_DATE",
-      "created_at": "POS_USER.CREATION_DATE",
-      "password": "POS_USER.PASSWORD"
+        "en": "POS_USER.NAME",
+        "ar": "POS_USER.NAME",
+        "kd": "POS_USER.NAME"
+      }
+
     },
     "body": {
       "language": "POS_USER.LANGUAGE_ID",
-      "channel": "POS_USER.NAME"
+      "TYPE": "POS_USER.TYPE_ID"
     }
   },
   "dest": {
