@@ -63,7 +63,8 @@
       },
       "updated_at": "POS_USER.UPDATED_DATE",
       "created_at": "POS_USER.CREATION_DATE",
-      "password": "POS_USER.PASSWORD"
+      "password": "POS_USER.PASSWORD",
+      "is_active":"POS_USER.STATUS"
     },
     "body": {
       "language": "POS_USER.LANGUAGE_ID",

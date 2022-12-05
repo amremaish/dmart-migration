@@ -41,7 +41,8 @@
       "msisdn": "DISTRIBUTORS.MSISDN",
       "updated_at": "DISTRIBUTORS.UPDATED_DATE",
       "created_at": "DISTRIBUTORS.CREATION_DATE",
-      "password": "DISTRIBUTORS.PASSWORD"
+      "password": "DISTRIBUTORS.PASSWORD",
+      "is_active":"DISTRIBUTORS.STATUS"
     },
     "body": {
       "language": "DISTRIBUTORS.LANGUAGE_ID",
