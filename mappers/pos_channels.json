@@ -48,7 +48,71 @@
     },
     "body": {
       "language": "POS_USER.LANGUAGE_ID",
-      "TYPE": "POS_USER.TYPE_ID"
+      "TYPE": "POS_USER.TYPE_ID",
+      "outlet_type": "",
+      "security_visit_status": "",
+      "security_license_number": "",
+      "zain_signage":"",
+      "competitor_signage":"",
+      "internet_availability":"",
+      "shop_size":"",
+     "population_traffic":"",
+     "area_income_level":"",
+     "area_profile":"",
+     "segmentation":"",
+     "governorate_shortname":"",
+     "location": {
+      "line":  "",
+      "longitude":"",
+      "latitude":"",
+      "area_type":"",
+      "governorate": {
+        "type": "string",
+        "title": "Channel governorate",
+        "properties": {
+          "type": "object",
+          "shortname":"",
+          "sector": {
+            "type": "string",
+            "title": "Channel sector"
+          },
+          "district": {
+              "type": "string",
+              "title": "district"
+          }
+        }
+      } },
+      "mobile_number": "",
+      "whatsapp_number": "",
+      "activation_tool_available":"",
+      "msisdn_activation_tool":"",
+      "status_activation_tool":"",
+      "type_activation_tool":"",
+      "mvd_line_available":"",
+      "msisdn_mvd_line":"",
+      "evd_terminal_available":"",
+      "msisdn_evd_device":"",
+      "serial_evd_device":"",
+      "zain_cash_service_available":"",
+      "zain_cash_code":"",
+      "owner_name":"",
+      "owner_mothers_name":"",
+      "owner_civil_id":"",
+      "owner_date_of_birth":"",
+      "owner_mobile_number":"",
+      "owner_email_address":"",
+      "owner_address": {
+       
+          "line":"",
+          "longitude":"",
+          "latitude": ""
+        },
+        "sub_account": {
+
+              "role_department_institution": ""
+          
+        }
+   
     }
   },
   "dest": {
