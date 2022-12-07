@@ -33,6 +33,9 @@
               "pk_id"
             ]
           }
+        },
+        "where": {
+          "type": "string"
         }
       },
       "required": [
@@ -50,10 +53,7 @@
           "type": "object",
           "properties": {}
         }
-      },
-      "required": [
-        "meta"
-      ]
+      }
     },
     "dest": {
       "type": "object",

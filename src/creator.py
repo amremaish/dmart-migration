@@ -24,28 +24,49 @@ class SpaceCreator:
         if not self.spaces_path.is_dir():
             os.mkdir(self.spaces_path)
 
+    def shortname_fixer(self, shortname: str):
+        if not shortname:
+            return ''
+        return shortname.strip().lower().replace(' ', '')
+
+    def shortname_deep_fixer(self, body: dict):
+        if not body:
+            return {}
+        for k, v in body.items():
+            if isinstance(v, dict):
+                self.shortname_deep_fixer(body.get(k, {}))
+            elif isinstance(v, list) and 'shortname' in k:
+                for i in range(len(v)):
+                    if v[i]:
+                        v[i] = self.shortname_fixer(v[i])
+                    else:
+                        v.pop(i)
+            elif isinstance(v, str) and 'shortname' in k:
+                body[k] = self.shortname_fixer(v)
+
     def save(
             self,
             *,
             space_name: str,
             subpath: str,
-            meta: core.Meta,
+            meta: dict,
             body: dict,
             class_type: str,
             schema_shortname: str,
-            only_matched_schema: bool
+            only_matched_schema: bool,
+            appended_list: list = None
     ):
         resource_class = getattr(sys.modules["dmart.core"], camel_case(class_type))
         path, filename = self.metapath(space_name=space_name,
                                        subpath=subpath,
-                                       shortname=meta.shortname,
+                                       shortname=meta.get("shortname"),
                                        class_type=resource_class,
-                                       schema_shortname=meta.payload.schema_shortname)
+                                       schema_shortname=schema_shortname)
 
-        payload_path = self.payload_path(space_name=space_name,
-                                         subpath=subpath,
-                                         class_type=resource_class,
-                                         schema_shortname=meta.payload.schema_shortname)
+        body_path = self.payload_path(space_name=space_name,
+                                      subpath=subpath,
+                                      class_type=resource_class,
+                                      schema_shortname=schema_shortname)
 
         matched_schema = True
         try:
@@ -53,7 +74,7 @@ class SpaceCreator:
             mappers.validate_body_entry(body, schema_shortname)
         except jsonschema.exceptions.ValidationError as e:
             print(
-                f"waring: this shortname body {meta.shortname} doesn't match schema `{schema_shortname}` [{e.message}]")
+                f"waring: this shortname body {meta.get('shortname')} doesn't match schema `{schema_shortname}` [{e.message}]")
             matched_schema = False
         except Exception as e:
             print(str(e))
@@ -62,16 +83,78 @@ class SpaceCreator:
         if not matched_schema and only_matched_schema:
             return
 
-        if not path.is_dir():
+        if path and not path.is_dir():
             os.makedirs(path)
 
-        # save meta
-        with open(path / filename, "w") as f:
-            f.write(meta.json(exclude_none=True))
+        body_path = body_path / (meta.get("shortname") + '.json')
+        mata_path = path / filename
 
-        # save payload
-        with open((payload_path / (meta.shortname + '.json')), "w") as f:
-            f.write(json.dumps(body))
+        if appended_list:
+            if body_path.is_file():
+                with open(body_path, "r") as json_file:
+                    new_body = json.load(json_file)
+            if mata_path.is_file():
+                with open(body_path, "r") as json_file:
+                    new_meta = json.load(json_file)
+
+            self.apply_appended_list(
+                old_meta=meta,
+                new_meta=new_meta,
+                old_body=body,
+                new_body=new_body,
+                appended_list=appended_list)
+        if meta:
+            meta_obj = core.Meta(**meta)
+            meta_obj.payload = core.Payload(
+                content_type='json',
+                schema_shortname=schema_shortname,
+                body=f'{meta_obj.shortname}.json'
+            )
+            # save meta
+            with open(mata_path, "w") as f:
+                f.write(meta_obj.json(exclude_none=True))
+        if body:
+            # save payload
+            with open(body_path, "w") as f:
+                f.write(json.dumps(body))
+
+    def apply_appended_list(
+            self,
+            old_meta: dict,
+            new_meta: dict,
+            old_body: dict,
+            new_body: dict,
+            appended_list: list[str] = None
+    ):
+        for one_list in appended_list:
+            path = one_list.split('.', 1)[1]
+            if one_list.startswith("body"):
+                appended_list = self.find_list_in_dict(path, new_body)
+                self.append_list_in_dict(old_body, appended_list, "", path)
+            if one_list.startswith("meta"):
+                appended_list = self.find_list_in_dict(path, new_meta)
+                self.append_list_in_dict(old_meta, appended_list, "", path)
+
+    def find_list_in_dict(self, path: str, obj: dict):
+        path = path.split('.')
+        itr = 0
+        for loc in path:
+            # loop into lost expect the first and the last item
+            if itr == len(path) - 1:
+                break
+            obj = obj[loc]
+            itr = itr + 1
+        return obj[path[-1]]
+
+    def append_list_in_dict(self, body: dict, appended_list: list[str], created_path: str = "", appended_path=""):
+        for k, v in body.items():
+            if isinstance(v, dict):
+                created_path = created_path + f"{k}."
+                self.append_list_in_dict(body.get(k, {}), appended_list, created_path, appended_path)
+            elif isinstance(v, list) and created_path + k == appended_path:
+                v += appended_list
+
+        return body
 
     def metapath(
             self,
@@ -154,6 +237,8 @@ class SpaceCreator:
         return meta_data, body_data
 
     def deep_update(self, body: dict, row_data):
+        if not body:
+            return {}
         for k, v in body.items():
             if isinstance(v, dict):
                 self.deep_update(body.get(k, {}), row_data)
@@ -161,9 +246,17 @@ class SpaceCreator:
                 aliased_val = db_manager.create_alias(v)
                 if aliased_val and aliased_val in row_data:
                     body[k] = row_data[aliased_val]
+            elif isinstance(v, list):
+                for i in range(len(v)):
+                    aliased_val = db_manager.create_alias(v[i])
+                    if aliased_val and aliased_val in row_data:
+                        v[i] = row_data[aliased_val]
+
         return body
 
     def delete_none(self, _dict):
+        if not _dict:
+            return {}
         """Delete None values recursively from all of the dictionaries"""
         for key, value in list(_dict.items()):
             if isinstance(value, dict):

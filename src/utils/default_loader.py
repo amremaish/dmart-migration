@@ -9,12 +9,14 @@ def default_loader(args, kwargs, apply_modifier=None):
     mapper_data: dict = kwargs['mapper_data']
     remove_null_field: bool = kwargs['remove_null_field']
     only_matched_schema: bool = kwargs['only_matched_schema']
+    appended_list: bool = kwargs['appended_list']
     offset: int = 0
     while True:
         db_result = db_manager.select_query(
             table_name=mapper_data.get('source').get('table'),
             columns=mapper_data.get('source').get('columns'),
             join_tables=mapper_data.get('source').get('join'),
+            where=mapper_data.get('source').get('where'),
             limit=settings.fetch_limit,
             offset=offset)
         for row in db_result.get('data'):
@@ -23,7 +25,8 @@ def default_loader(args, kwargs, apply_modifier=None):
             subpath = mapper_data.get('dest').get('subpath')
             resource_type = mapper_data.get('dest').get('resource_type')
             meta, body = creator.convert_db_to_meta(row, mapper_data, remove_null_field)
-            meta['shortname'] = meta['shortname'].strip().lower().replace(' ', '')
+            creator.shortname_deep_fixer(meta)
+            creator.shortname_deep_fixer(body)
             if apply_modifier:
                 modified = apply_modifier(
                     space_name=space_name,
@@ -43,21 +46,15 @@ def default_loader(args, kwargs, apply_modifier=None):
             if not meta.get('owner_shortname'):
                 meta['owner_shortname'] = 'dmart'
 
-            meta_obj = core.Meta(**meta)
-            meta_obj.payload = core.Payload(
-                content_type='json',
-                schema_shortname=schema_shortname,
-                body=f'{meta_obj.shortname}.json'
-            )
-
             creator.save(
                 space_name=space_name,
                 subpath=subpath,
                 class_type=resource_type,
                 schema_shortname=schema_shortname,
-                meta=meta_obj,
+                meta=meta,
                 body=body,
-                only_matched_schema=only_matched_schema
+                only_matched_schema=only_matched_schema,
+                appended_list=appended_list
             )
         offset += db_result['returned']
 

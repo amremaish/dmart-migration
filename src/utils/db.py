@@ -46,6 +46,7 @@ class DbManager:
             table_name: str,
             columns: list,
             join_tables: dict | None = None,
+            where: str | None = None,
             limit: int = -1,
             offset: int = 0
     ):
@@ -69,7 +70,8 @@ class DbManager:
                 if "table" in join and "pk_id" in join and "fk_id" in join:
                     join_type = JoinType.INNER if "table" not in join else join['join_type']
                     sql += f' {join_type} JOIN {join["table"]} on {join["pk_id"]} = {join["fk_id"]}'
-
+        if where:
+            sql += f' WHERE {where}'
         result = None
         count = (0, 0)
 

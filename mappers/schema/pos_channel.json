@@ -6,35 +6,19 @@
   "properties": {
     "type": {
       "type": "string",
-      "title": "Channel type",
-      "enum": [
-          "distributor direct sales",
-          "Franchise store (FS)",
-          "ROS",
-          "Sub-dealer",
-          "Supermarket",
-          "Universal point of sale POS",
-          "Zain Cash"
-      ]
+      "title": "Channel type"
+    },
+    "language": {
+      "type": "string",
+      "title": "Channel type"
     },
     "outlet_type": {
       "type": "string",
-      "title": "Channel oulet type",
-      "enum": [
-          "exchange office",
-          "mobile shop",
-          "ROS",
-          "Franchise",
-          "sub-dealer"
-      ]
+      "title": "Channel oulet type"
     },
     "security_visit_status": {
       "type": "string",
-      "title": "National security visit status",
-      "enum": [
-          "Completed",
-          "Not Completed"
-      ]
+      "title": "National security visit status"
     },
     "security_license_number": {
       "type": "string",
@@ -52,40 +36,21 @@
       "type": "string",
       "title": "Channel internet availability"
     },
-    "shop_size" :{
+    "shop_size": {
       "type": "string",
       "title": "Size of shop"
     },
     "population_traffic": {
       "type": "string",
-      "title": "Channel population traffic",
-      "enum": [
-          "High",
-          "Medium",
-          "Low"
-      ]
+      "title": "Channel population traffic"
     },
     "area_income_level": {
       "type": "string",
-      "title": "Channel area income level",
-      "enum": [
-          "High",
-          "Medium",
-          "Low"
-      ]
+      "title": "Channel area income level"
     },
     "area_profile": {
       "type": "string",
-      "title": "Channel area profile",
-      "enum": [
-          "Alley",
-          "Bazar",
-          "Intersection",
-          "Main street",
-          "Secondary street",
-          "Shopping mall",
-          "Square"
-      ]
+      "title": "Channel area profile"
     },
     "segmentation": {
       "type": "string",
@@ -120,27 +85,12 @@
         },
         "area_type": {
           "type": "string",
-          "title": "Channel area type",
-          "enum": [
-              "Commercial",
-              "touristic",
-              "industrial",
-              "souq"
-          ]
+          "title": "Channel area type"
         },
-        "governorate": {
-          "type": "string",
-          "title": "Channel governorate",
-          "properties": {
-            "type": "object",
-            "sector": {
-              "type": "string",
-              "title": "Channel sector"
-            },
-            "district": {
-                "type": "string",
-                "title": "district"
-            }
+        "governorate_shortnames": {
+          "type": "array",
+          "items": {
+            "type": "string"
           }
         }
       }
@@ -155,11 +105,7 @@
     },
     "activation_tool_available": {
       "type": "string",
-      "title": "Activation tool available",
-      "enum": [
-          "Yes",
-          "No"
-      ]
+      "title": "Activation tool available"
     },
     "msisdn_activation_tool": {
       "type": "string",
@@ -167,27 +113,15 @@
     },
     "status_activation_tool": {
       "type": "string",
-      "title": "Status of activation tool",
-      "enum": [
-          "Active",
-          "Inactive"
-      ]
+      "title": "Status of activation tool"
     },
     "type_activation_tool": {
       "type": "string",
-      "title": "Type of activation tool",
-      "enum": [
-          "Mobile",
-          "Tablet"
-      ]
+      "title": "Type of activation tool"
     },
     "mvd_line_available": {
       "type": "string",
-      "title": "MVD line  available",
-      "enum": [
-          "Yes",
-          "No"
-      ]
+      "title": "MVD line  available"
     },
     "msisdn_mvd_line": {
       "type": "string",
@@ -195,11 +129,7 @@
     },
     "evd_terminal_available": {
       "type": "string",
-      "title": "EVD terminal available",
-      "enum": [
-          "Yes",
-          "No"
-      ]
+      "title": "EVD terminal available"
     },
     "msisdn_evd_device": {
       "type": "string",
@@ -211,11 +141,7 @@
     },
     "zain_cash_service_available": {
       "type": "string",
-      "title": "ZainCash service available",
-      "enum": [
-          "Yes",
-          "No"
-      ]
+      "title": "ZainCash service available"
     },
     "zain_cash_code": {
       "type": "string",
@@ -273,10 +199,10 @@
     "sub_account": {
       "type": "object",
       "properties": {
-          "role_department_institution": {
-              "type": "string",
-              "title": "Role/Department at institution"
-          }
+        "role_department_institution": {
+          "type": "string",
+          "title": "Role/Department at institution"
+        }
       }
     }
   }

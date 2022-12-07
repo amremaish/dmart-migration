@@ -3,37 +3,19 @@
     "table": "POS_USER",
     "join": [
       {
-        "table": "USER_REGION",
-        "pk_id": "POS_USER.ID",
-        "fk_id": "USER_REGION.USER_ID",
-        "join_type": "LEFT"
-      },
-      {
-        "table": "REGION",
-        "pk_id": "REGION.ID",
-        "fk_id": "USER_REGION.REGION_ID",
-        "join_type": "LEFT"
-      },
-      {
-        "table": "SECTOR",
-        "pk_id": "POS_USER.SECTOR_ID",
-        "fk_id": "SECTOR.ID",
+        "table": "LOOKUP",
+        "pk_id": "LOOKUP.ID",
+        "fk_id": "POS_USER.GOVERNORATE_ID",
         "join_type": "LEFT"
       }
     ],
     "columns": [
       "POS_USER.USER_ID",
       "POS_USER.NAME",
-      "POS_USER.USERNAME",
       "POS_USER.TYPE_ID",
-      "POS_USER.SECTOR_ID",
-      "REGION.NAME_AR",
-      "REGION.NAME_EN",
-      "REGION.NAME_KU",
-      "SECTOR.ID",
-      "SECTOR.NAME_AR",
-      "SECTOR.NAME_EN",
-      "SECTOR.NAME_KU"
+      "LOOKUP.NAME_AR",
+      "LOOKUP.NAME_EN",
+      "LOOKUP.NAME_KU"
     ]
   },
   "columns_mapper": {
@@ -44,75 +26,57 @@
         "ar": "POS_USER.NAME",
         "kd": "POS_USER.NAME"
       }
-
     },
     "body": {
-      "language": "POS_USER.LANGUAGE_ID",
-      "TYPE": "POS_USER.TYPE_ID",
+      "type": "POS_USER.TYPE_ID",
       "outlet_type": "",
       "security_visit_status": "",
       "security_license_number": "",
-      "zain_signage":"",
-      "competitor_signage":"",
-      "internet_availability":"",
-      "shop_size":"",
-     "population_traffic":"",
-     "area_income_level":"",
-     "area_profile":"",
-     "segmentation":"",
-     "governorate_shortname":"",
-     "location": {
-      "line":  "",
-      "longitude":"",
-      "latitude":"",
-      "area_type":"",
-      "governorate": {
-        "type": "string",
-        "title": "Channel governorate",
-        "properties": {
-          "type": "object",
-          "shortname":"",
-          "sector": {
-            "type": "string",
-            "title": "Channel sector"
-          },
-          "district": {
-              "type": "string",
-              "title": "district"
-          }
-        }
-      } },
+      "zain_signage": "",
+      "competitor_signage": "",
+      "internet_availability": "",
+      "shop_size": "",
+      "population_traffic": "",
+      "area_income_level": "",
+      "area_profile": "",
+      "segmentation": "",
+      "governorate": "",
+      "location": {
+        "line": "",
+        "longitude": 0,
+        "latitude": 0,
+        "area_type": "",
+        "governorate_shortnames": [
+          "LOOKUP.NAME_EN"
+        ]
+      },
       "mobile_number": "",
       "whatsapp_number": "",
-      "activation_tool_available":"",
-      "msisdn_activation_tool":"",
-      "status_activation_tool":"",
-      "type_activation_tool":"",
-      "mvd_line_available":"",
-      "msisdn_mvd_line":"",
-      "evd_terminal_available":"",
-      "msisdn_evd_device":"",
-      "serial_evd_device":"",
-      "zain_cash_service_available":"",
-      "zain_cash_code":"",
-      "owner_name":"",
-      "owner_mothers_name":"",
-      "owner_civil_id":"",
-      "owner_date_of_birth":"",
-      "owner_mobile_number":"",
-      "owner_email_address":"",
+      "activation_tool_available": "",
+      "msisdn_activation_tool": "",
+      "status_activation_tool": "",
+      "type_activation_tool": "",
+      "mvd_line_available": "",
+      "msisdn_mvd_line": "",
+      "evd_terminal_available": "",
+      "msisdn_evd_device": "",
+      "serial_evd_device": "",
+      "zain_cash_service_available": "",
+      "zain_cash_code": "",
+      "owner_name": "",
+      "owner_mothers_name": "",
+      "owner_civil_id": "",
+      "owner_date_of_birth": "",
+      "owner_mobile_number": "",
+      "owner_email_address": "",
       "owner_address": {
-       
-          "line":"",
-          "longitude":"",
-          "latitude": ""
-        },
-        "sub_account": {
-
-              "role_department_institution": ""
-          
-        }
-   
+        "line": "",
+        "longitude": 0,
+        "latitude": 0
+      },
+      "sub_account": {
+        "role_department_institution": ""
+      }
     }
   },
   "dest": {

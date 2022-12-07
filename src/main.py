@@ -65,6 +65,7 @@ def main_loop():
             serve(text)
         except jsonschema.exceptions.ValidationError as e:
             print(str(e.message) + '\n')
+            print(traceback.format_exc())
         except Exception as e:
             print(traceback.format_exc())
         if text in ["exit", "q", "quit"]:
