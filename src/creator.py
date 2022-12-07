@@ -69,6 +69,26 @@ class SpaceCreator:
                                       schema_shortname=schema_shortname)
 
         matched_schema = True
+
+        body_path = body_path / (meta.get("shortname") + '.json')
+        mata_path = path / filename
+
+        if path and not path.is_dir():
+            os.makedirs(path)
+
+        if appended_list and body_path.is_file() and mata_path.is_file():
+            with open(body_path, "r") as json_file:
+                old_body = json.load(json_file)
+
+            with open(body_path, "r") as json_file:
+                old_meta = json.load(json_file)
+
+            meta, body = self.apply_appended_list(
+                old_meta=old_meta,
+                new_meta=meta,
+                old_body=old_body,
+                new_body=body,
+                appended_list=appended_list)
         try:
             # validate payload
             mappers.validate_body_entry(body, schema_shortname)
@@ -83,40 +103,18 @@ class SpaceCreator:
         if not matched_schema and only_matched_schema:
             return
 
-        if path and not path.is_dir():
-            os.makedirs(path)
-
-        body_path = body_path / (meta.get("shortname") + '.json')
-        mata_path = path / filename
-
-        if appended_list:
-            if body_path.is_file():
-                with open(body_path, "r") as json_file:
-                    new_body = json.load(json_file)
-            if mata_path.is_file():
-                with open(body_path, "r") as json_file:
-                    new_meta = json.load(json_file)
-
-            self.apply_appended_list(
-                old_meta=meta,
-                new_meta=new_meta,
-                old_body=body,
-                new_body=new_body,
-                appended_list=appended_list)
-        if meta:
-            meta_obj = core.Meta(**meta)
-            meta_obj.payload = core.Payload(
-                content_type='json',
-                schema_shortname=schema_shortname,
-                body=f'{meta_obj.shortname}.json'
-            )
-            # save meta
-            with open(mata_path, "w") as f:
-                f.write(meta_obj.json(exclude_none=True))
-        if body:
-            # save payload
-            with open(body_path, "w") as f:
-                f.write(json.dumps(body))
+        meta_obj = core.Meta(**meta)
+        meta_obj.payload = core.Payload(
+            content_type='json',
+            schema_shortname=schema_shortname,
+            body=f'{meta_obj.shortname}.json'
+        )
+        # save meta
+        with open(mata_path, "w") as f:
+            f.write(meta_obj.json(exclude_none=True))
+        # save payload
+        with open(body_path, "w") as f:
+            f.write(json.dumps(body))
 
     def apply_appended_list(
             self,
@@ -130,10 +128,11 @@ class SpaceCreator:
             path = one_list.split('.', 1)[1]
             if one_list.startswith("body"):
                 appended_list = self.find_list_in_dict(path, new_body)
-                self.append_list_in_dict(old_body, appended_list, "", path)
+                new_body = self.append_list_in_dict(old_body, appended_list, "", path)
             if one_list.startswith("meta"):
                 appended_list = self.find_list_in_dict(path, new_meta)
-                self.append_list_in_dict(old_meta, appended_list, "", path)
+                new_meta = self.append_list_in_dict(old_meta, appended_list, "", path)
+        return new_meta, new_body
 
     def find_list_in_dict(self, path: str, obj: dict):
         path = path.split('.')
@@ -153,6 +152,8 @@ class SpaceCreator:
                 self.append_list_in_dict(body.get(k, {}), appended_list, created_path, appended_path)
             elif isinstance(v, list) and created_path + k == appended_path:
                 v += appended_list
+            elif (isinstance(v, str) or isinstance(v, int) or v is None) and created_path + k == appended_path:
+                body[k] = appended_list if appended_list else ''
 
         return body
 

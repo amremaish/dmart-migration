@@ -1,5 +1,4 @@
 from creator import creator
-from dmart import core
 from settings import settings
 from utils.db import db_manager
 

@@ -29,6 +29,7 @@
     },
     "body": {
       "type": "POS_USER.TYPE_ID",
+      "language": "",
       "outlet_type": "",
       "security_visit_status": "",
       "security_license_number": "",

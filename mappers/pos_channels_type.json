@@ -1,0 +1,37 @@
+{
+  "source": {
+    "table": "POS_USER",
+    "join": [
+      {
+        "table": "LOOKUP",
+        "pk_id": "LOOKUP.ID",
+        "fk_id": "POS_USER.TYPE_ID",
+        "join_type": "LEFT"
+      }
+    ],
+    "columns": [
+      "POS_USER.USER_ID",
+      "POS_USER.NAME",
+      "LOOKUP.NAME_EN"
+    ]
+  },
+  "columns_mapper": {
+    "meta": {
+      "shortname": "POS_USER.USER_ID",
+      "displayname": {
+        "en": "POS_USER.NAME",
+        "ar": "POS_USER.NAME",
+        "kd": "POS_USER.NAME"
+      }
+    },
+    "body": {
+      "type": "LOOKUP.NAME_EN"
+      }
+  },
+  "dest": {
+    "space_name": "management",
+    "subpath": "users",
+    "schema_shortname": "pos_channel",
+    "resource_type": "user"
+  }
+}

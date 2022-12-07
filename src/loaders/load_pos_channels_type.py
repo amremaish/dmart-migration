@@ -5,8 +5,8 @@ from utils.default_loader import default_loader
 
 
 @process_mapper(
-    mapper="pos_channels_language",
-    appended_list=["body.language"]
+    mapper="pos_channels_type",
+    appended_list=["body.type"]
 )
 def load(*args, **kwargs):
     default_loader(args, kwargs, apply_modifier)
