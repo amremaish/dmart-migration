@@ -4,8 +4,7 @@ from utils.default_loader import default_loader, meta_fixer
 
 @process_mapper(
     mapper="pos_users",
-    only_matched_schema=True,
-    appended_list=["body.location.governorate_shortnames"]
+    appended_list=["body.address.governorate_shortnames"]
 )
 def load(*args, **kwargs):
     default_loader(args, kwargs, apply_modifier)
@@ -32,6 +31,11 @@ def apply_modifier(
     if not body.get('sim_iccid'):
         body['sim_iccid'] = ''
 
+    if not body.get('device_serial'):
+        body['device_serial'] = ''
+
+    if not body.get('device_id'):
+        body['device_id'] = ''
 
     if not body.get('address'):
         body['address'] = {'line': '', 'longitude': 0, 'latitude': 0, 'governorate_shortnames': []}
