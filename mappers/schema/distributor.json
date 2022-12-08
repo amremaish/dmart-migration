@@ -1,24 +1,16 @@
 {
   "type": "object",
-  "title": "title",
+  "title": "distributor_profile",
+  "additionalProperties": false,
   "properties": {
-    "alternative_msisdn": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
-    },
-    "distributor_shortnames": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
-    },
-    "msisdn": {
-      "type": "string"
-    },
     "language": {
       "type": "string"
+    },
+    "governorate_shortnames": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     }
   },
   "required": []

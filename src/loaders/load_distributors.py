@@ -2,7 +2,10 @@ from utils.decorators import process_mapper
 from utils.default_loader import default_loader
 
 
-@process_mapper(mapper="distributors")
+@process_mapper(
+    mapper="distributors",
+    appended_list=["body.governorate_shortnames"]
+)
 def load(*args, **kwargs):
     default_loader(args, kwargs, apply_modifier)
     print("Successfully done.")

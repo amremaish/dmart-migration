@@ -35,6 +35,7 @@
     "meta": {
       "shortname": "DISTRIBUTORS.NAME",
       "displayname": {
+        "en": "DISTRIBUTORS.NAME",
         "ar": "DISTRIBUTORS.NAME_AR",
         "kd": "DISTRIBUTORS.NAME_KU"
       },
@@ -42,15 +43,11 @@
       "updated_at": "DISTRIBUTORS.UPDATED_DATE",
       "created_at": "DISTRIBUTORS.CREATION_DATE",
       "password": "DISTRIBUTORS.PASSWORD",
-      "is_active":"DISTRIBUTORS.STATUS"
+      "is_active": "DISTRIBUTORS.STATUS"
     },
     "body": {
-      "language": "DISTRIBUTORS.LANGUAGE_ID",
-      "region": {
-        "arabic": "REGION.NAME_AR",
-        "english": "REGION.NAME_EN",
-        "kurdish": "REGION.NAME_KU"
-      }
+      "language": "",
+      "governorate_shortnames":["REGION.NAME_EN"]
     }
   },
   "dest": {
