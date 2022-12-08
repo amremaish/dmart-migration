@@ -52,7 +52,7 @@
   "dest": {
     "space_name": "management",
     "subpath": "users",
-    "schema_shortname": "",
+    "schema_shortname": "sales_user",
     "resource_type": "user"
   }
 }

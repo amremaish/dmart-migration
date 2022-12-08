@@ -232,8 +232,8 @@ class SpaceCreator:
         if remove_null_field:
             # loop it for remove empty dict
             for i in range(3):
-                self.delete_none(meta_data)
-                self.delete_none(body_data)
+                meta_data = self.delete_none(meta_data)
+                body_data = self.delete_none(body_data)
 
         return meta_data, body_data
 

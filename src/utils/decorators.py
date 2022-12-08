@@ -2,8 +2,12 @@ from utils.db import db_manager
 from utils.mappers import mappers
 
 
-def process_mapper(mapper: str, remove_null_field: bool = False, only_matched_schema: bool = False,
-                   appended_list: list = None):
+def process_mapper(
+        mapper: str,
+        remove_null_field: bool = False,
+        only_matched_schema: bool = False,
+        appended_list: list = None
+):
     def decorator(function):
         def wrapper(*args, **kwargs):
             mappers.validate_file_entry(mapper, "mapper")

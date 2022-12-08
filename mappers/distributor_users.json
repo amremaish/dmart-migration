@@ -6,13 +6,19 @@
         "table": "USER_REGION",
         "pk_id": "DISTRIBUTORS_USER.ID",
         "fk_id": "USER_REGION.USER_ID",
-        "join_type": "INNER"
+        "join_type": "LEFT"
       },
       {
         "table": "REGION",
         "pk_id": "REGION.ID",
         "fk_id": "USER_REGION.REGION_ID",
-        "join_type": "INNER"
+        "join_type": "LEFT"
+      },
+      {
+        "table": "LOOKUP",
+        "pk_id": "LOOKUP.ID",
+        "fk_id": "DISTRIBUTORS_USER.LANGUAGE_ID",
+        "join_type": "LEFT"
       }
     ],
     "columns": [
@@ -29,7 +35,8 @@
       "DISTRIBUTORS_USER.LANGUAGE_ID",
       "REGION.NAME_AR",
       "REGION.NAME_EN",
-      "REGION.NAME_KU"
+      "REGION.NAME_KU",
+      "LOOKUP.NAME_EN"
     ]
   },
   "columns_mapper": {
@@ -43,16 +50,16 @@
       "updated_at": "DISTRIBUTORS_USER.UPDATED_DATE",
       "created_at": "DISTRIBUTORS_USER.CREATION_DATE",
       "password": "DISTRIBUTORS_USER.PASSWORD",
-      "is_active":"DISTRIBUTORS_USER.STATUS"
+      "msisdn": "DISTRIBUTORS_USER.MSISDN",
+      "is_active": "DISTRIBUTORS_USER.STATUS"
     },
     "body": {
-      "language": "DISTRIBUTORS_USER.LANGUAGE_ID",
-      "region": {
-        "arabic": "REGION.NAME_AR",
-        "english": "REGION.NAME_EN",
-        "kurdish": "REGION.NAME_KU"
+      "language": "LOOKUP.NAME_EN",
+      "registration_id": "DISTRIBUTORS_USER.REGISTRATION_ID",
+      "address": {
+        "longitude": "DISTRIBUTORS_USER.LONGITUDE",
+        "latitude": "DISTRIBUTORS_USER.LATITUDE"
       }
-
     }
   },
   "dest": {
