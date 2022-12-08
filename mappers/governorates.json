@@ -1,0 +1,48 @@
+{
+  "source": {
+    "table": "REGION",
+    "join": [
+      {
+        "table": "SECTOR",
+        "pk_id": "REGION.ID",
+        "fk_id": "SECTOR.REGION_ID",
+        "join_type": "INNER"
+      }
+    ],
+    "columns": [
+      "REGION.NAME_AR",
+      "REGION.NAME_EN",
+      "REGION.NAME_KU",
+      "SECTOR.NAME_EN",
+      "SECTOR.NAME_AR",
+      "SECTOR.NAME_KU"
+    ]
+  },
+  "columns_mapper": {
+    "meta": {
+      "shortname": "REGION.NAME_EN"
+    },
+    "body": {
+      "sectors": [
+        {
+          "key": "SECTOR.NAME_EN",
+          "arabic": "SECTOR.NAME_AR",
+          "english": "SECTOR.NAME_EN",
+          "kurdish": "SECTOR.NAME_KU"
+        }
+      ],
+      "region": {
+        "key": "SECTOR.NAME_EN",
+        "arabic": "REGION.NAME_AR",
+        "english": "REGION.NAME_EN",
+        "kurdish": "REGION.NAME_KU"
+      }
+    }
+  },
+  "dest": {
+    "space_name": "management",
+    "subpath": "collections/governorates",
+    "schema_shortname": "governorate",
+    "resource_type": "user"
+  }
+}

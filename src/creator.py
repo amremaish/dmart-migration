@@ -227,8 +227,8 @@ class SpaceCreator:
     def convert_db_to_meta(self, row_data: dict, mapper: dict, remove_null_field: bool = False):
         meta = mapper.get('columns_mapper').get('meta')
         body = mapper.get('columns_mapper').get('body')
-        meta_data: dict = self.deep_update(copy.deepcopy(meta), row_data)
-        body_data: dict = self.deep_update(copy.deepcopy(body), row_data)
+        meta_data: dict = self.deep_update_values_from_db(copy.deepcopy(meta), row_data)
+        body_data: dict = self.deep_update_values_from_db(copy.deepcopy(body), row_data)
         if remove_null_field:
             # loop it for remove empty dict
             for i in range(3):
@@ -237,22 +237,25 @@ class SpaceCreator:
 
         return meta_data, body_data
 
-    def deep_update(self, body: dict, row_data):
+    def deep_update_values_from_db(self, body: dict, row_data):
         if not body:
             return {}
         for k, v in body.items():
             if isinstance(v, dict):
-                self.deep_update(body.get(k, {}), row_data)
+                self.deep_update_values_from_db(body.get(k, {}), row_data)
             elif isinstance(v, str):
                 aliased_val = db_manager.create_alias(v)
                 if aliased_val and aliased_val in row_data:
                     body[k] = row_data[aliased_val]
             elif isinstance(v, list):
-                for i in range(len(v)):
-                    aliased_val = db_manager.create_alias(v[i])
-                    if aliased_val and aliased_val in row_data:
-                        v[i] = row_data[aliased_val]
-
+                if len(v) > 0 and isinstance(v[0], str):
+                    for i in range(len(v)):
+                        aliased_val = db_manager.create_alias(v[i])
+                        if aliased_val and aliased_val in row_data:
+                            v[i] = row_data[aliased_val]
+                elif len(v) > 0 and isinstance(v[0], dict):
+                    for sub_dict in v:
+                        self.deep_update_values_from_db(sub_dict, row_data)
         return body
 
     def delete_none(self, _dict):

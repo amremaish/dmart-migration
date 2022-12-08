@@ -27,11 +27,7 @@ def import_from(module, name):
 
 
 def prompt(message: str | None = None) -> str:
-    text = session.prompt(
-        message=message,
-        complete_in_thread=True,
-        complete_while_typing=True,
-    )
+    text = input(message)
     text = re.sub(r"^\s+", "", text)
     text = re.sub(r"\s+$", "", text)
     text = re.sub(r"\s+", " ", text)

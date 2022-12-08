@@ -1,0 +1,100 @@
+{
+  "type": "object",
+  "title": "title",
+  "additionalProperties": false,
+  "properties": {
+    "sectors": {
+      "type": "array",
+      "minItems": 0,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "arabic": {
+            "type": "string"
+          },
+          "english": {
+            "type": "string"
+          },
+          "kurdish": {
+            "type": "string"
+          },
+          "distributor_shortname": {
+            "type": "string"
+          },
+          "salesrep_shortnames": {
+            "type": "array",
+            "minItems": 0,
+            "uniqueItems": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "sub_sectors": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "object",
+              "properties": {
+                "key": {
+                  "type": "string"
+                },
+                "arabic": {
+                  "type": "string"
+                },
+                "english": {
+                  "type": "string"
+                },
+                "kurdish": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "salesrep_shortnames": {
+      "type": "array",
+      "minItems": 0,
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "region": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "arabic": {
+          "type": "string"
+        },
+        "english": {
+          "type": "string"
+        },
+        "kurdish": {
+          "type": "string"
+        }
+      }
+    },
+    "title": {
+      "type": "object",
+      "properties": {
+        "arabic": {
+          "type": "string"
+        },
+        "english": {
+          "type": "string"
+        },
+        "kurdish": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
