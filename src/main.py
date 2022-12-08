@@ -2,19 +2,13 @@ import traceback
 import re
 import jsonschema
 import jsonschema.exceptions
+import creator
 
 from enum import Enum
 
-from prompt_toolkit import PromptSession
-from prompt_toolkit.history import FileHistory
-
-import creator
+from settings import settings
 from utils.mappers import mappers
 from utils.db import db_manager
-
-session = PromptSession(
-    history=FileHistory(".history")
-)
 
 
 class OperationsType(str, Enum):
@@ -48,7 +42,7 @@ def serve(text: str):
 
 def main_loop():
     check = db_manager.connect()
-    print(f'Connected database (test): {"OK" if check else "NO"}.')
+    print(f'Connected database ({settings.db_name}): {"OK" if check else "NO"}.')
     loaded_number = mappers.load_paths()
     print(f'Number of scanned mappers: {"can not find the path" if loaded_number == -1 else loaded_number}.')
     if not check or not loaded_number:
