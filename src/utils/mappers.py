@@ -33,6 +33,8 @@ class Mappers:
         jsonschema.validate(instance=json.loads(json_path.read_bytes()), schema=json.loads(schema_path.read_bytes()))
 
     def validate_body_entry(self, json_body, schema_shortname):
+        if not schema_shortname:
+            return
         schema_path = self.mappers_abs_path / "schema" / f'{schema_shortname}.json'
         if not schema_path.is_file():
             raise Exception("Schema is not found in this path " + str(schema_path))

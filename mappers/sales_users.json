@@ -1,0 +1,58 @@
+{
+  "source": {
+    "table": "SALES_USER",
+    "join": [
+      {
+        "table": "SALES_USER_REGION",
+        "pk_id": "SALES_USER.ID",
+        "fk_id": "SALES_USER_REGION.SALES_USER_ID",
+        "join_type": "LEFT"
+      },
+      {
+        "table": "REGION",
+        "pk_id": "REGION.ID",
+        "fk_id": "SALES_USER_REGION.REGION_ID",
+        "join_type": "LEFT"
+      },
+      {
+        "table": "REGION",
+        "pk_id": "REGION.ID",
+        "fk_id": "SALES_USER_REGION.REGION_ID",
+        "join_type": "LEFT"
+      }
+    ],
+    "columns": [
+      "SALES_USER.SALES_USER_NAME",
+      "SALES_USER.MSISDN",
+      "SALES_USER.CREATION_DATE",
+      "SALES_USER.UPDATED_DATE",
+      "SALES_USER.PASSWORD",
+      "REGION.NAME_EN"
+    ]
+  },
+  "columns_mapper": {
+    "meta": {
+      "shortname": "SALES_USER.SALES_USER_NAME",
+      "displayname": {
+        "en": "SALES_USER.SALES_USER_NAME",
+        "ar": "SALES_USER.SALES_USER_NAME",
+        "kd": "SALES_USER.SALES_USER_NAME"
+      },
+      "msisdn": "SALES_USER.MSISDN",
+      "updated_at": "SALES_USER.UPDATED_DATE",
+      "created_at": "SALES_USER.CREATION_DATE",
+      "password": "SALES_USER.PASSWORD"
+    },
+    "body": {
+      "governorate_shortnames": [
+        "REGION.NAME_EN"
+      ]
+    }
+  },
+  "dest": {
+    "space_name": "management",
+    "subpath": "users",
+    "schema_shortname": "",
+    "resource_type": "user"
+  }
+}
