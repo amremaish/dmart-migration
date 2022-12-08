@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from utils.decorators import process_mapper
-from utils.default_loader import default_loader
+from utils.default_loader import default_loader, meta_fixer
 
 
 @process_mapper(mapper="user_admins")
@@ -19,17 +19,8 @@ def apply_modifier(
         body: dict,
         db_row: dict
 ):
-    if not meta['updated_at']:
-        meta['updated_at'] = meta['created_at']
+    meta = meta_fixer(meta)
 
-    if not meta['created_at']:
-        meta['created_at'] = meta['updated_at']
-
-    if not meta['updated_at']:
-        meta['updated_at'] = datetime.now().isoformat()
-
-    if not meta['created_at']:
-        meta['created_at'] = datetime.now().isoformat()
     if not body['department']:
         body['department'] = ""
     return {

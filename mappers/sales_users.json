@@ -27,6 +27,8 @@
       "SALES_USER.CREATION_DATE",
       "SALES_USER.UPDATED_DATE",
       "SALES_USER.PASSWORD",
+      "SALES_USER.SALES_ID",
+      "SALES_USER.ALTERNATIVE_MSISDN",
       "REGION.NAME_EN"
     ]
   },
@@ -41,9 +43,12 @@
       "msisdn": "SALES_USER.MSISDN",
       "updated_at": "SALES_USER.UPDATED_DATE",
       "created_at": "SALES_USER.CREATION_DATE",
-      "password": "SALES_USER.PASSWORD"
+      "password": "SALES_USER.PASSWORD",
+      "is_active": "SALES_USER.STATUS"
     },
     "body": {
+      "sales_id" : "SALES_USER.SALES_ID",
+      "alternative_msisdn" : "SALES_USER.ALTERNATIVE_MSISDN",
       "governorate_shortnames": [
         "REGION.NAME_EN"
       ]

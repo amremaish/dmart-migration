@@ -8,10 +8,6 @@
       "type": "string",
       "title": "Channel type"
     },
-    "language": {
-      "type": "string",
-      "title": "Channel type"
-    },
     "outlet_type": {
       "type": "string",
       "title": "Channel oulet type"
@@ -59,10 +55,6 @@
     "risk_level": {
       "type": "string",
       "title": "Channel risk level"
-    },
-    "governorate": {
-      "type": "string",
-      "title": "Channel governorate"
     },
     "location": {
       "type": "object",
@@ -151,58 +143,17 @@
       "type": "string",
       "title": "ZainCash MSISDN"
     },
-    "owner_name": {
+    "owner_shortname": {
       "type": "string",
-      "title": "Channel owner name"
-    },
-    "owner_mothers_name": {
-      "type": "string",
-      "title": "Channel owner mother's name"
-    },
-    "owner_civil_id": {
-      "type": "string",
-      "title": "Channel owner civil ID"
-    },
-    "owner_date_of_birth": {
-      "type": "string",
-      "title": "Channel owner  date of birth"
-    },
-    "owner_mobile_number": {
-      "type": "string",
-      "title": "Channel owner mobile number"
-    },
-    "owner_email_address": {
-      "type": "string",
-      "title": "Channel owner email address"
-    },
-    "owner_address": {
-      "type": "object",
-      "title": "Channel owner home address",
-      "description": "Captured from the registration of the user and filled from",
-      "properties": {
-        "line": {
-          "type": "string",
-          "title": "Owner line address"
-        },
-        "longitude": {
-          "type": "number",
-          "title": "Channel owner address longitude",
-          "description": "Longitude value of the home address"
-        },
-        "latitude": {
-          "type": "number",
-          "title": "Channel owner address latitude",
-          "description": "Latitude value of the home address"
-        }
-      }
+      "title": "Channel owner shortname"
     },
     "sub_account": {
       "type": "object",
       "properties": {
-        "role_department_institution": {
-          "type": "string",
-          "title": "Role/Department at institution"
-        }
+          "role_department_institution": {
+              "type": "string",
+              "title": "Role/Department at institution"
+          }
       }
     }
   }

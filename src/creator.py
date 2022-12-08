@@ -73,8 +73,6 @@ class SpaceCreator:
         body_path = body_path / (meta.get("shortname") + '.json')
         mata_path = path / filename
 
-        if path and not path.is_dir():
-            os.makedirs(path)
 
         if appended_list and body_path.is_file() and mata_path.is_file():
             with open(body_path, "r") as json_file:
@@ -102,6 +100,9 @@ class SpaceCreator:
 
         if not matched_schema and only_matched_schema:
             return
+
+        if path and not path.is_dir():
+            os.makedirs(path)
 
         meta_obj = core.Meta(**meta)
         meta_obj.payload = core.Payload(

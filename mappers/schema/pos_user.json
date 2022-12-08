@@ -9,10 +9,10 @@
       "title": "Account language",
       "description": "Account language of end user"
     },
-    "channel": {
+    "channel_shortname": {
       "type": "string",
-      "title": "channel",
-      "description": "channel"
+      "title": "channel shortname",
+      "description": "channel shortname"
     },
     "mothers_name": {
       "type": "string",
@@ -50,6 +50,10 @@
     "pos_id": {
       "type": "string"
     },
+    "civil_id": {
+      "type": "string",
+      "title": "Channel owner civil ID"
+    },
     "address": {
       "type": "object",
       "title": "Account holder home address",
@@ -69,26 +73,10 @@
           "title": "Home address latitude",
           "description": "Latitude value of the home address"
         },
-        "governorate": {
-          "type": "object",
-          "title": "Governorate",
-          "properties": {
-            "name": {
-              "type": "string",
-              "ttle": "Governerate name"
-            },
-            "sector": {
-              "type": "string",
-              "title": "Sector name"
-            },
-            "sub_sector": {
-              "type": "string",
-              "title": "Sub Sector"
-            },
-            "distributor": {
-              "type": "string",
-              "title": "Distributor"
-            }
+        "governorate_shortnames": {
+          "type": "array",
+          "items": {
+            "type": "string"
           }
         }
       }

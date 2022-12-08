@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from utils.decorators import process_mapper
-from utils.default_loader import default_loader
+from utils.default_loader import default_loader, meta_fixer
 
 
 @process_mapper(mapper="distributor_users", remove_null_field=True)
@@ -19,25 +19,14 @@ def apply_modifier(
         body: dict,
         db_row: dict
 ):
-    if not meta.get('updated_at'):
-        meta['updated_at'] = meta['created_at']
-
-    if not meta.get('created_at'):
-        meta['created_at'] = meta['updated_at']
-
-    if not meta.get('updated_at'):
-        meta['updated_at'] = datetime.now().isoformat()
-
-    if not meta.get('created_at'):
-        meta['created_at'] = datetime.now().isoformat()
-
+    meta = meta_fixer(meta)
     body['language'] = str(body['language'])
 
     if not body.get('registration_id'):
         body['registration_id'] = ''
 
     if not body.get('address'):
-        body['address'] = {'longitude': 0, 'latitude': 0}
+        body['address'] = {'longitude': 0, 'latitude': 0, }
     return {
         "space_name": space_name,
         "subpath": subpath,

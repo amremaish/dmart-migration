@@ -1,7 +1,5 @@
-from datetime import datetime
-
 from utils.decorators import process_mapper
-from utils.default_loader import default_loader
+from utils.default_loader import default_loader, meta_fixer
 
 
 @process_mapper(mapper="pos_channels", only_matched_schema=True, appended_list=["body.location.governorate_shortnames"])
@@ -19,11 +17,8 @@ def apply_modifier(
         body: dict,
         db_row: dict
 ):
-    if not meta.get('updated_at'):
-        meta['updated_at'] = datetime.now().isoformat()
+    meta = meta_fixer(meta)
 
-    if not meta.get('created_at'):
-        meta['created_at'] = datetime.now().isoformat()
     if body["type"] == '':
         body["type"] = 0
     body["type"] = str(body["type"])

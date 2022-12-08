@@ -3,9 +3,21 @@
     "table": "POS_USER",
     "join": [
       {
+        "table": "SECTOR",
+        "pk_id": "POS_USER.SECTOR_ID",
+        "fk_id": "SECTOR.ID",
+        "join_type": "LEFT"
+      },
+      {
+        "table": "REGION",
+        "pk_id": "REGION.ID",
+        "fk_id": "SECTOR.REGION_ID",
+        "join_type": "LEFT"
+      },
+      {
         "table": "LOOKUP",
         "pk_id": "LOOKUP.ID",
-        "fk_id": "POS_USER.GOVERNORATE_ID",
+        "fk_id": "POS_USER.TYPE_ID",
         "join_type": "LEFT"
       }
     ],
@@ -13,9 +25,8 @@
       "POS_USER.USER_ID",
       "POS_USER.NAME",
       "POS_USER.TYPE_ID",
-      "LOOKUP.NAME_AR",
-      "LOOKUP.NAME_EN",
-      "LOOKUP.NAME_KU"
+      "REGION.NAME_EN",
+      "LOOKUP.NAME_EN"
     ]
   },
   "columns_mapper": {
@@ -28,8 +39,7 @@
       }
     },
     "body": {
-      "type": "POS_USER.TYPE_ID",
-      "language": "",
+      "type": "LOOKUP.NAME_EN",
       "outlet_type": "",
       "security_visit_status": "",
       "security_license_number": "",
@@ -41,14 +51,14 @@
       "area_income_level": "",
       "area_profile": "",
       "segmentation": "",
-      "governorate": "",
       "location": {
+        "shortname": "",
         "line": "",
         "longitude": 0,
         "latitude": 0,
         "area_type": "",
         "governorate_shortnames": [
-          "LOOKUP.NAME_EN"
+          "REGION.NAME_EN"
         ]
       },
       "mobile_number": "",
@@ -64,17 +74,7 @@
       "serial_evd_device": "",
       "zain_cash_service_available": "",
       "zain_cash_code": "",
-      "owner_name": "",
-      "owner_mothers_name": "",
-      "owner_civil_id": "",
-      "owner_date_of_birth": "",
-      "owner_mobile_number": "",
-      "owner_email_address": "",
-      "owner_address": {
-        "line": "",
-        "longitude": 0,
-        "latitude": 0
-      },
+      "owner_shortname": "",
       "sub_account": {
         "role_department_institution": ""
       }

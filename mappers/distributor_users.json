@@ -33,9 +33,7 @@
       "DISTRIBUTORS_USER.PASSWORD",
       "DISTRIBUTORS_USER.DISTRIBUTOR_ID",
       "DISTRIBUTORS_USER.LANGUAGE_ID",
-      "REGION.NAME_AR",
       "REGION.NAME_EN",
-      "REGION.NAME_KU",
       "LOOKUP.NAME_EN"
     ]
   },
@@ -59,7 +57,8 @@
       "address": {
         "longitude": "DISTRIBUTORS_USER.LONGITUDE",
         "latitude": "DISTRIBUTORS_USER.LATITUDE"
-      }
+      },
+      "governorate_shortnames":["REGION.NAME_EN"]
     }
   },
   "dest": {

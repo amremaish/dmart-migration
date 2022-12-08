@@ -1,5 +1,5 @@
 from utils.decorators import process_mapper
-from utils.default_loader import default_loader
+from utils.default_loader import default_loader, meta_fixer
 
 
 @process_mapper(
@@ -20,7 +20,7 @@ def apply_modifier(
         body: dict,
         db_row: dict
 ):
-    meta['created_at'] = meta['updated_at']
+    meta = meta_fixer(meta)
     return {
         "space_name": space_name,
         "subpath": subpath,

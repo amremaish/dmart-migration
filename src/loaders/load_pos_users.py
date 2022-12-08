@@ -1,10 +1,12 @@
-from datetime import datetime
-
 from utils.decorators import process_mapper
-from utils.default_loader import default_loader
+from utils.default_loader import default_loader, meta_fixer
 
 
-@process_mapper(mapper="pos_users", remove_null_field=True, only_matched_schema=True)
+@process_mapper(
+    mapper="pos_users",
+    only_matched_schema=True,
+    appended_list=["body.location.governorate_shortnames"]
+)
 def load(*args, **kwargs):
     default_loader(args, kwargs, apply_modifier)
     print("Successfully done.")
@@ -19,20 +21,26 @@ def apply_modifier(
         body: dict,
         db_row: dict
 ):
-    if not meta.get('updated_at'):
-        meta['updated_at'] = meta['created_at']
+    meta = meta_fixer(meta)
 
-    if not meta.get('created_at'):
-        meta['created_at'] = meta['updated_at']
+    if not body.get('language'):
+        body['language'] = ''
 
-    if not meta.get('updated_at'):
-        meta['updated_at'] = datetime.now().isoformat()
+    if not body.get('registration_id'):
+        body['registration_id'] = ''
 
-    if not meta.get('created_at'):
-        meta['created_at'] = datetime.now().isoformat()
+    if not body.get('sim_iccid'):
+        body['sim_iccid'] = ''
 
-    if body.get('language'):
-        body['language'] = str(body['language'])
+
+    if not body.get('address'):
+        body['address'] = {'line': '', 'longitude': 0, 'latitude': 0, 'governorate_shortnames': []}
+    else:
+        if not body['address']['longitude']:
+            body['address']['longitude'] = 0
+
+        if not body['address']['latitude']:
+            body['address']['latitude'] = 0
 
     return {
         "space_name": space_name,

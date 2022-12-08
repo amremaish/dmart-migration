@@ -1,2 +1,6 @@
 migrate distributor_users
 migrate distributors
+migrate governorates
+migrate pos_channels
+migrate pos_users
+migrate sales_users

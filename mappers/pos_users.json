@@ -9,15 +9,21 @@
         "join_type": "LEFT"
       },
       {
-        "table": "REGION",
-        "pk_id": "REGION.ID",
-        "fk_id": "USER_REGION.REGION_ID",
-        "join_type": "LEFT"
-      },
-      {
         "table": "SECTOR",
         "pk_id": "POS_USER.SECTOR_ID",
         "fk_id": "SECTOR.ID",
+        "join_type": "LEFT"
+      },
+      {
+        "table": "REGION",
+        "pk_id": "REGION.ID",
+        "fk_id": "SECTOR.REGION_ID",
+        "join_type": "LEFT"
+      },
+      {
+        "table": "LOOKUP",
+        "pk_id": "LOOKUP.ID",
+        "fk_id": "POS_USER.LANGUAGE_ID",
         "join_type": "LEFT"
       }
     ],
@@ -47,10 +53,10 @@
       "REGION.NAME_AR",
       "REGION.NAME_EN",
       "REGION.NAME_KU",
-      "SECTOR.ID",
       "SECTOR.NAME_AR",
       "SECTOR.NAME_EN",
-      "SECTOR.NAME_KU"
+      "SECTOR.NAME_KU",
+      "LOOKUP.NAME_EN"
     ]
   },
   "columns_mapper": {
@@ -64,11 +70,11 @@
       "updated_at": "POS_USER.UPDATED_DATE",
       "created_at": "POS_USER.CREATION_DATE",
       "password": "POS_USER.PASSWORD",
-      "is_active":"POS_USER.STATUS"
+      "is_active": "POS_USER.STATUS"
     },
     "body": {
-      "language": "POS_USER.LANGUAGE_ID",
-      "channel": "POS_USER.NAME",
+      "language": "LOOKUP.NAME_EN",
+      "channel_shortname": "POS_USER.USER_ID",
       "mothers_name": "",
       "nationality": "",
       "registration_id": "POS_USER.REGISTRATION_ID",
@@ -79,21 +85,9 @@
         "line": "",
         "longitude": "POS_USER.LATITUDE",
         "latitude": "POS_USER.LONGITUDE",
-        "governorate": {
-          "name": {
-            "arabic": "REGION.NAME_AR",
-            "english": "REGION.NAME_EN",
-            "kurdish": "REGION.NAME_KU"
-          },
-          "sectors": {
-            "key": "SECTOR.ID",
-            "arabic": "SECTOR.NAME_AR",
-            "english": "SECTOR.NAME_EN",
-            "kurdish": "SECTOR.NAME_KU"
-          },
-          "sub_sector": "",
-          "distributor": ""
-        }
+        "governorate_shortnames": [
+          "REGION.NAME_EN"
+        ]
       }
     }
   },

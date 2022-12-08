@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from creator import creator
 from settings import settings
 from utils.db import db_manager
@@ -61,3 +63,22 @@ def default_loader(args, kwargs, apply_modifier=None):
             break
         if db_result['returned'] != settings.fetch_limit:
             break
+
+
+def meta_fixer(meta: dict):
+    if not meta.get('updated_at'):
+        meta['updated_at'] = meta.get('created_at')
+
+    if not meta.get('created_at'):
+        meta['created_at'] = meta.get('updated_at')
+
+    if not meta.get('updated_at'):
+        meta['updated_at'] = datetime.now().isoformat()
+
+    if not meta.get('created_at'):
+        meta['created_at'] = datetime.now().isoformat()
+
+    if not meta.get('is_active') or not isinstance(meta.get('is_active'), bool):
+        meta['is_active'] = True
+
+    return meta
