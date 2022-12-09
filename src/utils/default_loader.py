@@ -28,8 +28,6 @@ def default_loader(args, kwargs, apply_modifier=None):
             meta, body = creator.convert_db_to_meta(row, mapper_data, remove_null_field)
             creator.shortname_deep_fixer(meta)
             creator.shortname_deep_fixer(body)
-            if meta.get('shortname') != '78522222':
-                continue
             if apply_modifier:
                 modified = apply_modifier(
                     space_name=space_name,
