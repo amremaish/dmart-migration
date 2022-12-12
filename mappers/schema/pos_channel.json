@@ -6,55 +6,68 @@
   "properties": {
     "type": {
       "type": "string",
-      "title": "Channel type"
+      "title": "Channel type",
+      "default": ""
     },
     "outlet_type": {
       "type": "string",
-      "title": "Channel oulet type"
+      "title": "Channel oulet type",
+      "default": ""
     },
     "security_visit_status": {
       "type": "string",
-      "title": "National security visit status"
+      "title": "National security visit status",
+      "default": ""
     },
     "security_license_number": {
       "type": "string",
-      "title": "National security license number"
+      "title": "National security license number",
+      "default": ""
     },
     "zain_signage": {
       "type": "string",
-      "title": "Zain top signage"
+      "title": "Zain top signage",
+      "default": ""
     },
     "competitor_signage": {
       "type": "string",
-      "title": "Competitor top signage"
+      "title": "Competitor top signage",
+      "default": ""
     },
     "internet_availability": {
       "type": "string",
-      "title": "Channel internet availability"
+      "title": "Channel internet availability",
+      "default": ""
     },
     "shop_size": {
       "type": "string",
-      "title": "Size of shop"
+      "title": "Size of shop",
+      "default": ""
     },
     "population_traffic": {
       "type": "string",
-      "title": "Channel population traffic"
+      "title": "Channel population traffic",
+      "default": ""
     },
     "area_income_level": {
       "type": "string",
-      "title": "Channel area income level"
+      "title": "Channel area income level",
+      "default": ""
     },
     "area_profile": {
       "type": "string",
-      "title": "Channel area profile"
+      "title": "Channel area profile",
+      "default": ""
     },
     "segmentation": {
       "type": "string",
-      "title": "Channel segmentation"
+      "title": "Channel segmentation",
+      "default": ""
     },
     "risk_level": {
       "type": "string",
-      "title": "Channel risk level"
+      "title": "Channel risk level",
+      "default": ""
     },
     "location": {
       "type": "object",
@@ -63,97 +76,132 @@
       "properties": {
         "line": {
           "type": "string",
-          "title": "Channel location line address"
+          "title": "Channel location line address",
+          "default": ""
         },
         "longitude": {
           "type": "number",
           "title": "Channel address longitude",
-          "description": "Longitude value of the home address"
+          "description": "Longitude value of the home address",
+          "default": 0
         },
         "latitude": {
           "type": "number",
           "title": "Channel address latitude",
-          "description": "Latitude value of the home address"
+          "description": "Latitude value of the home address",
+          "default": 0
         },
         "area_type": {
           "type": "string",
-          "title": "Channel area type"
+          "title": "Channel area type",
+          "default": ""
         },
-        "governorate_shortnames": {
-          "type": "array",
-          "items": {
-            "type": "string"
+        "governorate": {
+          "type": "object",
+          "title": "Channel governorate",
+          "properties": {
+            "shortname": {
+              "type": "string",
+              "title": "Channel governorate shortname",
+              "default": ""
+            },
+            "sector": {
+              "type": "string",
+              "title": "Channel sector",
+              "default": ""
+            },
+            "district": {
+              "type": "string",
+              "title": "district",
+              "default": ""
+            }
           }
         }
       }
     },
     "mobile_number": {
       "type": "string",
-      "title": "Channel mobile number"
+      "title": "Channel mobile number",
+      "default": ""
     },
     "whatsapp_number": {
       "type": "string",
-      "title": "Channel WhatsApp number"
+      "title": "Channel WhatsApp number",
+      "default": ""
     },
     "activation_tool_available": {
       "type": "string",
-      "title": "Activation tool available"
+      "title": "Activation tool available",
+      "default": ""
     },
     "msisdn_activation_tool": {
       "type": "string",
-      "title": "MSISDN of activation tool"
+      "title": "MSISDN of activation tool",
+      "default": ""
     },
     "status_activation_tool": {
       "type": "string",
-      "title": "Status of activation tool"
+      "title": "Status of activation tool",
+      "default": ""
     },
     "type_activation_tool": {
       "type": "string",
-      "title": "Type of activation tool"
+      "title": "Type of activation tool",
+      "default": ""
     },
     "mvd_line_available": {
       "type": "string",
-      "title": "MVD line  available"
+      "title": "MVD line  available",
+      "default": ""
     },
     "msisdn_mvd_line": {
       "type": "string",
-      "title": "MSISDN of MVD line"
+      "title": "MSISDN of MVD line",
+      "default": ""
     },
     "evd_terminal_available": {
       "type": "string",
-      "title": "EVD terminal available"
+      "title": "EVD terminal available",
+      "default": ""
     },
     "msisdn_evd_device": {
       "type": "string",
-      "title": "MSISDN of EVD device"
+      "title": "MSISDN of EVD device",
+      "default": ""
     },
     "serial_evd_device": {
       "type": "string",
-      "title": "Serial of EVD device"
+      "title": "Serial of EVD device",
+      "default": ""
     },
     "zain_cash_service_available": {
       "type": "string",
-      "title": "ZainCash service available"
+      "title": "ZainCash service available",
+      "default": ""
     },
     "zain_cash_code": {
       "type": "string",
-      "title": "ZainCash code"
+      "title": "ZainCash code",
+      "default": ""
     },
     "zain_cash_msisdn": {
       "type": "string",
-      "title": "ZainCash MSISDN"
+      "title": "ZainCash MSISDN",
+      "default": ""
     },
     "owner_shortname": {
       "type": "string",
-      "title": "Channel owner shortname"
+      "title": "Channel owner shortname",
+      "default": ""
     },
     "sub_account": {
       "type": "object",
       "properties": {
-          "role_department_institution": {
-              "type": "string",
-              "title": "Role/Department at institution"
-          }
+        "role_department_institution": {
+          "type": "string",
+          "title": "Role/Department at institution",
+          "default": ""
+        }
       }
     }
   }

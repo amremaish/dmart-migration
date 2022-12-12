@@ -25,6 +25,7 @@
       "POS_USER.USER_ID",
       "POS_USER.NAME",
       "POS_USER.TYPE_ID",
+      "SECTOR.NAME_EN",
       "REGION.NAME_EN",
       "LOOKUP.NAME_EN"
     ]
@@ -57,9 +58,11 @@
         "longitude": 0,
         "latitude": 0,
         "area_type": "",
-        "governorate_shortnames": [
-          "REGION.NAME_EN"
-        ]
+        "governorate": {
+          "shortname" : "REGION.NAME_EN",
+          "sector" : "SECTOR.NAME_EN",
+          "district" : ""
+        }
       },
       "mobile_number": "",
       "whatsapp_number": "",
