@@ -2,6 +2,7 @@ import copy
 import json
 import os
 import sys
+from datetime import datetime
 from pathlib import Path
 from typing import Type, TypeVar
 
@@ -27,6 +28,7 @@ class SpaceCreator:
     def shortname_fixer(self, shortname: str):
         if not shortname:
             return ''
+        shortname = str(shortname)
         return shortname.strip().lower().replace(' ', '')
 
     def shortname_deep_fixer(self, body: dict):
@@ -53,13 +55,15 @@ class SpaceCreator:
             body: dict,
             class_type: str,
             schema_shortname: str,
+            history_obj: list,
             only_matched_schema: bool,
             appended_list: list = None
     ):
         resource_class = getattr(sys.modules["dmart.core"], camel_case(class_type))
+        shortname = str(meta.get("shortname"))
         path, filename = self.metapath(space_name=space_name,
                                        subpath=subpath,
-                                       shortname=meta.get("shortname"),
+                                       shortname=shortname,
                                        class_type=resource_class,
                                        schema_shortname=schema_shortname)
 
@@ -70,9 +74,8 @@ class SpaceCreator:
 
         matched_schema = True
 
-        body_path = body_path / (meta.get("shortname") + '.json')
+        body_path = body_path / (shortname + '.json')
         mata_path = path / filename
-
 
         if appended_list and body_path.is_file() and mata_path.is_file():
             with open(body_path, "r") as json_file:
@@ -116,6 +119,14 @@ class SpaceCreator:
         # save payload
         with open(body_path, "w") as f:
             f.write(json.dumps(body))
+
+        # save history diff
+        if history_obj:
+            self.save_history(
+                owner_shortname=meta_obj.owner_shortname,
+                history_obj=history_obj,
+                path=path / 'history.jsonl'
+            )
 
     def apply_appended_list(
             self,
@@ -199,6 +210,24 @@ class SpaceCreator:
             path = path / subpath / ".dm" / shortname
             filename = f"meta.{snake_case(class_type.__name__)}.json"
         return path, filename
+
+    def save_history(
+            self,
+            owner_shortname: str,
+            history_obj: list,
+            path: Path,
+    ):
+        for history in history_obj:
+            timestamp: datetime = history.get('timestamp')[0]
+            history_obj = core.History(
+                shortname="history.jsonl",
+                owner_shortname=owner_shortname,
+                timestamp=timestamp,
+                diff=history.get('history_diff')
+            )
+            with open(path, "a") as f:
+                f.write(history_obj.json() + "\n")
+
 
     def payload_path(
             self,

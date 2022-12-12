@@ -25,6 +25,8 @@ def default_loader(args, kwargs, apply_modifier=None):
             schema_shortname = mapper_data.get('dest').get('schema_shortname')
             subpath = mapper_data.get('dest').get('subpath')
             resource_type = mapper_data.get('dest').get('resource_type')
+            history_obj = None
+
             meta, body = creator.convert_db_to_meta(row, mapper_data, remove_null_field)
             creator.shortname_deep_fixer(meta)
             creator.shortname_deep_fixer(body)
@@ -43,6 +45,8 @@ def default_loader(args, kwargs, apply_modifier=None):
                 space_name = modified["space_name"]
                 subpath = modified["subpath"]
                 resource_type = modified["resource_type"]
+                if modified.get('history_obj'):
+                    history_obj = modified["history_obj"]
 
             if not meta.get('owner_shortname'):
                 meta['owner_shortname'] = 'dmart'
@@ -54,6 +58,7 @@ def default_loader(args, kwargs, apply_modifier=None):
                 schema_shortname=schema_shortname,
                 meta=meta,
                 body=body,
+                history_obj=history_obj,
                 only_matched_schema=only_matched_schema,
                 appended_list=appended_list
             )

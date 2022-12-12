@@ -4,3 +4,4 @@ migrate governorates
 migrate pos_channels
 migrate pos_users
 migrate sales_users
+migrate sim_swap

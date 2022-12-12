@@ -64,6 +64,8 @@ class Meta(Resource):
     created_at: datetime = datetime.now()
     updated_at: datetime = datetime.now()
     owner_shortname: str
+    state: str | None = None
+    resolution_reason: str | None = None
     payload: Payload | None = None
 
     @staticmethod
