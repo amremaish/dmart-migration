@@ -107,7 +107,7 @@ class SpaceCreator:
         if path and not path.is_dir():
             os.makedirs(path)
 
-        meta_obj = class_type.parse_raw(**meta)
+        meta_obj = resource_class.parse_raw(json.dumps(meta))
         meta_obj.payload = core.Payload(
             content_type='json',
             schema_shortname=schema_shortname,

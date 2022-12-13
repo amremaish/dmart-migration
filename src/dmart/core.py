@@ -154,11 +154,11 @@ class Actor(Meta):
 
 
 class User(Actor):
-    password: str
+    password: str | None = None
     email: str | None = None
     msisdn: str | None = None
-    is_email_verified: bool = False
-    is_msisdn_verified: bool = False
+    is_email_verified: bool = True
+    is_msisdn_verified: bool = True
     force_password_change: bool = False
     type: UserType = UserType.web
     roles: list[str] = []
