@@ -20,7 +20,14 @@
   },
   "columns_mapper": {
     "meta": {
-      "shortname": "REGION.NAME_EN"
+      "shortname": "REGION.NAME_EN",
+      "displayname": 
+        {
+          "ar": "REGION.NAME_AR",
+          "en": "REGION.NAME_EN",
+          "kd": "REGION.NAME_KU"
+        },
+      "is_active": ""
     },
     "body": {
       "sectors": [
@@ -28,9 +35,14 @@
           "key": "SECTOR.NAME_EN",
           "arabic": "SECTOR.NAME_AR",
           "english": "SECTOR.NAME_EN",
-          "kurdish": "SECTOR.NAME_KU"
+          "kurdish": "SECTOR.NAME_KU",
+          "distributor_shortname": "",
+          "salesrep_shortnames": "",
+          "sub_sectors": [""]
         }
+        
       ],
+      "salesrep_shortnames":[""],
       "region": {
         "key": "REGION.NAME_EN",
         "arabic": "REGION.NAME_AR",

@@ -81,20 +81,6 @@
           "type": "string"
         }
       }
-    },
-    "title": {
-      "type": "object",
-      "properties": {
-        "arabic": {
-          "type": "string"
-        },
-        "english": {
-          "type": "string"
-        },
-        "kurdish": {
-          "type": "string"
-        }
-      }
     }
   }
 }
