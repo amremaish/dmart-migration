@@ -37,12 +37,12 @@
           "english": "SECTOR.NAME_EN",
           "kurdish": "SECTOR.NAME_KU",
           "distributor_shortname": "",
-          "salesrep_shortnames": "",
-          "sub_sectors": [""]
+          "salesrep_shortnames": [],
+          "sub_sectors": []
         }
         
       ],
-      "salesrep_shortnames":[""],
+      "salesrep_shortnames":[],
       "region": {
         "key": "REGION.NAME_EN",
         "arabic": "REGION.NAME_AR",
