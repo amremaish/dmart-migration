@@ -53,7 +53,7 @@ class SpaceCreator:
             subpath: str,
             meta: dict,
             body: dict,
-            class_type: str,
+            class_type: Type[MetaChild],
             schema_shortname: str,
             history_obj: list,
             only_matched_schema: bool,
@@ -107,7 +107,7 @@ class SpaceCreator:
         if path and not path.is_dir():
             os.makedirs(path)
 
-        meta_obj = core.Meta(**meta)
+        meta_obj = resource_class.parse_raw(json.dumps(meta))
         meta_obj.payload = core.Payload(
             content_type='json',
             schema_shortname=schema_shortname,

@@ -50,6 +50,7 @@
       "POS_USER.LONGITUDE",
       "POS_USER.ADDRESS",
       "POS_USER.SECTOR_ID",
+      "POS_USER.MOBILE_NO",
       "REGION.NAME_AR",
       "REGION.NAME_EN",
       "REGION.NAME_KU",
@@ -62,6 +63,7 @@
   "columns_mapper": {
     "meta": {
       "shortname": "POS_USER.USER_ID",
+      "msisdn": "POS_USER.MOBILE_NO",
       "displayname": {
         "en": "POS_USER.USERNAME",
         "ar": "POS_USER.USERNAME",
