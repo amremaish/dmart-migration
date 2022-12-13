@@ -32,7 +32,7 @@
         }
       ],
       "region": {
-        "key": "SECTOR.NAME_EN",
+        "key": "REGION.NAME_EN",
         "arabic": "REGION.NAME_AR",
         "english": "REGION.NAME_EN",
         "kurdish": "REGION.NAME_KU"
@@ -40,7 +40,7 @@
     }
   },
   "dest": {
-    "space_name": "management",
+    "space_name": "ordering",
     "subpath": "collections/governorates",
     "schema_shortname": "governorate",
     "resource_type": "user"

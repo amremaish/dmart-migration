@@ -57,12 +57,13 @@
       "created_at": "DISTRIBUTORS_USER.CREATION_DATE",
       "password": "DISTRIBUTORS_USER.PASSWORD",
       "msisdn": "DISTRIBUTORS_USER.MSISDN",
-      "is_active": "DISTRIBUTORS_USER.STATUS"
+      "is_active": "DISTRIBUTORS_USER.STATUS",
+      "owner_shortname": "DISTRIBUTORS.NAME"
+
     },
     "body": {
       "language": "LOOKUP.NAME_EN",
       "registration_id": "DISTRIBUTORS_USER.REGISTRATION_ID",
-      "distributor_shortname": "DISTRIBUTORS.NAME",
       "address": {
         "longitude": "DISTRIBUTORS_USER.LONGITUDE",
         "latitude": "DISTRIBUTORS_USER.LATITUDE"
