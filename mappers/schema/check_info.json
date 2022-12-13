@@ -1,0 +1,34 @@
+{
+  "title": "Check Info",
+  "description": "Ticket schema definition for Check Info",
+  "additionalProperties": false,
+  "type": "object",
+  "properties": {
+    "registration_name": {
+      "type": "string",
+      "title": "Registration name",
+      "description": "IRM API integration source"
+    },
+    "sim_Status": {
+      "type": "string",
+      "title": "SIM Status",
+      "description": "IRM API integration source"
+    },
+    "msisdn": {
+      "type": "string",
+      "title": "MSISDN",
+      "description": "Mobile Station Integrated Services Digital Network for POS [Filled at submission]",
+      "comment": "this field has the to read from user who submits the ticket"
+    },
+    "customer_name": {
+      "type": "string",
+      "title": "customer name",
+      "description": "customer name [Filled at submission]"
+    },
+    "delivery_tracking_link": {
+      "type": "string",
+      "title": "Delivery tracking link",
+      "description": "Generated from the 3P delivery API integration (e.g., Toters/Talabatey) for the user to track the delivery [3P API integration]"
+    }
+  }
+}

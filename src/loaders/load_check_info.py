@@ -5,7 +5,7 @@ from utils.decorators import process_mapper
 from utils.default_loader import default_loader, meta_fixer
 
 
-@process_mapper(mapper="sim_swap", remove_null_field=True)
+@process_mapper(mapper="check_info", remove_null_field=True)
 def load(*args, **kwargs):
     default_loader(args, kwargs, apply_modifier)
     print("Successfully done.")
@@ -21,18 +21,23 @@ def apply_modifier(
         db_row: dict
 ):
     meta = meta_fixer(meta)
-    meta['workflow_shortname'] = 'sim_swap'
+
+    meta['workflow_shortname'] = 'check_info'
     if meta.get('state'):
-        if meta.get('state') == 'Pending Payment':
-            meta['state'] = 'pending_payment'
-        elif meta.get('state') == 'Payment Approved':
-            meta['state'] = 'completed'
+        if meta.get('state') == 'DELIVERED':
+            meta['state'] = 'delivered'
+        elif meta.get('state') == 'Assigned to driver':
+            meta['state'] = 'assigned_to_driver'
         elif meta.get('state') == 'Pending':
             meta['state'] = 'pending'
-        elif meta.get('state') == 'Rejected':
+        elif meta.get('state') == 'Rejected' or meta.get('state') == 'Rejected validation':
             meta['state'] = 'rejected'
-        elif meta.get('state') == 'Approved':
+        elif meta.get('state') == 'Approved' or meta.get('state') == 'Approved validation':
             meta['state'] = 'approved'
+        elif meta.get('state') == 'Completed':
+            meta['state'] = 'completed'
+        elif meta.get('state') == 'Canceled':
+            meta['state'] = 'cancelled'
         else:
             meta['state'] = ''
 
