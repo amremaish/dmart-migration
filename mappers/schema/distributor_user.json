@@ -5,7 +5,12 @@
   "additionalProperties": false,
   "properties": {
     "registration_id": {
-      "type": "string"
+      "type": "string",
+      "default": ""
+    },
+    "alternative_msisdn": {
+      "type": "string",
+      "default": ""
     },
     "language": {
       "type": "string"

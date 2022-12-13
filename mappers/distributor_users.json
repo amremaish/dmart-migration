@@ -33,6 +33,7 @@
       "DISTRIBUTORS_USER.PASSWORD",
       "DISTRIBUTORS_USER.DISTRIBUTOR_ID",
       "DISTRIBUTORS_USER.LANGUAGE_ID",
+      "DISTRIBUTORS_USER.ALTERNATIVE_MSISDN",
       "REGION.NAME_EN",
       "LOOKUP.NAME_EN"
     ]
@@ -58,7 +59,8 @@
         "longitude": "DISTRIBUTORS_USER.LONGITUDE",
         "latitude": "DISTRIBUTORS_USER.LATITUDE"
       },
-      "governorate_shortnames":["REGION.NAME_EN"]
+      "governorate_shortnames":["REGION.NAME_EN"],
+      "alternative_msisdn": "DISTRIBUTORS_USER.ALTERNATIVE_MSISDN"
     }
   },
   "dest": {
