@@ -12,6 +12,10 @@
       "type": "string",
       "default": ""
     },
+    "distributor_shortname": {
+      "type": "string",
+      "default": ""
+    },
     "language": {
       "type": "string"
     },
