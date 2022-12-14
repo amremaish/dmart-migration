@@ -39,9 +39,6 @@ def apply_modifier(
     if not body.get('device_id'):
         body['device_id'] = ''
 
-    if not meta.get('password') or len(meta.get('password', '')) < 20:
-        meta['force_password_change'] = True
-
     if not body.get('address'):
         body['address'] = {'line': '', 'longitude': 0, 'latitude': 0, 'governorate_shortnames': []}
     else:
