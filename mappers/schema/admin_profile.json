@@ -4,13 +4,7 @@
   "additionalProperties": false,
   "properties": {
     "department": {
-      "type": "string",
-      "enum": [
-        "technical_support",
-        "backoffice",
-        "sales",
-        "others"
-      ]
+      "type": "string"
     },
     "governorate_shortnames": {
       "type": "array",

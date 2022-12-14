@@ -96,7 +96,7 @@
   "dest": {
     "space_name": "management",
     "subpath": "users",
-    "schema_shortname": "pos_user",
+    "schema_shortname": "pos_profile",
     "resource_type": "user"
   }
 }

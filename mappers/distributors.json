@@ -53,7 +53,7 @@
   "dest": {
     "space_name": "management",
     "subpath": "collections/distributors",
-    "schema_shortname": "distributor",
+    "schema_shortname": "distributor_profile",
     "resource_type": "user"
   }
 }

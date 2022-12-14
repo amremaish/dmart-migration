@@ -86,7 +86,7 @@
   "dest": {
     "space_name": "management",
     "subpath": "collections/channels",
-    "schema_shortname": "pos_channel",
+    "schema_shortname": "channel",
     "resource_type": "user"
   }
 }

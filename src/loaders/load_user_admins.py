@@ -21,6 +21,7 @@ def apply_modifier(
 ):
     meta = meta_fixer(meta)
 
+
     if not body['department']:
         body['department'] = ""
     return {
