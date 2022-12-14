@@ -32,3 +32,10 @@ def branch_path(branch_name: str | None = default_branch):
 
 def snake_case(camel_str):
     return re.sub(r"(?<!^)(?=[A-Z])", "_", camel_str).lower()
+
+
+def to_float(val: str):
+    try:
+        return float(val)
+    except:
+        return val

@@ -1,4 +1,5 @@
 from dmart.enums import UserType
+from dmart.helper import to_float
 from utils.decorators import process_mapper
 from utils.default_loader import default_loader, meta_fixer
 
@@ -23,7 +24,7 @@ def apply_modifier(
 ):
     meta = meta_fixer(meta)
     meta['type'] = UserType.mobile
-    
+
     if not body.get('language'):
         body['language'] = ''
 
@@ -44,9 +45,13 @@ def apply_modifier(
     else:
         if not body['address']['longitude']:
             body['address']['longitude'] = 0
+        else:
+            body['address']['longitude'] = to_float(body['address']['longitude'])
 
         if not body['address']['latitude']:
             body['address']['latitude'] = 0
+        else:
+            body['address']['latitude'] = to_float(body['address']['latitude'])
 
     return {
         "space_name": space_name,
