@@ -29,6 +29,8 @@ class SpaceCreator:
         if not shortname:
             return ''
         shortname = str(shortname)
+        shortname = shortname.replace('.', '_')
+        shortname = shortname.replace('-', '_')
         return shortname.strip().lower().replace(' ', '')
 
     def shortname_deep_fixer(self, body: dict):

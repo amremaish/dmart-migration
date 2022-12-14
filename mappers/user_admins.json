@@ -29,7 +29,7 @@
     },
     "body": {
       "sales_id" : "",
-      "alternative_msisdn" : "USER_ADMIN.ALTERNATIVE_MSISDN",
+      "alternative_msisdn" : "",
       "department": "USER_ADMIN.DEPARTMENT"
     }
   },
