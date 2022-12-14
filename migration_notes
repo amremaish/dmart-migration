@@ -4,5 +4,6 @@ migrate governorates
 migrate pos_channels
 migrate pos_users
 migrate sales_users
+migrate user_admins
 migrate sim_swap
 migrate check_info

@@ -57,7 +57,7 @@
   "dest": {
     "space_name": "management",
     "subpath": "users",
-    "schema_shortname": "sales_user",
+    "schema_shortname": "user_admin",
     "resource_type": "user"
   }
 }
