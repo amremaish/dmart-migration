@@ -115,6 +115,9 @@ class SpaceCreator:
             schema_shortname=schema_shortname,
             body=f'{meta_obj.shortname}.json'
         )
+
+        if mata_path.is_file() and body_path.is_file():
+            return
         # save meta
         with open(mata_path, "w") as f:
             f.write(meta_obj.json(exclude_none=True))
@@ -229,7 +232,6 @@ class SpaceCreator:
             )
             with open(path, "a") as f:
                 f.write(history_obj.json() + "\n")
-
 
     def payload_path(
             self,
