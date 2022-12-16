@@ -23,6 +23,7 @@ def apply_modifier(
         db_row: dict
 ):
     meta = meta_fixer(meta)
+    meta['shortname'] = f"pos_{meta['shortname']}"
     meta['type'] = UserType.mobile
 
     if not body.get('language'):

@@ -22,6 +22,7 @@ def apply_modifier(
         db_row: dict
 ):
     meta = meta_fixer(meta)
+    meta['shortname'] = f"dist_user_{meta['shortname']}"
     body['language'] = str(body['language'])
 
     if not body.get('registration_id'):
