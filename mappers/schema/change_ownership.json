@@ -1,0 +1,142 @@
+{
+  "title": "Change Ownership",
+  "description": "Ticket schema definition for Change Ownership",
+  "additionalProperties": false,
+  "type": "object",
+  "properties": {
+    "service_type": {
+      "type": "string",
+      "title": "Service Type",
+      "description": "Connect/Disconnect",
+      "enum": [
+        "one_side",
+        "two_side"
+      ]
+    },
+    "registration_name": {
+      "type": "string",
+      "title": "Registration name",
+      "description": "IRM API integration source"
+    },
+    "sim_status": {
+      "type": "string",
+      "title": "SIM Status",
+      "description": "CRM API integration source"
+    },
+    "msisdn": {
+      "type": "string",
+      "title": "MSISDN",
+      "description": "Mobile Station Integrated Services Digital Network for POS [Filled at submission]",
+      "minLength": 10,
+      "maxLength": 11
+    },
+    "iccid": {
+      "type": "string",
+      "title": "ICCID",
+      "description": "ICCID of end customer [Filled at submission]"
+    },
+    "customer_name": {
+      "type": "string",
+      "title": "customer name",
+      "description": "customer name [Filled at submission]"
+    },
+    "call_back_number": {
+      "type": "string",
+      "title": "Call-Back Number",
+      "readOnly": true,
+      "description": "Call-Back Number"
+    },
+    "customer_name_second_party": {
+      "type": "string",
+      "title": "Customer Name(Second Party)",
+      "description": "Susbcriber's first, middle and lastname [Filled at submission]"
+    },
+    "msisdn_second_party": {
+      "type": "string",
+      "title": "SIM MSISDN(Second Party)",
+      "description": "Subscriber SIM's MSISDN(Second Party) [Filled at submission]",
+      "minLength": 10,
+      "maxLength": 11
+    },
+    "iccid_second_party": {
+      "type": "string",
+      "title": "ICCID(Second Party)",
+      "description": "Integrated Circuit Card Identification Number for second party [Filled at submission]"
+    },
+    "call_back_number_second_party": {
+      "type": "string",
+      "title": "Call-Back Number(Second Party)",
+      "description": "Call-Back Number for second party [Filled at submission]"
+    },
+    "frequently_called_number_1": {
+      "type": "string",
+      "title": "Frequently Called Number 1",
+      "description": "Frequently Called Number 1 [Filled at submission]"
+    },
+    "frequently_called_number_2": {
+      "type": "string",
+      "title": "Frequently Called Number 2",
+      "description": "Frequently Called Number 2 [Filled at submission]"
+    },
+    "frequently_called_number_3": {
+      "type": "string",
+      "title": "Frequently Called Number 3",
+      "description": "Frequently Called Number 3 [Filled at submission]"
+    },
+    "frequently_called_number_4": {
+      "type": "string",
+      "title": "Frequently Called Number 4",
+      "description": "Frequently Called Number 4 [Filled at submission]"
+    },
+    "frequently_called_number_5": {
+      "type": "string",
+      "title": "Frequently Called Number 5",
+      "description": "Frequently Called Number 5 [Filled at submission]"
+    },
+    "frequently_called_number_6": {
+      "type": "string",
+      "title": "Frequently Called Number 6",
+      "description": "Frequently Called Number 6 [Filled at submission]"
+    },
+    "frequently_called_number_7": {
+      "type": "string",
+      "title": "Frequently Called Number 7",
+      "description": "Frequently Called Number 7 [Filled at submission]"
+    },
+    "frequently_called_number_8": {
+      "type": "string",
+      "title": "Frequently Called Number 8",
+      "description": "Frequently Called Number 8 [Filled at submission]"
+    },
+    "frequently_called_number_9": {
+      "type": "string",
+      "title": "Frequently Called Number 9",
+      "description": "Frequently Called Number 9 [Filled at submission]"
+    },
+    "frequently_called_number_10": {
+      "type": "string",
+      "title": "Frequently Called Number 10",
+      "description": "Frequently Called Number 10 [Filled at submission]"
+    },
+    "last_recharge_amount": {
+      "type": "string",
+      "title": "Last Recharge Amount",
+      "description": "Last Recharge Amount [Filled at submission]"
+    },
+    "last_recharge_date": {
+      "type": "string",
+      "title": "Last Recharge Date",
+      "description": "Last Recharge Date [Filled at submission]"
+    },
+    "governorate_name_area_most_contacted": {
+      "type": "string",
+      "title": "Name of governorate area most frequently contacted",
+      "description": "Name of governorate area most frequently contacted [Filled at submission]"
+    },
+    "service_name_or_credit_remaining": {
+      "type": "string",
+      "title": "Name of service or amount of credit remaining",
+      "description": "Name of service or amount of credit remaining [Filled at submission]"
+    }
+  }
+}

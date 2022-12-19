@@ -133,8 +133,11 @@ class DbManager:
     def create_alias(self, col_name: str):
         if not col_name:
             return ''
-        prefix = col_name.split(".")[0]
-        postfix = col_name.split(".")[1]
+        names = col_name.split(".")
+        if len(names) < 2:
+            return ''
+        prefix = names[0]
+        postfix = names[1]
         if len(prefix) > 4:
             prefix = prefix[:4]
         return f'{col_name} {prefix}_{postfix}_'

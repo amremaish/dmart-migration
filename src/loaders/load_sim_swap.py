@@ -39,6 +39,9 @@ def apply_modifier(
     if meta.get('owner_shortname'):
         meta['owner_shortname'] = f'pos_{meta["owner_shortname"]}'
 
+    if body.get('msisdn') and body.get('msisdn').startswith('964'):
+        body['msisdn'] = body.get('msisdn')[3:]
+
     history_obj = None
     start = db_manager.create_alias('SIM_SWAP.ACTION_START_TIME')
     end = db_manager.create_alias('SIM_SWAP.ACTION_END_TIME')

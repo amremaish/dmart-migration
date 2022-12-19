@@ -10,3 +10,4 @@ migrate sim_swap
 migrate check_info
 migrate dummy
 migrate correct_info
+migrate change_ownership_one

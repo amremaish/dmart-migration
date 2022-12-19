@@ -5,7 +5,7 @@ from utils.decorators import process_mapper
 from utils.default_loader import default_loader, meta_fixer
 
 
-@process_mapper(mapper="dummy", remove_null_field=True)
+@process_mapper(mapper="change_ownership_one", remove_null_field=True)
 def load(*args, **kwargs):
     default_loader(args, kwargs, apply_modifier)
     print("Successfully done.")
@@ -21,7 +21,7 @@ def apply_modifier(
         db_row: dict
 ):
     meta = meta_fixer(meta)
-    meta['workflow_shortname'] = 'dummy'
+    meta['workflow_shortname'] = 'change_ownership'
     if meta.get('state'):
         if meta.get('state') == 'Pending':
             meta['state'] = 'pending'
@@ -39,6 +39,7 @@ def apply_modifier(
 
     if body.get('msisdn') and body.get('msisdn').startswith('964'):
         body['msisdn'] = body.get('msisdn')[3:]
+
     history_obj = None
     start = db_manager.create_alias('SIM_SWAP.ACTION_START_TIME')
     end = db_manager.create_alias('SIM_SWAP.ACTION_END_TIME')
