@@ -5,7 +5,7 @@ from utils.decorators import process_mapper
 from utils.default_loader import default_loader, meta_fixer
 
 
-@process_mapper(mapper="dummy", remove_null_field=True)
+@process_mapper(mapper="correct_info", remove_null_field=True)
 def load(*args, **kwargs):
     default_loader(args, kwargs, apply_modifier)
     print("Successfully done.")
@@ -21,7 +21,7 @@ def apply_modifier(
         db_row: dict
 ):
     meta = meta_fixer(meta)
-    meta['workflow_shortname'] = 'dummy'
+    meta['workflow_shortname'] = 'correct_info'
     if meta.get('state'):
         if meta.get('state') == 'Pending':
             meta['state'] = 'pending'

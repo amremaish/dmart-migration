@@ -1,0 +1,39 @@
+{
+  "title": "Correct Info",
+  "description": "Ticket schema definition for Correct Info",
+  "additionalProperties": false,
+  "type": "object",
+  "properties": {
+    "registration_name": {
+      "type": "string",
+      "title": "Registration name",
+      "description": "IRM API integration source"
+    },
+    "sim_status": {
+      "type": "string",
+      "title": "SIM Status",
+      "description": "CRM API integration source"
+    },
+    "msisdn": {
+      "type": "string",
+      "title": "MSISDN",
+      "description": "Mobile Station Integrated Services Digital Network [Filled at submission]",
+      "comment": "this field has the to read from user who submits the ticket"
+    },
+    "iccid": {
+      "type": "string",
+      "title": "ICCID",
+      "description": "ICCID of end customer [Filled at submission]"
+    },
+    "customer_name": {
+      "type": "string",
+      "title": "customer name",
+      "description": "Name of end customer [Filled at submission]"
+    },
+    "call_back_number": {
+      "type": "string",
+      "title": "callback number",
+      "description": "Phone number of end customer [Filled at submission]"
+    }
+  }
+}
