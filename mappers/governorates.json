@@ -55,6 +55,6 @@
     "space_name": "ordering",
     "subpath": "collections/governorates",
     "schema_shortname": "governorate",
-    "resource_type": "user"
+    "resource_type": "content"
   }
 }

@@ -87,6 +87,6 @@
     "space_name": "management",
     "subpath": "collections/channels",
     "schema_shortname": "channel",
-    "resource_type": "user"
+    "resource_type": "content"
   }
 }
