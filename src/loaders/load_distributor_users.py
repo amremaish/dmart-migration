@@ -23,7 +23,8 @@ def apply_modifier(
 ):
     meta = meta_fixer(meta)
     meta['shortname'] = f"dist_user_{meta['shortname']}"
-    body['language'] = str(body['language'])
+    if body.get('language'):
+        body['language'] = str(body['language'])
 
     if not body.get('registration_id'):
         body['registration_id'] = ''
