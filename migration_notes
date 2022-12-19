@@ -7,3 +7,4 @@ migrate sales_users
 migrate user_admins
 migrate sim_swap
 migrate check_info
+migrate dummy

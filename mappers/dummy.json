@@ -1,0 +1,60 @@
+{
+  "source": {
+    "table": "INFORMATION_SERVICE",
+    "join": [
+      {
+        "table": "POS_USER",
+        "pk_id": "POS_USER.ID",
+        "fk_id": "INFORMATION_SERVICE.POS_ID",
+        "join_type": "LEFT"
+      },
+      {
+        "table": "LOOKUP",
+        "pk_id": "LOOKUP.ID",
+        "fk_id": "INFORMATION_SERVICE.REASON",
+        "join_type": "LEFT"
+      }
+    ],
+    "where" : "SERVICE_TYPE_MSG = 'Dummy'",
+    "columns": [
+      "INFORMATION_SERVICE.ID",
+      "INFORMATION_SERVICE.ACTION_START_TIME",
+      "INFORMATION_SERVICE.ACTION_END_TIME",
+      "INFORMATION_SERVICE.CREATION_DATE",
+      "INFORMATION_SERVICE.UPDATED_DATE",
+      "INFORMATION_SERVICE.STATUS_MSG",
+      "INFORMATION_SERVICE.STATUS",
+      "INFORMATION_SERVICE.MOBILE_NUMBER",
+      "INFORMATION_SERVICE.USER_ID",
+      "INFORMATION_SERVICE.CUSTOMER_NAME",
+      "LOOKUP.NAME_EN"
+
+    ]
+  },
+  "columns_mapper": {
+    "meta": {
+      "shortname": "INFORMATION_SERVICE.ID",
+      "displayname": {
+        "en": "",
+        "ar": "",
+        "kd": ""
+      },
+      "owner_shortname" : "INFORMATION_SERVICE.USER_ID",
+      "updated_at": "INFORMATION_SERVICE.UPDATED_DATE",
+      "created_at": "INFORMATION_SERVICE.CREATION_DATE",
+      "is_active": "INFORMATION_SERVICE.STATUS",
+      "state": "INFORMATION_SERVICE.STATUS_MSG",
+      "resolution_reason": "LOOKUP.NAME_EN"
+    },
+    "body": {
+      "msisdn": "INFORMATION_SERVICE.MOBILE_NUMBER",
+      "customer_name" : "INFORMATION_SERVICE.CUSTOMER_NAME"
+    }
+  },
+  "dest": {
+    "space_name": "aftersales",
+    "subpath": "tickets/dummy",
+    "schema_shortname": "dummy",
+    "resource_type": "ticket"
+  }
+}
