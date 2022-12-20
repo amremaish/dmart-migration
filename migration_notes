@@ -11,3 +11,4 @@ migrate check_info
 migrate dummy
 migrate correct_info
 migrate change_ownership_one
+migrate change_ownership_two
