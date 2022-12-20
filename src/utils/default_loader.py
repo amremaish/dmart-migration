@@ -1,3 +1,4 @@
+import time
 from datetime import datetime
 
 from creator import creator
@@ -12,7 +13,9 @@ def default_loader(args, kwargs, apply_modifier=None):
     only_matched_schema: bool = kwargs['only_matched_schema']
     appended_list: bool = kwargs['appended_list']
     offset: int = 0
+    before_time = time.time()
     while True:
+        sub_before_time = time.time()
         db_result = db_manager.select_query(
             table_name=mapper_data.get('source').get('table'),
             columns=mapper_data.get('source').get('columns'),
@@ -62,12 +65,14 @@ def default_loader(args, kwargs, apply_modifier=None):
                 only_matched_schema=only_matched_schema,
                 appended_list=appended_list
             )
+        print(f'Executed in {"{:.2f}".format(time.time() - sub_before_time)} sec')
         offset += db_result['returned']
 
         if offset > settings.max_records and settings.max_records != -1:
             break
         if db_result['returned'] != settings.fetch_limit:
             break
+    print(f'total time: {"{:.2f}".format(time.time() - before_time)} sec')
 
 
 def meta_fixer(meta: dict):
