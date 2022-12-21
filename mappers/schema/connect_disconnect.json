@@ -1,0 +1,73 @@
+{
+  "title": "Connect/Disconnect",
+  "description": "Ticket schema definition for Connect/Disconnect",
+  "additionalProperties": false,
+  "type": "object",
+  "properties": {
+    "service_type": {
+      "type": "string",
+      "title": "Service Type",
+      "description": "Connect/Disconnect",
+      "enum": [
+        "reconnect",
+        "disconnect"
+      ]
+    },
+    "registration_name": {
+      "type": "string",
+      "title": "Registration name",
+      "description": "IRM API integration source"
+    },
+    "sim_status": {
+      "type": "string",
+      "title": "SIM Status",
+      "description": "CRM API integration source"
+    },
+    "msisdn": {
+      "type": "string",
+      "title": "POS MSISDN",
+      "readOnly": true,
+      "description": "Mobile Station Integrated Services Digital Network [Filled at submission]",
+      "comment": "this field has the to read from user who submits the ticket"
+    },
+    "customer_name": {
+      "type": "string",
+      "title": "customer name",
+      "description": "Customer language of end customer [Filled at submission]"
+    },
+    "prepaid_postpaid": {
+      "type": "string",
+      "title": "Prepaid/postpaid",
+      "description": "Radio buttons selected at time of submission [Filled at submission]",
+      "enum": [
+        "prepaid",
+        "postpaid"
+      ]
+    },
+    "call_back_number": {
+      "type": "string",
+      "title": "Call back number",
+      "description": "Call back number [Filled at submission]"
+    },
+    "contract_number": {
+      "type": "string",
+      "title": "Contract number",
+      "description": "Contract number of end customer [Filled at submission]"
+    },
+    "civilian_id": {
+      "type": "string",
+      "title": "Civilian ID",
+      "description": "Civilian ID of end customer [Filled at submission]"
+    },
+    "customer_language": {
+      "type": "string",
+      "title": "Customer language",
+      "description": "Customer language of end customer [Filled at submission]",
+      "enum": [
+        "arabic",
+        "english",
+        "kurdish"
+      ]
+    }
+  }
+}
