@@ -5,7 +5,7 @@ from utils.decorators import process_mapper
 from utils.default_loader import default_loader, meta_fixer
 
 
-@process_mapper(mapper="migration", remove_null_field=True)
+@process_mapper(mapper="rc_compensation", remove_null_field=True)
 def load(*args, **kwargs):
     default_loader(args, kwargs, apply_modifier)
     print("Successfully done.")
@@ -21,12 +21,11 @@ def apply_modifier(
         db_row: dict
 ):
     meta = meta_fixer(meta)
-    meta['workflow_shortname'] = 'migration'
+
+    meta['workflow_shortname'] = 'rc_compensation'
     if meta.get('state'):
         if meta.get('state') == 'Pending':
             meta['state'] = 'pending'
-        elif meta.get('state') == 'Completed':
-            meta['state'] = 'completed'
         elif meta.get('state') == 'Rejected':
             meta['state'] = 'rejected'
         elif meta.get('state') == 'Approved':
@@ -37,9 +36,15 @@ def apply_modifier(
     if meta.get('owner_shortname'):
         meta['owner_shortname'] = f'pos_{meta["owner_shortname"]}'
 
+    if body.get('msisdn') and body.get('msisdn').startswith('964'):
+        body['msisdn'] = body.get('msisdn')[3:]
+
+    if body.get('card_denomination'):
+        body['card_denomination'] = str(body.get('card_denomination'))
+
     history_obj = None
-    start = db_manager.create_alias('INFORMATION_SERVICE.ACTION_START_TIME')
-    end = db_manager.create_alias('INFORMATION_SERVICE.ACTION_END_TIME')
+    start = db_manager.create_alias('OTHER_SERVICE.ACTION_START_TIME')
+    end = db_manager.create_alias('OTHER_SERVICE.ACTION_END_TIME')
     if db_row.get(start) and db_row.get(end):
         start = datetime.strptime(db_row.get(start), '%Y/%m/%d %H:%M:%S'),
         end = datetime.strptime(db_row.get(end), '%Y/%m/%d %H:%M:%S'),

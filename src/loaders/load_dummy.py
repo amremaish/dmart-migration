@@ -40,8 +40,8 @@ def apply_modifier(
     if body.get('msisdn') and body.get('msisdn').startswith('964'):
         body['msisdn'] = body.get('msisdn')[3:]
     history_obj = None
-    start = db_manager.create_alias('SIM_SWAP.ACTION_START_TIME')
-    end = db_manager.create_alias('SIM_SWAP.ACTION_END_TIME')
+    start = db_manager.create_alias('INFORMATION_SERVICE.ACTION_START_TIME')
+    end = db_manager.create_alias('INFORMATION_SERVICE.ACTION_END_TIME')
     if db_row.get(start) and db_row.get(end):
         start = datetime.strptime(db_row.get(start), '%Y/%m/%d %H:%M:%S'),
         end = datetime.strptime(db_row.get(end), '%Y/%m/%d %H:%M:%S'),
