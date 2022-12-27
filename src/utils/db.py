@@ -122,6 +122,25 @@ class DbManager:
             'offset': offset
         }
 
+    def load_lookup(self) -> dict:
+        # id -> {columns:values}
+        columns = ['ID', 'KEY_VALUE', 'CODE', 'NAME_AR', 'NAME_EN', 'NAME_KU']
+        query = f'SELECT {" ,".join(columns)} FROM LOOKUP'
+        cursor = self.connection.cursor()
+        cursor.execute(query)
+        result = cursor.fetchall()
+        processed_result: dict = {}
+        # collect result
+        for item in result:
+            idx = 0
+            sub_result: dict = {}
+            for col_name in columns:
+                val = item[idx]
+                sub_result[col_name] = val
+                idx = idx + 1
+            processed_result[sub_result['ID']] = sub_result
+        return processed_result
+
     def find_in_row(self, row: dict, key: str):
         key = key.upper()
         key = self.create_alias(key)

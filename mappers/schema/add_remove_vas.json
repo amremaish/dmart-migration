@@ -1,0 +1,67 @@
+{
+  "title": "Add/Remove VAS",
+  "description": "Ticket schema definition for Add/Remove VAS",
+  "additionalProperties": false,
+  "type": "object",
+  "properties": {
+    "service_type": {
+      "type": "string",
+      "title": "Service Type",
+      "description": "Captured from the form that submitted the ticket and filled from",
+      "enum": [
+        "add",
+        "remove"
+      ]
+    },
+    "sub_service_type": {
+      "type": "string",
+      "title": "Service Type",
+      "description": "Captured from the form that submitted the ticket and filled from",
+      "enum": [
+        "MMS",
+        "VAS",
+        "GPRS",
+        "BBS"
+      ]
+    },
+    "registration_name": {
+      "type": "string",
+      "title": "Registration name",
+      "description": "IRM API integration source"
+    },
+    "sim_status": {
+      "type": "string",
+      "title": "SIM Status",
+      "description": "CRM API integration source"
+    },
+    "msisdn": {
+      "type": "string",
+      "title": "MSISDN",
+      "description": "Mobile Station Integrated Services Digital Network for POS [Filled at submission]",
+      "comment": "this field has the to read from user who submits the ticket"
+    },
+    "service_short_code": {
+      "type": "array",
+      "title": "Service short code",
+      "description": "User can add multiple codes [n] [Filled at submission]",
+      "items": {
+        "type": "string"
+      }
+    },
+    "customer_language": {
+      "type": "string",
+      "enum": [
+        "arabic",
+        "english",
+        "kurdish"
+      ],
+      "title": "Customer language",
+      "description": "Customer language of end customer [Filled at submission]"
+    },
+    "customer_name": {
+      "type": "string",
+      "title": "customer name",
+      "description": "Name of end customer [Filled at submission]"
+    }
+  }
+}

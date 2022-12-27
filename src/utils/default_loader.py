@@ -14,6 +14,8 @@ def default_loader(args, kwargs, apply_modifier=None):
     appended_list: bool = kwargs['appended_list']
     offset: int = 0
     before_time = time.time()
+    # load all lockup table
+    lookup: dict = db_manager.load_lookup()
     while True:
         sub_before_time = time.time()
         db_result = db_manager.select_query(
@@ -42,6 +44,7 @@ def default_loader(args, kwargs, apply_modifier=None):
                     meta=meta,
                     body=body,
                     db_row=row,
+                    lookup=lookup,
                 )
                 meta = modified["meta"]
                 body = modified["body"]

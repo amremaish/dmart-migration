@@ -1,0 +1,70 @@
+{
+  "source": {
+    "table": "OTHER_SERVICE",
+    "join": [
+      {
+        "table": "POS_USER",
+        "pk_id": "POS_USER.ID",
+        "fk_id": "OTHER_SERVICE.POS_ID",
+        "join_type": "LEFT"
+      },
+      {
+        "table": "LOOKUP",
+        "pk_id": "LOOKUP.ID",
+        "fk_id": "OTHER_SERVICE.REASON",
+        "join_type": "LEFT"
+      },
+      {
+        "table": "VAS_SERVICE",
+        "pk_id": "OTHER_SERVICE.ID",
+        "fk_id": "VAS_SERVICE.ID",
+        "join_type": "LEFT"
+      }
+    ],
+    "where" : "REQUEST_TYPE_FILTER = 'Add-Remove VAS Service'",
+    "columns": [
+      "OTHER_SERVICE.ID",
+      "OTHER_SERVICE.ACTION_START_TIME",
+      "OTHER_SERVICE.ACTION_END_TIME",
+      "OTHER_SERVICE.CREATION_DATE",
+      "OTHER_SERVICE.UPDATED_DATE",
+      "OTHER_SERVICE.STATUS_MSG",
+      "OTHER_SERVICE.STATUS",
+      "OTHER_SERVICE.CUSTOMER_MSISDN",
+      "OTHER_SERVICE.REQUEST_TYPE_FILTER",
+      "POS_USER.USER_ID",
+      "VAS_SERVICE.SERVICE_TYPE",
+      "VAS_SERVICE.REQUEST_TYPE",
+      "VAS_SERVICE.SHORT_CODE",
+      "LOOKUP.NAME_EN"
+
+    ]
+  },
+  "columns_mapper": {
+    "meta": {
+      "shortname": "OTHER_SERVICE.ID",
+      "displayname": {
+        "en": "",
+        "ar": "",
+        "kd": ""
+      },
+      "owner_shortname" : "POS_USER.USER_ID",
+      "updated_at": "OTHER_SERVICE.UPDATED_DATE",
+      "created_at": "OTHER_SERVICE.CREATION_DATE",
+      "is_active": "OTHER_SERVICE.STATUS",
+      "state": "OTHER_SERVICE.STATUS_MSG",
+      "resolution_reason": "LOOKUP.NAME_EN"
+    },
+    "body": {
+      "msisdn": "OTHER_SERVICE.CUSTOMER_MSISDN",
+      "customer_language": "english",
+      "service_short_code" : "VAS_SERVICE.SHORT_CODE"
+    }
+  },
+  "dest": {
+    "space_name": "aftersales",
+    "subpath": "tickets/add_remove_vas",
+    "schema_shortname": "add_remove_vas",
+    "resource_type": "ticket"
+  }
+}
