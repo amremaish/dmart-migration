@@ -20,7 +20,8 @@ def apply_modifier(
         schema_shortname: str,
         meta: dict,
         body: dict,
-        db_row: dict
+        db_row: dict,
+        lookup: dict
 ):
     meta = meta_fixer(meta)
     meta['shortname'] = f"pos_{meta['shortname']}"
