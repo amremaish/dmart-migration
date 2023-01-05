@@ -11,7 +11,9 @@ def default_loader(args, kwargs, apply_modifier=None):
     mapper_data: dict = kwargs['mapper_data']
     remove_null_field: bool = kwargs['remove_null_field']
     only_matched_schema: bool = kwargs['only_matched_schema']
-    appended_list: bool = kwargs['appended_list']
+    appended_list: list = kwargs['appended_list']
+    disable_duplication_appended_list: bool = kwargs['disable_duplication_appended_list']
+
     offset: int = 0
     before_time = time.time()
     # load all lockup table
@@ -66,7 +68,8 @@ def default_loader(args, kwargs, apply_modifier=None):
                 body=body,
                 history_obj=history_obj,
                 only_matched_schema=only_matched_schema,
-                appended_list=appended_list
+                appended_list=appended_list,
+                disable_duplication_appended_list=disable_duplication_appended_list
             )
         print(f'Executed in {"{:.2f}".format(time.time() - sub_before_time)} sec')
         offset += db_result['returned']

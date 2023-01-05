@@ -1,0 +1,69 @@
+{
+  "type": "object",
+  "title": "Add Product",
+  "additionalProperties": false,
+  "properties": {
+    "status": {
+      "title": "Status",
+      "type": "string",
+      "enum": [
+        "available",
+        "not_available",
+        "pending_completion"
+      ],
+      "uniqueItems": true
+    },
+    "is_new": {
+      "type": "boolean",
+      "default": true
+    },
+    "governorate_shortnames": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "anbar",
+          "babil",
+          "baghdad",
+          "basra",
+          "duhook",
+          "thiqar",
+          "qaddissiya",
+          "missan",
+          "erbil",
+          "karbala",
+          "muthanna",
+          "najaf",
+          "mosel",
+          "wassit",
+          "diyala",
+          "kirkuk",
+          "salahaldeen",
+          "sulaimaniya"
+        ],
+        "uniqueItems": true
+      },
+      "title": "Governorate availability"
+    },
+    "role_shortnames": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "vouchers_pos",
+          "franshise",
+          "zain_lite",
+          "ros",
+          "activating_pos"
+        ],
+        "uniqueItems": true
+      },
+      "title": "POS type availability "
+    }
+  },
+  "required": [
+    "governorate_shortnames",
+    "role_shortnames",
+    "status"
+  ]
+}

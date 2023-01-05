@@ -1,0 +1,93 @@
+{
+  "source": {
+    "table": "PRODUCT",
+    "join": [
+      {
+        "table": "PRODUCT_CATEGORY",
+        "pk_id": "PRODUCT.ID",
+        "fk_id": "PRODUCT_CATEGORY.PRODUCT_ID",
+        "join_type": "LEFT"
+      },
+      {
+        "table": "CATEGORY",
+        "pk_id": "CATEGORY.ID",
+        "fk_id": "PRODUCT_CATEGORY.CATEGORY_ID",
+        "join_type": "LEFT"
+      },
+      {
+        "table": "SUBCATEGORY_CATEGORY",
+        "pk_id": "CATEGORY.ID",
+        "fk_id": "SUBCATEGORY_CATEGORY.CATEGORY_ID",
+        "join_type": "LEFT"
+      },
+      {
+        "table": "SUB_CATEGORY",
+        "pk_id": "SUB_CATEGORY.ID",
+        "fk_id": "SUBCATEGORY_CATEGORY.SUBCATEGORY_ID",
+        "join_type": "LEFT"
+      },
+      {
+        "table": "PRODUCT_TYPE",
+        "pk_id": "PRODUCT.ID",
+        "fk_id": "PRODUCT_TYPE.PRODUCT_ID",
+        "join_type": "LEFT"
+      },
+      {
+        "table": "USER_TYPE",
+        "pk_id": "USER_TYPE.ID",
+        "fk_id": "PRODUCT_TYPE.TYPE_ID",
+        "join_type": "LEFT"
+      },
+      {
+        "table": "PRODUCT_REGION",
+        "pk_id": "PRODUCT.ID",
+        "fk_id": "PRODUCT_REGION.PRODUCT_ID",
+        "join_type": "LEFT"
+      },
+      {
+        "table": "REGION",
+        "pk_id": "REGION.ID",
+        "fk_id": "PRODUCT_REGION.REGION_ID",
+        "join_type": "LEFT"
+      }
+    ],
+    "columns": [
+      "PRODUCT.PRODUCT_NAME",
+      "PRODUCT.NAME_AR",
+      "PRODUCT.NAME_KU",
+      "PRODUCT.CREATION_DATE",
+      "PRODUCT.UPDATED_DATE",
+      "PRODUCT.ID",
+      "REGION.NAME_EN",
+      "USER_TYPE.NAME"
+    ]
+  },
+  "columns_mapper": {
+    "meta": {
+      "shortname": "PRODUCT.PRODUCT_NAME",
+      "displayname": {
+        "en": "PRODUCT.PRODUCT_NAME",
+        "ar": "PRODUCT.NAME_AR",
+        "kd": "PRODUCT.NAME_KU"
+      },
+      "updated_at": "PRODUCT.UPDATED_DATE",
+      "created_at": "PRODUCT.CREATION_DATE"
+    },
+    "body": {
+      "status": "available",
+      "is_new": false,
+      "governorate_shortnames": [
+        "REGION.NAME_EN"
+      ],
+      "role_shortnames": [
+        "USER_TYPE.NAME"
+      ]
+    }
+  },
+  "dest": {
+    "space_name": "ordering",
+    "subpath": "ordering/products",
+    "schema_shortname": "product",
+    "resource_type": "content"
+  }
+}

@@ -59,7 +59,8 @@ class SpaceCreator:
             schema_shortname: str,
             history_obj: list,
             only_matched_schema: bool,
-            appended_list: list = None
+            appended_list: list = None,
+            disable_duplication_appended_list: bool = False
     ):
         resource_class = getattr(sys.modules["dmart.core"], camel_case(class_type))
         shortname = str(meta.get("shortname"))
@@ -91,7 +92,9 @@ class SpaceCreator:
                 new_meta=meta,
                 old_body=old_body,
                 new_body=body,
-                appended_list=appended_list)
+                appended_list=appended_list,
+                disable_duplication_appended_list=disable_duplication_appended_list
+            )
         try:
             # validate payload
             mappers.validate_body_entry(body, schema_shortname)
@@ -116,7 +119,7 @@ class SpaceCreator:
             body=f'{meta_obj.shortname}.json'
         )
 
-        if mata_path.is_file() and body_path.is_file():
+        if mata_path.is_file() and body_path.is_file() and not appended_list:
             return
         # save meta
         with open(mata_path, "w") as f:
@@ -139,16 +142,29 @@ class SpaceCreator:
             new_meta: dict,
             old_body: dict,
             new_body: dict,
-            appended_list: list[str] = None
+            appended_list: list[str] = None,
+            disable_duplication_appended_list: bool = False,
     ):
         for one_list in appended_list:
             path = one_list.split('.', 1)[1]
             if one_list.startswith("body"):
                 appended_list = self.find_list_in_dict(path, new_body)
-                new_body = self.append_list_in_dict(old_body, appended_list, "", path)
+                new_body = self.append_list_in_dict(
+                    old_body,
+                    appended_list,
+                    "",
+                    path,
+                    disable_duplication_appended_list
+                )
             if one_list.startswith("meta"):
                 appended_list = self.find_list_in_dict(path, new_meta)
-                new_meta = self.append_list_in_dict(old_meta, appended_list, "", path)
+                new_meta = self.append_list_in_dict(
+                    old_meta,
+                    appended_list,
+                    "",
+                    path,
+                    disable_duplication_appended_list
+                )
         return new_meta, new_body
 
     def find_list_in_dict(self, path: str, obj: dict):
@@ -162,13 +178,21 @@ class SpaceCreator:
             itr = itr + 1
         return obj[path[-1]]
 
-    def append_list_in_dict(self, body: dict, appended_list: list[str], created_path: str = "", appended_path=""):
+    def append_list_in_dict(
+            self,
+            body: dict,
+            appended_list: list[str],
+            created_path: str = "",
+            appended_path="",
+            disable_duplication_appended_list: bool = False
+    ):
         for k, v in body.items():
             if isinstance(v, dict):
                 created_path = created_path + f"{k}."
                 self.append_list_in_dict(body.get(k, {}), appended_list, created_path, appended_path)
             elif isinstance(v, list) and created_path + k == appended_path:
-                v += appended_list
+                if disable_duplication_appended_list and len(appended_list) > 0 and appended_list[0] not in v:
+                    v += appended_list
             elif (isinstance(v, str) or isinstance(v, int) or v is None) and created_path + k == appended_path:
                 body[k] = appended_list if appended_list else ''
 

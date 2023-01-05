@@ -16,3 +16,5 @@ migrate rc_compensation
 migrate connect_disconnect
 migrate add_remove_vas
 migrate migration
+----------------------------------
+migrate products
