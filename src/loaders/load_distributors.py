@@ -3,8 +3,7 @@ from utils.default_loader import default_loader, meta_fixer
 
 
 @process_mapper(
-    mapper="distributors",
-    appended_list=["body.governorate_shortnames"]
+    mapper="distributors"
 )
 def load(*args, **kwargs):
     default_loader(args, kwargs, apply_modifier)

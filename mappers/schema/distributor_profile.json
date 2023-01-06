@@ -1,17 +1,14 @@
 {
-  "type": "object",
-  "title": "distributor_profile",
-  "additionalProperties": false,
-  "properties": {
-    "language": {
-      "type": "string"
-    },
-    "governorate_shortnames": {
-      "type": "array",
-      "items": {
+    "type": "object",
+    "title": "distributor_profile",
+    "additionalProperties": false,
+    "properties": {
+      "language": {
+        "type": "string"
+      },
+      "governorate_shortname": {
         "type": "string"
       }
-    }
-  },
-  "required": []
-}
+    },
+    "required": []
+  }

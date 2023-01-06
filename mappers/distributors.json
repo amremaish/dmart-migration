@@ -47,7 +47,7 @@
     },
     "body": {
       "language": "",
-      "governorate_shortnames":["REGION.NAME_EN"]
+      "governorate_shortname": "REGION.NAME_EN"
     }
   },
   "dest": {
