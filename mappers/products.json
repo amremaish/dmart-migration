@@ -59,7 +59,9 @@
       "PRODUCT.UPDATED_DATE",
       "PRODUCT.ID",
       "REGION.NAME_EN",
-      "USER_TYPE.NAME"
+      "USER_TYPE.NAME",
+      "SUB_CATEGORY.SUB_CATEGORY_NAME",
+      "CATEGORY.CATEGORY_NAME"
     ]
   },
   "columns_mapper": {

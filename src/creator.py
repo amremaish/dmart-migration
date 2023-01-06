@@ -30,6 +30,7 @@ class SpaceCreator:
             return ''
         shortname = str(shortname)
         shortname = shortname.replace('.', '_')
+        shortname = shortname.replace(',', '_')
         shortname = shortname.replace('-', '_')
         return shortname.strip().lower().replace(' ', '')
 

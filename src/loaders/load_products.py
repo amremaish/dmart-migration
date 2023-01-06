@@ -1,3 +1,5 @@
+from creator import creator
+from utils.db import db_manager
 from utils.decorators import process_mapper
 from utils.default_loader import default_loader, meta_fixer
 
@@ -24,6 +26,9 @@ def apply_modifier(
 ):
     meta = meta_fixer(meta)
 
+    cat = db_row.get(db_manager.create_alias('SUB_CATEGORY.SUB_CATEGORY_NAME'))
+    sub_cat = db_row.get(db_manager.create_alias('CATEGORY.CATEGORY_NAME'))
+    subpath = f'ordering/products/{creator.shortname_fixer(cat)}/{creator.shortname_fixer(sub_cat)}'
     return {
         "space_name": space_name,
         "subpath": subpath,
