@@ -40,8 +40,9 @@
       "description": "Mobile Station Integrated Services Digital Network for POS [Filled at submission]",
       "comment": "this field has the to read from user who submits the ticket"
     },
-    "service_short_code": {
+    "service_short_codes": {
       "type": "array",
+      "uniqueItems": true,
       "title": "Service short code",
       "description": "User can add multiple codes [n] [Filled at submission]",
       "items": {

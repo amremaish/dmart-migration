@@ -5,7 +5,12 @@ from utils.decorators import process_mapper
 from utils.default_loader import default_loader, meta_fixer
 
 
-@process_mapper(mapper="add_remove_vas", remove_null_field=True)
+@process_mapper(
+    mapper="add_remove_vas",
+    appended_list=['body.service_short_codes'],
+    disable_duplication_appended_list=True,
+    remove_null_field=True
+)
 def load(*args, **kwargs):
     default_loader(args, kwargs, apply_modifier)
     print("Successfully done.")
@@ -34,6 +39,9 @@ def apply_modifier(
             meta['state'] = 'approved'
         else:
             meta['state'] = ''
+    service_short_codes = body.get('service_short_codes')
+    if len(service_short_codes) > 0 and service_short_codes[0] is None:
+        body['service_short_codes'] = []
 
     if meta.get('owner_shortname'):
         meta['owner_shortname'] = f'pos_{meta["owner_shortname"]}'

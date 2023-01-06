@@ -58,7 +58,9 @@
     "body": {
       "msisdn": "OTHER_SERVICE.CUSTOMER_MSISDN",
       "customer_language": "english",
-      "service_short_code" : "VAS_SERVICE.SHORT_CODE"
+      "service_short_codes": [
+        "VAS_SERVICE.SHORT_CODE"
+      ]
     }
   },
   "dest": {

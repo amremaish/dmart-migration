@@ -33,7 +33,8 @@
     "call_back_number": {
       "type": "string",
       "title": "callback number",
-      "description": "Phone number of end customer [Filled at submission]"
+      "description": "Phone number of end customer [Filled at submission]",
+      "pattern": "^7[5789]\\d{8}$"
     }
   }
 }

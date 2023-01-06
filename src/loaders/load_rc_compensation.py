@@ -41,7 +41,10 @@ def apply_modifier(
         body['msisdn'] = body.get('msisdn')[3:]
 
     if body.get('card_denomination'):
-        body['card_denomination'] = str(body.get('card_denomination'))
+        val = lookup.get(body['card_denomination'], {}).get('NAME_EN', None)
+        if val:
+            val += '_iqd'
+        body['card_denomination'] = val
 
     history_obj = None
     start = db_manager.create_alias('OTHER_SERVICE.ACTION_START_TIME')

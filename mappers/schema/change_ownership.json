@@ -44,7 +44,8 @@
       "type": "string",
       "title": "Call-Back Number",
       "readOnly": true,
-      "description": "Call-Back Number"
+      "description": "Call-Back Number",
+      "pattern": "^7[5789]\\d{8}$"
     },
     "customer_name_second_party": {
       "type": "string",
@@ -55,8 +56,7 @@
       "type": "string",
       "title": "SIM MSISDN(Second Party)",
       "description": "Subscriber SIM's MSISDN(Second Party) [Filled at submission]",
-      "minLength": 10,
-      "maxLength": 11
+      "pattern": "^7[5789]\\d{8}$"
     },
     "iccid_second_party": {
       "type": "string",
@@ -66,57 +66,19 @@
     "call_back_number_second_party": {
       "type": "string",
       "title": "Call-Back Number(Second Party)",
-      "description": "Call-Back Number for second party [Filled at submission]"
+      "description": "Call-Back Number for second party [Filled at submission]",
+      "pattern": "^7[5789]\\d{8}$"
     },
-    "frequently_called_number_1": {
-      "type": "string",
-      "title": "Frequently Called Number 1",
-      "description": "Frequently Called Number 1 [Filled at submission]"
-    },
-    "frequently_called_number_2": {
-      "type": "string",
-      "title": "Frequently Called Number 2",
-      "description": "Frequently Called Number 2 [Filled at submission]"
-    },
-    "frequently_called_number_3": {
-      "type": "string",
-      "title": "Frequently Called Number 3",
-      "description": "Frequently Called Number 3 [Filled at submission]"
-    },
-    "frequently_called_number_4": {
-      "type": "string",
-      "title": "Frequently Called Number 4",
-      "description": "Frequently Called Number 4 [Filled at submission]"
-    },
-    "frequently_called_number_5": {
-      "type": "string",
-      "title": "Frequently Called Number 5",
-      "description": "Frequently Called Number 5 [Filled at submission]"
-    },
-    "frequently_called_number_6": {
-      "type": "string",
-      "title": "Frequently Called Number 6",
-      "description": "Frequently Called Number 6 [Filled at submission]"
-    },
-    "frequently_called_number_7": {
-      "type": "string",
-      "title": "Frequently Called Number 7",
-      "description": "Frequently Called Number 7 [Filled at submission]"
-    },
-    "frequently_called_number_8": {
-      "type": "string",
-      "title": "Frequently Called Number 8",
-      "description": "Frequently Called Number 8 [Filled at submission]"
-    },
-    "frequently_called_number_9": {
-      "type": "string",
-      "title": "Frequently Called Number 9",
-      "description": "Frequently Called Number 9 [Filled at submission]"
-    },
-    "frequently_called_number_10": {
-      "type": "string",
-      "title": "Frequently Called Number 10",
-      "description": "Frequently Called Number 10 [Filled at submission]"
+    "frequently_called_numbers": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^7[5789]\\d{8}$"
+      },
+      "description": "Frequently Called Numbers [Filled at submission]"
     },
     "last_recharge_amount": {
       "type": "string",

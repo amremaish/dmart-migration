@@ -28,12 +28,23 @@
     "card_denomination": {
       "type": "string",
       "title": "card denomination",
-      "description": "The card denomination associated with the RC [Filled at submission]"
+      "description": "The card denomination associated with the RC [Filled at submission]",
+      "enum": [
+        "5_iqd",
+        "7_iqd",
+        "10_iqd",
+        "15_iqd",
+        "25_iqd",
+        "35_iqd",
+        "50_iqd",
+        "100_iqd"
+      ]
     },
     "call_back_number": {
       "type": "string",
       "title": "callback number",
-      "description": "Phone number of end customer [Filled at submission]"
+      "description": "Phone number of end customer [Filled at submission]",
+      "pattern": "^7[5789]\\d{8}$"
     },
     "customer_name": {
       "type": "string",
