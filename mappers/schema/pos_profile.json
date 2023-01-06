@@ -6,13 +6,13 @@
   "properties": {
     "language": {
       "type": "string",
+      "enum": [
+        "arabic",
+        "english",
+        "kurdish"
+      ],
       "title": "Account language",
       "description": "Account language of end user"
-    },
-    "channel_shortname": {
-      "type": "string",
-      "title": "channel shortname",
-      "description": "channel shortname"
     },
     "mothers_name": {
       "type": "string",
@@ -54,6 +54,11 @@
       "type": "string",
       "title": "Channel owner civil ID"
     },
+    "channel_shortname": {
+      "type": "string",
+      "title": "channel shortname",
+      "description": "channel shortname"
+    },
     "address": {
       "type": "object",
       "title": "Account holder home address",
@@ -73,10 +78,26 @@
           "title": "Home address latitude",
           "description": "Latitude value of the home address"
         },
-        "governorate_shortnames": {
-          "type": "array",
-          "items": {
-            "type": "string"
+        "governorate": {
+          "type": "object",
+          "title": "Governorate",
+          "properties": {
+            "shortname": {
+              "type": "string",
+              "ttle": "Governerate shortname"
+            },
+            "sector": {
+              "type": "string",
+              "title": "Sector name"
+            },
+            "sub_sector": {
+              "type": "string",
+              "title": "Sub Sector"
+            },
+            "distributor": {
+              "type": "string",
+              "title": "Distributor"
+            }
           }
         }
       }

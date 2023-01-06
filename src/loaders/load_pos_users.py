@@ -42,6 +42,10 @@ def apply_modifier(
     if not body.get('device_id'):
         body['device_id'] = ''
 
+    if not body.get('language'):
+        body['language'] = 'english'
+    else:
+        body['language'] = body.get('language').lower()
     if not body.get('address'):
         body['address'] = {'line': '', 'longitude': 0, 'latitude': 0, 'governorate_shortnames': []}
     else:
