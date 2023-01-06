@@ -194,6 +194,8 @@ class SpaceCreator:
             elif isinstance(v, list) and created_path + k == appended_path:
                 if disable_duplication_appended_list and len(appended_list) > 0 and appended_list[0] not in v:
                     v += appended_list
+                elif not disable_duplication_appended_list:
+                    v += appended_list
             elif (isinstance(v, str) or isinstance(v, int) or v is None) and created_path + k == appended_path:
                 body[k] = appended_list if appended_list else ''
 

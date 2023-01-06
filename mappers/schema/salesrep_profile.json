@@ -1,36 +1,37 @@
 {
-  "type": "object",
-  "title": "salesrep",
-  "description": "Schema definition for sales_rep",
-  "additionalProperties": false,
-  "properties": {
-    "registration_id": {
-      "type": "string",
-      "default": ""
-    },
+    "type": "object",
+    "title": "salesrep",
+    "description": "Schema definition for sales_rep",
+    "additionalProperties": false,
+    "properties": {
+      "registration_id": {
+        "type": "string"
+      },
     "alternative_msisdn": {
       "type": "string",
-      "default": ""
+      "pattern": "^7[5789]\\d{8}$"
     },
-    "language": {
-      "type": "string"
-    },
-    "address": {
-      "type": "object",
-      "properties": {
-        "longitude": {
-          "type": "number"
+      "language": {
+        "type": "string"
+      },
+      "address": {
+        "type": "object",
+        "properties": {
+          "longitude": {
+            "type": "number"
+          },
+          "latitude": {
+            "type": "number"
+          }
         },
-        "latitude": {
-          "type": "number"
+        "required": []
+      },
+      "governorate_shortnames": {
+        "type": "array",
+        "items": {
+          "type": "string"
         }
       }
     },
-    "governorate_shortnames": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
-    }
+    "required": []
   }
-}
