@@ -9,7 +9,7 @@
       "title": "Registration name",
       "description": "IRM API integration source"
     },
-    "sim_Status": {
+    "sim_status": {
       "type": "string",
       "title": "SIM Status",
       "description": "IRM API integration source"
