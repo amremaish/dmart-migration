@@ -4,7 +4,13 @@
   "additionalProperties": false,
   "properties": {
     "department": {
-      "type": "string"
+      "type": "string",
+      "enum": [
+        "technical_support",
+        "backoffice",
+        "sales",
+        "others"
+      ]
     },
     "governorate_shortnames": {
       "type": "array",
@@ -16,7 +22,9 @@
       "type": "string"
     },
     "alternative_msisdn": {
-      "type": "string"
+      "type": "string",
+      "pattern": "^7[5789]\\d{8}$"
     }
-  }
+  },
+  "required": []
 }

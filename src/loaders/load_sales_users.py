@@ -2,7 +2,7 @@ from utils.decorators import process_mapper
 from utils.default_loader import default_loader, meta_fixer
 
 
-@process_mapper(mapper="sales_users")
+@process_mapper(mapper="sales_users", remove_null_field=True)
 def load(*args, **kwargs):
     default_loader(args, kwargs, apply_modifier)
     print("Successfully done.")
@@ -20,8 +20,6 @@ def apply_modifier(
 ):
     meta = meta_fixer(meta)
     meta['shortname'] = f"sales_{meta['shortname']}"
-    if not body.get('alternative_msisdn'):
-        body['alternative_msisdn'] = ''
     return {
         "space_name": space_name,
         "subpath": subpath,
