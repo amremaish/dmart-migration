@@ -42,13 +42,7 @@
         }
         
       ],
-      "salesrep_shortnames":[],
-      "region": {
-        "key": "REGION.NAME_EN",
-        "arabic": "REGION.NAME_AR",
-        "english": "REGION.NAME_EN",
-        "kurdish": "REGION.NAME_KU"
-      }
+      "salesrep_shortnames":[]
     }
   },
   "dest": {

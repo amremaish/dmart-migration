@@ -51,10 +51,23 @@
                 "kurdish": {
                   "type": "string"
                 }
-              }
+              },
+              "required": [
+                "key",
+                "arabic",
+                "english",
+                "kurdish"
+              ]
             }
           }
-        }
+        },
+        "required": [
+          "key",
+          "arabic",
+          "english",
+          "kurdish",
+          "distributor_shortname"
+        ]
       }
     },
     "salesrep_shortnames": {
@@ -69,7 +82,13 @@
       "type": "object",
       "properties": {
         "key": {
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "arabic_north",
+            "central_east",
+            "kurdistan",
+            "south_west"
+          ]
         },
         "arabic": {
           "type": "string"
@@ -80,7 +99,16 @@
         "kurdish": {
           "type": "string"
         }
-      }
+      },
+      "required": [
+        "key",
+        "arabic",
+        "english",
+        "kurdish"
+      ]
     }
-  }
+  },
+  "required": [
+    "sectors"
+  ]
 }
