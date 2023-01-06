@@ -7,45 +7,33 @@
     "registration_name": {
       "type": "string",
       "title": "Registration name",
-      "description": "IRM API integration source",
-      "default": ""
+      "description": "IRM API integration source"
     },
     "sim_status": {
       "type": "string",
       "title": "SIM Status",
-      "description": "CRM API integration source",
-      "default": ""
+      "description": "CRM API integration source"
     },
     "usim_serial": {
       "type": "string",
       "title": "USIM Serial",
-      "description": "3P API Integration source",
-      "default": ""
+      "description": "3P API Integration source"
     },
     "msisdn": {
       "type": "string",
       "title": "POS MSISDN",
       "description": "Mobile Station Integrated Services Digital Network for POS [Filled at submission]",
-      "comment": "this field has the to read from user who submits the ticket",
-      "default": ""
-    },
-    "callback_number": {
-      "type": "string",
-      "title": "callback number",
-      "description": "callback_number [added from legacy db]",
-      "default": ""
+      "comment": "this field has the to read from user who submits the ticket"
     },
     "iccid": {
       "type": "string",
       "title": "ICCID",
-      "description": "ICCID [Filled at submission]",
-      "default": ""
+      "description": "ICCID [Filled at submission]"
     },
     "customer_name": {
       "type": "string",
       "title": "customer name",
-      "description": "customer name [Filled at submission]",
-      "default": ""
+      "description": "customer name [Filled at submission]"
     }
   }
 }
