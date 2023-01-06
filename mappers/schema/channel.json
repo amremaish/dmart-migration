@@ -6,68 +6,81 @@
   "properties": {
     "type": {
       "type": "string",
-      "title": "Channel type",
-      "default": ""
+      "title": "Channel type"
     },
     "outlet_type": {
       "type": "string",
       "title": "Channel oulet type",
-      "default": ""
+      "enum": [
+        "exchange_office",
+        "mobile_shop",
+        "ros",
+        "franchise",
+        "sub_dealer"
+      ]
     },
     "security_visit_status": {
       "type": "string",
       "title": "National security visit status",
-      "default": ""
+      "enum": [
+        "completed",
+        "not_completed"
+      ]
     },
     "security_license_number": {
       "type": "string",
-      "title": "National security license number",
-      "default": ""
+      "title": "National security license number"
     },
     "zain_signage": {
       "type": "string",
       "title": "Zain top signage",
-      "default": ""
+      "enum": [
+        "3d_zain_top_signage",
+        "flex_zain_top_signage",
+        "light_box_top_signage"
+      ]
     },
     "competitor_signage": {
       "type": "string",
       "title": "Competitor top signage",
-      "default": ""
+      "enum": [
+        "3d_asia_top_signage",
+        "flex_asia_top_signage",
+        "3d_korek_top_signage",
+        "flex_korek_top_signage",
+        "sponsored_top_signage",
+        "owner_top_signage",
+        "other",
+        "no_top_signage"
+      ]
     },
     "internet_availability": {
       "type": "string",
       "title": "Channel internet availability",
-      "default": ""
+      "enum": [
+        "yes",
+        "no"
+      ]
+    },
+    "additional_shop_information": {
+      "type": "string"
     },
     "shop_size": {
       "type": "string",
       "title": "Size of shop",
-      "default": ""
-    },
-    "population_traffic": {
-      "type": "string",
-      "title": "Channel population traffic",
-      "default": ""
-    },
-    "area_income_level": {
-      "type": "string",
-      "title": "Channel area income level",
-      "default": ""
-    },
-    "area_profile": {
-      "type": "string",
-      "title": "Channel area profile",
-      "default": ""
+      "enum": [
+        "high",
+        "medium",
+        "low"
+      ]
     },
     "segmentation": {
       "type": "string",
-      "title": "Channel segmentation",
-      "default": ""
+      "title": "Channel segmentation"
     },
     "risk_level": {
       "type": "string",
-      "title": "Channel risk level",
-      "default": ""
+      "title": "Channel risk level"
     },
     "location": {
       "type": "object",
@@ -76,25 +89,58 @@
       "properties": {
         "line": {
           "type": "string",
-          "title": "Channel location line address",
-          "default": ""
+          "title": "Channel location line address"
         },
         "longitude": {
           "type": "number",
           "title": "Channel address longitude",
-          "description": "Longitude value of the home address",
-          "default": 0
+          "description": "Longitude value of the home address"
         },
         "latitude": {
           "type": "number",
           "title": "Channel address latitude",
-          "description": "Latitude value of the home address",
-          "default": 0
+          "description": "Latitude value of the home address"
         },
         "area_type": {
           "type": "string",
           "title": "Channel area type",
-          "default": ""
+          "enum": [
+            "commercial",
+            "touristic",
+            "industrial",
+            "souq"
+          ]
+        },
+        "population_traffic": {
+          "type": "string",
+          "title": "Channel population traffic",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "area_income_level": {
+          "type": "string",
+          "title": "Channel area income level",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "area_profile": {
+          "type": "string",
+          "title": "Channel area profile",
+          "enum": [
+            "alley",
+            "bazar",
+            "intersection",
+            "main_street",
+            "secondary_street",
+            "shopping_mall",
+            "square"
+          ]
         },
         "governorate": {
           "type": "object",
@@ -102,105 +148,151 @@
           "properties": {
             "shortname": {
               "type": "string",
-              "title": "Channel governorate shortname",
-              "default": ""
+              "title": "Channel governorate shortname"
             },
             "sector": {
               "type": "string",
-              "title": "Channel sector",
-              "default": ""
+              "title": "Channel sector"
             },
             "district": {
               "type": "string",
-              "title": "district",
-              "default": ""
+              "title": "district"
             }
           }
         }
       }
     },
-    "mobile_number": {
+    "msisdn": {
       "type": "string",
-      "title": "Channel mobile number",
-      "default": ""
+      "title": "Channel mobile number"
+    },
+    "alternative_msisdn": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^7[5789]\\d{8}$"
+      }
     },
     "whatsapp_number": {
       "type": "string",
       "title": "Channel WhatsApp number",
-      "default": ""
-    },
-    "activation_tool_available": {
-      "type": "string",
-      "title": "Activation tool available",
-      "default": ""
-    },
-    "msisdn_activation_tool": {
-      "type": "string",
-      "title": "MSISDN of activation tool",
-      "default": ""
-    },
-    "status_activation_tool": {
-      "type": "string",
-      "title": "Status of activation tool",
-      "default": ""
-    },
-    "type_activation_tool": {
-      "type": "string",
-      "title": "Type of activation tool",
-      "default": ""
-    },
-    "mvd_line_available": {
-      "type": "string",
-      "title": "MVD line  available",
-      "default": ""
-    },
-    "msisdn_mvd_line": {
-      "type": "string",
-      "title": "MSISDN of MVD line",
-      "default": ""
-    },
-    "evd_terminal_available": {
-      "type": "string",
-      "title": "EVD terminal available",
-      "default": ""
-    },
-    "msisdn_evd_device": {
-      "type": "string",
-      "title": "MSISDN of EVD device",
-      "default": ""
-    },
-    "serial_evd_device": {
-      "type": "string",
-      "title": "Serial of EVD device",
-      "default": ""
-    },
-    "zain_cash_service_available": {
-      "type": "string",
-      "title": "ZainCash service available",
-      "default": ""
-    },
-    "zain_cash_code": {
-      "type": "string",
-      "title": "ZainCash code",
-      "default": ""
-    },
-    "zain_cash_msisdn": {
-      "type": "string",
-      "title": "ZainCash MSISDN",
-      "default": ""
+      "pattern": "^7[5789]\\d{8}$"
     },
     "owner_shortname": {
       "type": "string",
-      "title": "Channel owner shortname",
-      "default": ""
+      "title": "Channel owner shortname"
+    },
+    "admin_shortname": {
+      "type": "string"
+    },
+    "lines_and_services": {
+      "type": "object",
+      "properties": {
+        "activation_tool": {
+          "type": "object",
+          "properties": {
+            "activation_tool_available": {
+              "type": "string"
+            },
+            "activation_tool": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "msisdn_activation_tool": {
+                    "type": "string",
+                    "title": "MSISDN of activation tool"
+                  },
+                  "status_activation_tool": {
+                    "type": "string",
+                    "title": "Status of activation tool"
+                  },
+                  "type_activation_tool": {
+                    "type": "string",
+                    "title": "Type of activation tool"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "mvd_line": {
+          "type": "object",
+          "properties": {
+            "mvd_line_available": {
+              "type": "string",
+              "title": "MVD line availablitiy ",
+              "enum": [
+                "yes",
+                "no"
+              ]
+            },
+            "msisdn_mvd_line": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "title": "MSISDN of MVD line"
+            }
+          }
+        },
+        "evd_terminal": {
+          "type": "object",
+          "properties": {
+            "evd_terminal_available": {
+              "type": "string",
+              "enum": [
+                "yes",
+                "no"
+              ]
+            },
+            "evd_device": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "msisdn_evd_device": {
+                    "type": "string",
+                    "title": "MSISDN of EVD device"
+                  },
+                  "serial_evd_device": {
+                    "type": "string",
+                    "title": "Serial of EVD device"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "other_services": {
+      "type": "object",
+      "properties": {
+        "zainchash_msisdn": {
+          "type": "string",
+          "title": "ZainCash MSISDN"
+        },
+        "zaincash_service_available": {
+          "type": "string",
+          "title": "ZainCash service available",
+          "enum": [
+            "yes",
+            "no"
+          ]
+        },
+        "zaincash_code": {
+          "type": "string",
+          "title": "ZainCash code"
+        }
+      }
     },
     "sub_account": {
       "type": "object",
       "properties": {
         "role_department_institution": {
           "type": "string",
-          "title": "Role/Department at institution",
-          "default": ""
+          "title": "Role/Department at institution"
         }
       }
     }

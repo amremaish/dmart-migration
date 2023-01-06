@@ -41,45 +41,11 @@
     },
     "body": {
       "type": "LOOKUP.NAME_EN",
-      "outlet_type": "",
-      "security_visit_status": "",
-      "security_license_number": "",
-      "zain_signage": "",
-      "competitor_signage": "",
-      "internet_availability": "",
-      "shop_size": "",
-      "population_traffic": "",
-      "area_income_level": "",
-      "area_profile": "",
-      "segmentation": "",
       "location": {
-        "shortname": "",
-        "line": "",
-        "longitude": 0,
-        "latitude": 0,
-        "area_type": "",
         "governorate": {
           "shortname" : "REGION.NAME_EN",
-          "sector" : "SECTOR.NAME_EN",
-          "district" : ""
+          "sector" : "SECTOR.NAME_EN"
         }
-      },
-      "mobile_number": "",
-      "whatsapp_number": "",
-      "activation_tool_available": "",
-      "msisdn_activation_tool": "",
-      "status_activation_tool": "",
-      "type_activation_tool": "",
-      "mvd_line_available": "",
-      "msisdn_mvd_line": "",
-      "evd_terminal_available": "",
-      "msisdn_evd_device": "",
-      "serial_evd_device": "",
-      "zain_cash_service_available": "",
-      "zain_cash_code": "",
-      "owner_shortname": "",
-      "sub_account": {
-        "role_department_institution": ""
       }
     }
   },
