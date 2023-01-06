@@ -29,7 +29,6 @@
     },
     "body": {
       "sales_id" : "",
-      "alternative_msisdn" : "",
       "department": "USER_ADMIN.DEPARTMENT"
     }
   },
