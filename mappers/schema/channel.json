@@ -169,14 +169,12 @@
     "alternative_msisdn": {
       "type": "array",
       "items": {
-        "type": "string",
-        "pattern": "^7[5789]\\d{8}$"
+        "type": "string"
       }
     },
     "whatsapp_number": {
       "type": "string",
-      "title": "Channel WhatsApp number",
-      "pattern": "^7[5789]\\d{8}$"
+      "title": "Channel WhatsApp number"
     },
     "owner_shortname": {
       "type": "string",

@@ -22,8 +22,7 @@
       "type": "string"
     },
     "alternative_msisdn": {
-      "type": "string",
-      "pattern": "^7[5789]\\d{8}$"
+      "type": "string"
     }
   },
   "required": []

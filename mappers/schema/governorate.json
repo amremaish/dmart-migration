@@ -51,23 +51,10 @@
                 "kurdish": {
                   "type": "string"
                 }
-              },
-              "required": [
-                "key",
-                "arabic",
-                "english",
-                "kurdish"
-              ]
+              }
             }
           }
-        },
-        "required": [
-          "key",
-          "arabic",
-          "english",
-          "kurdish",
-          "distributor_shortname"
-        ]
+        }
       }
     },
     "salesrep_shortnames": {
@@ -99,16 +86,7 @@
         "kurdish": {
           "type": "string"
         }
-      },
-      "required": [
-        "key",
-        "arabic",
-        "english",
-        "kurdish"
-      ]
+      }
     }
-  },
-  "required": [
-    "sectors"
-  ]
+  }
 }

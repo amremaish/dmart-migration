@@ -75,8 +75,7 @@
       "maxItems": 10,
       "uniqueItems": true,
       "items": {
-        "type": "string",
-        "pattern": "^7[5789]\\d{8}$"
+        "type": "string"
       },
       "description": "Frequently Called Numbers [Filled at submission]"
     },

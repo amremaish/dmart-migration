@@ -47,8 +47,7 @@
     "call_back_number": {
       "type": "string",
       "title": "Call back number",
-      "description": "Call back number [Filled at submission]",
-      "pattern": "^7[5789]\\d{8}$"
+      "description": "Call back number [Filled at submission]"
     },
     "contract_number": {
       "type": "string",
