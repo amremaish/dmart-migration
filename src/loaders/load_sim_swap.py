@@ -1,5 +1,7 @@
+import re
 from datetime import datetime
 
+from dmart.helper import MSISDN_REGEX
 from utils.db import db_manager
 from utils.decorators import process_mapper
 from utils.default_loader import default_loader, meta_fixer
@@ -22,6 +24,7 @@ def apply_modifier(
         lookup: dict
 ):
     meta = meta_fixer(meta)
+    ignore = False
     meta['workflow_shortname'] = 'sim_swap'
     if meta.get('state'):
         if meta.get('state') == 'Pending Payment':
@@ -43,6 +46,9 @@ def apply_modifier(
     if body.get('msisdn') and body.get('msisdn').startswith('964'):
         body['msisdn'] = body.get('msisdn')[3:]
 
+    if body.get('msisdn') and not re.match(MSISDN_REGEX, body.get('msisdn')):
+        ignore = True
+
     history_obj = None
     start = db_manager.create_alias('SIM_SWAP.ACTION_START_TIME')
     end = db_manager.create_alias('SIM_SWAP.ACTION_END_TIME')
@@ -62,4 +68,5 @@ def apply_modifier(
         "meta": meta,
         "body": body,
         "history_obj": history_obj,
+        'ignore': ignore
     }

@@ -48,6 +48,8 @@ def default_loader(args, kwargs, apply_modifier=None):
                     db_row=row,
                     lookup=lookup,
                 )
+                if modified.get('ignore'):
+                    continue
                 meta = modified["meta"]
                 body = modified["body"]
                 space_name = modified["space_name"]
