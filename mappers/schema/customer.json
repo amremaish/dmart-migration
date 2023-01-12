@@ -1,0 +1,69 @@
+{
+  "type": "object",
+  "title": "customer schema",
+  "properties": {
+    "msisdn": {
+      "type": "string"
+    },
+    "iccid": {
+      "type": "string"
+    },
+    "customrer_type": {
+      "type": "string",
+      "enum": [
+        "individual",
+        "corporate"
+      ]
+    },
+    "id_number": {
+      "type": "string"
+    },
+    "id_page_no": {
+      "type": "number"
+    },
+    "record_number": {
+      "type": "string"
+    },
+    "id_creation": {
+      "type": "string"
+    },
+    "mother_name": {
+      "type": "string"
+    },
+    "address": {
+      "type": "object",
+      "properties": {
+        "governorate_shortname": {
+          "type": "string"
+        },
+        "line": {
+          "type": "string"
+        },
+        "district": {
+          "type": "string"
+        }
+      },
+      "required": []
+    },
+    "gender": {
+      "type": "string",
+      "enum": [
+        "male",
+        "female"
+      ]
+    },
+    "birth_date": {
+      "type": "string"
+    },
+    "birth_place": {
+      "type": "string"
+    },
+    "nationality ": {
+      "type": "string"
+    },
+    "residence_number": {
+      "type": "number"
+    }
+  },
+  "required": []
+}

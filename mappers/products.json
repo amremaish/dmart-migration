@@ -3,28 +3,28 @@
     "table": "PRODUCT",
     "join": [
       {
-        "table": "PRODUCT_CATEGORY",
+        "table": "SUBCATEGORY_PRODUCT",
         "pk_id": "PRODUCT.ID",
-        "fk_id": "PRODUCT_CATEGORY.PRODUCT_ID",
-        "join_type": "LEFT"
-      },
-      {
-        "table": "CATEGORY",
-        "pk_id": "CATEGORY.ID",
-        "fk_id": "PRODUCT_CATEGORY.CATEGORY_ID",
-        "join_type": "LEFT"
-      },
-      {
-        "table": "SUBCATEGORY_CATEGORY",
-        "pk_id": "CATEGORY.ID",
-        "fk_id": "SUBCATEGORY_CATEGORY.CATEGORY_ID",
-        "join_type": "LEFT"
+        "fk_id": "SUBCATEGORY_PRODUCT.PRODUCT_ID",
+        "join_type": "inner"
       },
       {
         "table": "SUB_CATEGORY",
         "pk_id": "SUB_CATEGORY.ID",
+        "fk_id": "SUBCATEGORY_PRODUCT.SUBCATEGORY_ID",
+        "join_type": "inner"
+      },
+      {
+        "table": "SUBCATEGORY_CATEGORY",
+        "pk_id": "SUB_CATEGORY.ID",
         "fk_id": "SUBCATEGORY_CATEGORY.SUBCATEGORY_ID",
-        "join_type": "LEFT"
+        "join_type": "inner"
+      },
+      {
+        "table": "CATEGORY",
+        "pk_id": "CATEGORY.ID",
+        "fk_id": "SUBCATEGORY_CATEGORY.CATEGORY_ID",
+        "join_type": "inner"
       },
       {
         "table": "PRODUCT_TYPE",
