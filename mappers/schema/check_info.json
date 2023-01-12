@@ -29,6 +29,15 @@
       "type": "string",
       "title": "Delivery tracking link",
       "description": "Generated from the 3P delivery API integration (e.g., Toters/Talabatey) for the user to track the delivery [3P API integration]"
+    },
+    "service_type": {
+      "type": "string",
+      "title": "Service Type",
+      "description": "Service Type description",
+      "enum": [
+        "check_info"
+      ],
+      "default": "check_info"
     }
   }
 }

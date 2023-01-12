@@ -9,6 +9,12 @@
       "title": "Registration name",
       "description": "IRM API integration source"
     },
+    "msisdn": {
+      "type": "string",
+      "title": "MSISDN",
+      "description": "Mobile Station Integrated Services Digital Network for POS [Filled at submission]",
+      "comment": "this field has the to read from user who submits the ticket"
+    },
     "sim_status": {
       "type": "string",
       "title": "SIM Status",
@@ -19,12 +25,6 @@
       "title": "USIM Serial",
       "description": "3P API Integration source"
     },
-    "msisdn": {
-      "type": "string",
-      "title": "POS MSISDN",
-      "description": "Mobile Station Integrated Services Digital Network for POS [Filled at submission]",
-      "comment": "this field has the to read from user who submits the ticket"
-    },
     "iccid": {
       "type": "string",
       "title": "ICCID",
@@ -34,6 +34,15 @@
       "type": "string",
       "title": "customer name",
       "description": "customer name [Filled at submission]"
+    },
+    "service_type": {
+      "type": "string",
+      "title": "Service Type",
+      "description": "Service Type description",
+      "enum": [
+        "sim_swap"
+      ],
+      "default": "sim_swap"
     }
   }
 }
