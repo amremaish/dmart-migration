@@ -1,0 +1,67 @@
+{
+  "source": {
+    "table": "INFORMATION_SERVICE",
+    "columns": [
+      "INFORMATION_SERVICE.ID",
+      "INFORMATION_SERVICE.ACTION_START_TIME",
+      "INFORMATION_SERVICE.ACTION_END_TIME",
+      "INFORMATION_SERVICE.CREATION_DATE",
+      "INFORMATION_SERVICE.UPDATED_DATE",
+      "INFORMATION_SERVICE.STATUS",
+      "INFORMATION_SERVICE.SIM_SERIAL",
+      "INFORMATION_SERVICE.MOBILE_NUMBER",
+      "INFORMATION_SERVICE.GOVERNORATE_ID",
+      "INFORMATION_SERVICE.CUSTOMER_NAME",
+      "INFORMATION_SERVICE.GENDER",
+      "INFORMATION_SERVICE.BIRTH_DATE",
+      "INFORMATION_SERVICE.RESIDENCE_NUMBER",
+      "INFORMATION_SERVICE.ID_NO",
+      "INFORMATION_SERVICE.MOTHER_NAME",
+      "INFORMATION_SERVICE.ID_PAGE_NUMBER",
+      "INFORMATION_SERVICE.RECORD_NUMBER",
+      "INFORMATION_SERVICE.NATIONALITY_ID",
+      "INFORMATION_SERVICE.CUSTOMER_TYPE",
+      "INFORMATION_SERVICE.BIRTH_PLACE",
+      "INFORMATION_SERVICE.CITY",
+      "INFORMATION_SERVICE.DISTRICT_ONE"
+    ]
+  },
+  "columns_mapper": {
+    "meta": {
+      "shortname": "INFORMATION_SERVICE.ID",
+      "displayname": {
+        "en": "",
+        "ar": "",
+        "kd": ""
+      },
+      "updated_at": "INFORMATION_SERVICE.UPDATED_DATE",
+      "created_at": "INFORMATION_SERVICE.CREATION_DATE",
+      "is_active": "INFORMATION_SERVICE.STATUS"
+    },
+    "body": {
+      "msisdn": "INFORMATION_SERVICE.MOBILE_NUMBER",
+      "iccid": "INFORMATION_SERVICE.SIM_SERIAL",
+      "customer_type": "INFORMATION_SERVICE.CUSTOMER_TYPE",
+      "id_number": "INFORMATION_SERVICE.ID_NO",
+      "id_page_no": "INFORMATION_SERVICE.ID_PAGE_NUMBER",
+      "record_number": "INFORMATION_SERVICE.RECORD_NUMBER",
+      "mother_name": "INFORMATION_SERVICE.MOTHER_NAME",
+      "gender": "INFORMATION_SERVICE.GENDER",
+      "birth_date": "INFORMATION_SERVICE.BIRTH_DATE",
+      "birth_place": "INFORMATION_SERVICE.BIRTH_PLACE",
+      "nationality": "INFORMATION_SERVICE.NATIONALITY_ID",
+      "residence_number": "INFORMATION_SERVICE.RESIDENCE_NUMBER",
+      "address": {
+          "governorate_shortname" : "INFORMATION_SERVICE.GOVERNORATE_ID",
+          "line" : "INFORMATION_SERVICE.CITY",
+          "district" : "INFORMATION_SERVICE.DISTRICT_ONE"
+      }
+    }
+  },
+  "dest": {
+    "space_name": "aftersales",
+    "subpath": "customers",
+    "schema_shortname": "customer",
+    "resource_type": "content"
+  }
+}

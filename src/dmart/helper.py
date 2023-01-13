@@ -38,4 +38,11 @@ def to_float(val: str):
     try:
         return float(val)
     except:
-        return val
+        return None
+
+
+def to_int(val: str):
+    try:
+        return int(val)
+    except:
+        return None

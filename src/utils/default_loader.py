@@ -36,7 +36,7 @@ def default_loader(args, kwargs, apply_modifier=None):
             resource_type = mapper_data.get('dest').get('resource_type')
             history_obj = None
 
-            meta, body = creator.convert_db_to_meta(row, mapper_data, remove_null_field)
+            meta, body = creator.convert_db_to_meta(row, mapper_data)
             creator.shortname_deep_fixer(meta)
             creator.shortname_deep_fixer(body)
             if apply_modifier:
@@ -62,6 +62,12 @@ def default_loader(args, kwargs, apply_modifier=None):
 
             if not meta.get('owner_shortname'):
                 meta['owner_shortname'] = 'dmart'
+
+            if remove_null_field:
+                # loop it for remove empty dict
+                for i in range(3):
+                    meta = creator.delete_none(meta)
+                    body = creator.delete_none(body)
 
             creator.save(
                 space_name=space_name,
@@ -109,7 +115,7 @@ def msisdn_fixer(msisdn: str):
         return None
     if msisdn.startswith('964'):
         msisdn = msisdn[3:]
-    if msisdn.startswith('07'):
+    elif msisdn.startswith('07'):
         msisdn = msisdn[1:]
     if re.match(MSISDN_REGEX, msisdn):
         return msisdn

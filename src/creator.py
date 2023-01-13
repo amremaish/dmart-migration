@@ -285,17 +285,11 @@ class SpaceCreator:
             path = path / subpath
         return path
 
-    def convert_db_to_meta(self, row_data: dict, mapper: dict, remove_null_field: bool = False):
+    def convert_db_to_meta(self, row_data: dict, mapper: dict):
         meta = mapper.get('columns_mapper').get('meta')
         body = mapper.get('columns_mapper').get('body')
         meta_data: dict = self.deep_update_values_from_db(copy.deepcopy(meta), row_data)
         body_data: dict = self.deep_update_values_from_db(copy.deepcopy(body), row_data)
-        if remove_null_field:
-            # loop it for remove empty dict
-            for i in range(3):
-                meta_data = self.delete_none(meta_data)
-                body_data = self.delete_none(body_data)
-
         return meta_data, body_data
 
     def deep_update_values_from_db(self, body: dict, row_data):

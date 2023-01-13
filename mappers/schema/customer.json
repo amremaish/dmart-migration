@@ -8,10 +8,15 @@
     "iccid": {
       "type": "string"
     },
-    "customrer_type": {
+    "customer_type": {
       "type": "string",
       "enum": [
         "individual",
+        "refugee",
+        "local company",
+        "government",
+        "multinational",
+        "others",
         "corporate"
       ]
     },
