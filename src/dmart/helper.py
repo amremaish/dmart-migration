@@ -18,6 +18,27 @@ INVITATION = r"^([a-zA-Z0-9_=]+)\.([a-zA-Z0-9_=]+)\.([a-zA-Z0-9_\-\+\/=]*)$"
 ##################################################################################
 default_branch = "master"
 
+governorates_mapper = {
+    'anbar': 'anbar',
+    'hilla': 'babil',
+    'baghdad': 'baghdad',
+    'basra': 'basrah',
+    'diyala': 'diyala',
+    'dahouk': 'duhook',
+    'erbil': 'erbil',
+    'karbala': 'karbala',
+    'karkuk': 'kirkuk',
+    'amara': 'missan ',
+    'samawa': 'muthanna',
+    'najaf': 'najaf',
+    'mosul': 'ninawa',
+    'dewaniya': 'qaddissiya',
+    'salahaldeen': 'salahaldeen',
+    'suleymania': 'sulaimaniya',
+    'nasriya': 'thiqar',
+    'kut': 'wassit'
+}
+
 
 def camel_case(snake_str):
     words = snake_str.split("_")

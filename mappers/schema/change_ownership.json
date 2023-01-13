@@ -71,7 +71,6 @@
     },
     "frequently_called_numbers": {
       "type": "array",
-      "minItems": 10,
       "maxItems": 10,
       "uniqueItems": true,
       "items": {

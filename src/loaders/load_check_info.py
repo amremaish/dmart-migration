@@ -2,7 +2,7 @@ from datetime import datetime
 
 from utils.db import db_manager
 from utils.decorators import process_mapper
-from utils.default_loader import default_loader, meta_fixer
+from utils.default_loader import default_loader, meta_fixer, msisdn_fixer
 
 
 @process_mapper(mapper="check_info", remove_null_field=True)
@@ -45,8 +45,11 @@ def apply_modifier(
     if meta.get('owner_shortname'):
         meta['owner_shortname'] = f'pos_{meta["owner_shortname"]}'
 
-    if body.get('msisdn') and body.get('msisdn').startswith('964'):
-        body['msisdn'] = body.get('msisdn')[3:]
+    if body.get('msisdn'):
+        body['msisdn'] = msisdn_fixer(body.get('msisdn'))
+
+    if body.get('call_back_number'):
+        body['call_back_number'] = msisdn_fixer(body.get('call_back_number'))
 
     history_obj = None
     start = db_manager.create_alias('SIM_SWAP.ACTION_START_TIME')
