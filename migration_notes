@@ -20,3 +20,4 @@ migrate migration
 migrate products
 --------------customers-----------
 migrate sim_swap_customers
+migrate other_service_customers

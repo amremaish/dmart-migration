@@ -1,0 +1,37 @@
+{
+  "source": {
+    "table": "OTHER_SERVICE",
+    "columns": [
+      "OTHER_SERVICE.ID",
+      "OTHER_SERVICE.ACTION_START_TIME",
+      "OTHER_SERVICE.ACTION_END_TIME",
+      "OTHER_SERVICE.CREATION_DATE",
+      "OTHER_SERVICE.UPDATED_DATE",
+      "OTHER_SERVICE.STATUS_MSG",
+      "OTHER_SERVICE.STATUS",
+      "OTHER_SERVICE.CUSTOMER_MSISDN"
+    ]
+  },
+  "columns_mapper": {
+    "meta": {
+      "shortname": "OTHER_SERVICE.ID",
+      "displayname": {
+        "en": "",
+        "ar": "",
+        "kd": ""
+      },
+      "updated_at": "OTHER_SERVICE.UPDATED_DATE",
+      "created_at": "OTHER_SERVICE.CREATION_DATE",
+      "is_active": "OTHER_SERVICE.STATUS"
+    },
+    "body": {
+      "msisdn": "OTHER_SERVICE.CUSTOMER_MSISDN"
+    }
+  },
+  "dest": {
+    "space_name": "aftersales",
+    "subpath": "customers",
+    "schema_shortname": "customer",
+    "resource_type": "content"
+  }
+}

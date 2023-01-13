@@ -1,7 +1,9 @@
+import re
 import time
 from datetime import datetime
 
 from creator import creator
+from dmart.helper import MSISDN_REGEX
 from settings import settings
 from utils.db import db_manager
 
@@ -100,3 +102,16 @@ def meta_fixer(meta: dict):
         meta['is_active'] = True
 
     return meta
+
+
+def msisdn_fixer(msisdn: str):
+    if not msisdn:
+        return None
+    if msisdn.startswith('964'):
+        msisdn = msisdn[3:]
+    if msisdn.startswith('07'):
+        msisdn = msisdn[1:]
+    if re.match(MSISDN_REGEX, msisdn):
+        return msisdn
+    return None
+

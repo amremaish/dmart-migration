@@ -10,9 +10,7 @@
       "SIM_SWAP.STATUS_MSG",
       "SIM_SWAP.STATUS",
       "SIM_SWAP.ICCID",
-      "SIM_SWAP.MSISDN",
-      "SIM_SWAP.NAME",
-      "SIM_SWAP.CALLBACK_NUMBER"
+      "SIM_SWAP.MSISDN"
     ]
   },
   "columns_mapper": {

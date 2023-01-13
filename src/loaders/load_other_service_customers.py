@@ -2,7 +2,7 @@ from utils.decorators import process_mapper
 from utils.default_loader import default_loader, meta_fixer, msisdn_fixer
 
 
-@process_mapper(mapper="sim_swap_customers", remove_null_field=True)
+@process_mapper(mapper="other_service_customers", remove_null_field=True)
 def load(*args, **kwargs):
     default_loader(args, kwargs, apply_modifier)
     print("Successfully done.")
