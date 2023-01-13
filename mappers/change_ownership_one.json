@@ -28,6 +28,7 @@
       "POS_USER.USER_ID",
       "INFORMATION_SERVICE.CUSTOMER_NAME",
       "INFORMATION_SERVICE.CALLBACK_PHONE",
+      "INFORMATION_SERVICE.SIM_SERIAL",
       "LOOKUP.NAME_EN"
 
     ]
@@ -51,7 +52,8 @@
       "service_type": "one_side",
       "msisdn": "INFORMATION_SERVICE.MOBILE_NUMBER",
       "customer_name" : "INFORMATION_SERVICE.CUSTOMER_NAME",
-      "call_back_number" : "INFORMATION_SERVICE.CALLBACK_PHONE"
+      "call_back_number" : "INFORMATION_SERVICE.CALLBACK_PHONE",
+      "iccid" :  "INFORMATION_SERVICE.SIM_SERIAL"
     }
   },
   "dest": {
