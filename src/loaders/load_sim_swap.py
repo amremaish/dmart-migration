@@ -26,6 +26,8 @@ def apply_modifier(
     meta = meta_fixer(meta)
     ignore = False
     meta['workflow_shortname'] = 'sim_swap'
+    body['service_type'] = 'sim_swap'
+
     if meta.get('state'):
         if meta.get('state') == 'Pending Payment':
             meta['state'] = 'pending_payment'
