@@ -53,9 +53,9 @@ def apply_modifier(
             else:
                 body['role_shortnames'] = ['ros']
 
-    cat = db_row.get(db_manager.create_alias('SUB_CATEGORY.SUB_CATEGORY_NAME'))
-    sub_cat = db_row.get(db_manager.create_alias('CATEGORY.CATEGORY_NAME'))
-    subpath = f'ordering/products/{creator.shortname_fixer(cat)}/{creator.shortname_fixer(sub_cat)}'
+    sub_cat = db_row.get(db_manager.create_alias('SUB_CATEGORY.SUB_CATEGORY_NAME'))
+    cat = db_row.get(db_manager.create_alias('CATEGORY.CATEGORY_NAME'))
+    subpath = f'products/{creator.shortname_fixer(cat)}/{creator.shortname_fixer(sub_cat)}'
     return {
         "space_name": space_name,
         "subpath": subpath,

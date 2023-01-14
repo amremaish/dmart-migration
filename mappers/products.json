@@ -88,7 +88,7 @@
   },
   "dest": {
     "space_name": "ordering",
-    "subpath": "ordering/products",
+    "subpath": "products",
     "schema_shortname": "product",
     "resource_type": "content"
   }
