@@ -18,6 +18,7 @@ migrate add_remove_vas
 migrate migration
 ----------------------------------
 migrate products
+migrate orders
 -------- customers ---------------
 migrate sim_swap_customers
 migrate other_service_customers

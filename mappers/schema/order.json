@@ -1,0 +1,55 @@
+{
+  "type": "object",
+  "title": "order",
+  "description": "order schema definition",
+  "additionalProperties": false,
+  "properties": {
+    "distributor_name": {
+      "type": "string"
+    },
+    "delivery_details": {
+      "type": "object",
+      "properties": {
+        "region": {
+          "type": "string"
+        },
+        "governorate": {
+          "type": "string"
+        },
+        "sector": {
+          "type": "string"
+        },
+        "subsector": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        }
+      },
+      "title": "Delivery details"
+    },
+    "order_composition": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "parent_category": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "shortname": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "number"
+          },
+          "fulfillment": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  }
+}

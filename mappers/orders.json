@@ -1,0 +1,115 @@
+{
+  "source": {
+    "table": "ORDER_HISTORY",
+    "join": [
+      {
+        "table": "DISTRIBUTORS",
+        "pk_id": "DISTRIBUTORS.ID",
+        "fk_id": "ORDER_HISTORY.DISTRIBUTOR_ID",
+        "join_type": "LEFT"
+      },
+      {
+        "table": "REGION",
+        "pk_id": "REGION.ID",
+        "fk_id": "ORDER_HISTORY.REGION_ID",
+        "join_type": "LEFT"
+      },
+      {
+        "table": "POS_USER",
+        "pk_id": "POS_USER.ID",
+        "fk_id": "ORDER_HISTORY.POS_ID",
+        "join_type": "LEFT"
+      },
+      {
+        "table": "ORDER_HISTORY_PRODUCT",
+        "pk_id": "ORDER_HISTORY.ID",
+        "fk_id": "ORDER_HISTORY_PRODUCT.ORDER_HISTORY_ID",
+        "join_type": "INNER"
+      },
+      {
+        "table": "PRODUCT",
+        "pk_id": "PRODUCT.ID",
+        "fk_id": "ORDER_HISTORY_PRODUCT.PRODUCT_ID",
+        "join_type": "INNER"
+      },
+      {
+        "table": "SUBCATEGORY_PRODUCT",
+        "pk_id": "PRODUCT.ID",
+        "fk_id": "SUBCATEGORY_PRODUCT.PRODUCT_ID",
+        "join_type": "INNER"
+      },
+      {
+        "table": "SUBCATEGORY_PRODUCT",
+        "pk_id": "PRODUCT.ID",
+        "fk_id": "SUBCATEGORY_PRODUCT.PRODUCT_ID",
+        "join_type": "INNER"
+      },
+      {
+        "table": "SUB_CATEGORY",
+        "pk_id": "SUB_CATEGORY.ID",
+        "fk_id": "SUBCATEGORY_PRODUCT.SUBCATEGORY_ID",
+        "join_type": "INNER"
+      },
+      {
+        "table": "SUBCATEGORY_CATEGORY",
+        "pk_id": "SUB_CATEGORY.ID",
+        "fk_id": "SUBCATEGORY_CATEGORY.SUBCATEGORY_ID",
+        "join_type": "INNER"
+      },
+      {
+        "table": "CATEGORY",
+        "pk_id": "CATEGORY.ID",
+        "fk_id": "SUBCATEGORY_CATEGORY.CATEGORY_ID",
+        "join_type": "INNER"
+      }
+    ],
+    "columns": [
+      "ORDER_HISTORY.ID",
+      "ORDER_HISTORY.UPDATED_DATE",
+      "ORDER_HISTORY.CREATION_DATE",
+      "ORDER_HISTORY.STATUS",
+      "ORDER_HISTORY.REJECTREASON",
+      "POS_USER.USER_ID",
+      "REGION.NAME_EN",
+      "DISTRIBUTORS.NAME",
+      "CATEGORY.CATEGORY_NAME",
+      "SUB_CATEGORY.SUB_CATEGORY_NAME",
+      "PRODUCT.PRODUCT_NAME",
+      "ORDER_HISTORY_PRODUCT.QUANTITY",
+      "ORDER_HISTORY_PRODUCT.DELIVEREDQTY"
+    ]
+  },
+  "columns_mapper": {
+    "meta": {
+      "shortname": "ORDER_HISTORY.ID",
+      "owner_shortname": "POS_USER.USER_ID",
+      "updated_at": "ORDER_HISTORY.UPDATED_DATE",
+      "created_at": "ORDER_HISTORY.CREATION_DATE",
+      "is_active": true,
+      "is_open": true,
+      "state": "ORDER_HISTORY.STATUS",
+      "workflow_shortname": "order"
+    },
+    "body": {
+      "distributor_name": "DISTRIBUTORS.NAME",
+      "delivery_details": {
+        "governorate": "REGION.NAME_EN"
+      },
+      "order_composition": [
+        {
+          "parent_category": "CATEGORY.CATEGORY_NAME",
+          "category": "SUB_CATEGORY.SUB_CATEGORY_NAME",
+          "shortname": "PRODUCT.PRODUCT_NAME",
+          "quantity": "ORDER_HISTORY_PRODUCT.QUANTITY",
+          "fulfillment": "ORDER_HISTORY_PRODUCT.DELIVEREDQTY"
+        }
+      ]
+    }
+  },
+  "dest": {
+    "space_name": "ordering",
+    "subpath": "orders",
+    "schema_shortname": "order",
+    "resource_type": "ticket"
+  }
+}

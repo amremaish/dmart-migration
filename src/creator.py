@@ -191,6 +191,7 @@ class SpaceCreator:
             if isinstance(v, dict):
                 created_path = created_path + f"{k}."
                 self.append_list_in_dict(body.get(k, {}), appended_list, created_path, appended_path)
+                created_path = ''
             elif isinstance(v, list) and created_path + k == appended_path:
                 if disable_duplication_appended_list and len(appended_list) > 0 and appended_list[0] not in v:
                     v += appended_list
