@@ -1,10 +1,13 @@
+from creator import creator
+from dmart.helper import governorates_mapper
 from utils.decorators import process_mapper
 from utils.default_loader import default_loader, meta_fixer
 
 
 @process_mapper(
     mapper="governorates",
-    appended_list=["body.sectors"]
+    appended_list=["body.sectors"],
+    remove_null_field=True
 )
 def load(*args, **kwargs):
     default_loader(args, kwargs, apply_modifier)
@@ -22,6 +25,13 @@ def apply_modifier(
         lookup: dict
 ):
     meta = meta_fixer(meta)
+    if meta.get('shortname'):
+        governorate = meta.get('shortname')
+        if governorate:
+            governorate = governorates_mapper.get(creator.shortname_fixer(governorate))
+            if governorate:
+                meta['shortname'] = governorate
+
     return {
         "space_name": space_name,
         "subpath": subpath,

@@ -1,7 +1,4 @@
-import re
 from datetime import datetime
-
-from dmart.helper import MSISDN_REGEX
 from utils.db import db_manager
 from utils.decorators import process_mapper
 from utils.default_loader import default_loader, meta_fixer, msisdn_fixer

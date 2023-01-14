@@ -1,5 +1,6 @@
+from creator import creator
 from dmart.enums import UserType
-from dmart.helper import to_float
+from dmart.helper import to_float, governorates_mapper
 from utils.decorators import process_mapper
 from utils.default_loader import default_loader, meta_fixer
 
@@ -60,6 +61,15 @@ def apply_modifier(
         else:
             body['address']['latitude'] = to_float(body['address']['latitude'])
 
+    if body.get('address').get('governorate_shortnames'):
+        governorate = body.get('address').get('governorate_shortnames')
+        governorate = None if len(governorate) == 0 else governorate[0]
+        if governorate:
+            governorate = governorates_mapper.get(creator.shortname_fixer(governorate))
+            if governorate:
+                body['address']['governorate_shortnames'] = [governorate]
+            else:
+                body['address']['governorate_shortnames'] = None
     return {
         "space_name": space_name,
         "subpath": subpath,

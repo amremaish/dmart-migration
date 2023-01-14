@@ -28,7 +28,6 @@
       "password": "USER_ADMIN.PASSWORD"
     },
     "body": {
-      "sales_id" : "",
       "department": "USER_ADMIN.DEPARTMENT"
     }
   },

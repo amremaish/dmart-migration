@@ -1,3 +1,5 @@
+from creator import creator
+from dmart.helper import governorates_mapper
 from utils.decorators import process_mapper
 from utils.default_loader import default_loader, meta_fixer
 
@@ -20,6 +22,15 @@ def apply_modifier(
 ):
     meta = meta_fixer(meta)
     meta['shortname'] = f"sales_{meta['shortname']}"
+    if body.get('governorate_shortnames'):
+        governorate = body.get('governorate_shortnames')
+        governorate = None if len(governorate) == 0 else governorate[0]
+        if governorate:
+            governorate = governorates_mapper.get(creator.shortname_fixer(governorate))
+            if governorate:
+                body['governorate_shortnames'] = [governorate]
+            else:
+                body['governorate_shortnames'] = None
     return {
         "space_name": space_name,
         "subpath": subpath,

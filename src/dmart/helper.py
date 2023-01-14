@@ -18,23 +18,23 @@ INVITATION = r"^([a-zA-Z0-9_=]+)\.([a-zA-Z0-9_=]+)\.([a-zA-Z0-9_\-\+\/=]*)$"
 ##################################################################################
 default_branch = "master"
 
-governorates_mapper = {
+governorates_mapper: dict[str, str] = {
     'anbar': 'anbar',
     'hilla': 'babil',
     'baghdad': 'baghdad',
-    'basra': 'basrah',
+    'basra': 'basra',
     'diyala': 'diyala',
     'dahouk': 'duhook',
     'erbil': 'erbil',
     'karbala': 'karbala',
     'karkuk': 'kirkuk',
-    'amara': 'missan ',
+    'amara': 'missan',
     'samawa': 'muthanna',
     'najaf': 'najaf',
-    'mosul': 'ninawa',
+    'mosul': 'mosel',
     'dewaniya': 'qaddissiya',
     'salahaldeen': 'salahaldeen',
-    'suleymania': 'sulaimaniya',
+    'sulaimaniya': 'sulaimaniya',
     'nasriya': 'thiqar',
     'kut': 'wassit'
 }

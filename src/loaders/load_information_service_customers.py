@@ -1,6 +1,5 @@
 from creator import creator
-from dmart.helper import to_int
-from utils.db import db_manager
+from dmart.helper import to_int, governorates_mapper
 from utils.decorators import process_mapper
 from utils.default_loader import default_loader, meta_fixer, msisdn_fixer
 
@@ -49,6 +48,15 @@ def apply_modifier(
         body['address']['governorate_shortname'] = creator.shortname_fixer(
             lookup[body['address']['governorate_shortname']].get('NAME_EN'))
 
+    # fix governorate_shortname
+    if body.get('address', {}).get('governorate_shortname'):
+        governorate = body.get('address', {}).get('governorate_shortname')
+        if governorate:
+            governorate = governorates_mapper.get(creator.shortname_fixer(governorate))
+            if governorate:
+                body['address']['governorate_shortname'] = governorate
+            else:
+                body['address']['governorate_shortname'] = None
     # fix governorate_shortname
     if body.get('id_page_no'):
         body['id_page_no'] = to_int(body.get('id_page_no'))
