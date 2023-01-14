@@ -51,7 +51,8 @@
       "msisdn": "SIM_SWAP.MSISDN",
       "iccid" : "SIM_SWAP.ICCID",
       "customer_name" : "SIM_SWAP.NAME",
-      "callback_number" : "SIM_SWAP.CALLBACK_NUMBER"
+      "callback_number" : "SIM_SWAP.CALLBACK_NUMBER",
+      "service_type" : "sim_swap"
     }
   },
   "dest": {

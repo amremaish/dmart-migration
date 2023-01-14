@@ -52,7 +52,8 @@
       "msisdn": "INFORMATION_SERVICE.MOBILE_NUMBER",
       "customer_name" : "INFORMATION_SERVICE.CUSTOMER_NAME",
       "call_back_number" : "INFORMATION_SERVICE.CALLBACK_PHONE",
-      "iccid" :  "INFORMATION_SERVICE.SIM_SERIAL"
+      "iccid" :  "INFORMATION_SERVICE.SIM_SERIAL",
+      "service_type" :  "correct_info"
     }
   },
   "dest": {

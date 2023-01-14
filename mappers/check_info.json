@@ -53,7 +53,8 @@
       "iccid" : "SIM_SWAP.ICCID",
       "customer_name" : "SIM_SWAP.NAME",
       "callback_number" : "SIM_SWAP.CALLBACK_NUMBER",
-      "delivery_tracking_link" : "SIM_SWAP.TOTERS_LINK"
+      "delivery_tracking_link" : "SIM_SWAP.TOTERS_LINK",
+      "service_type" : "check_info"
     }
   },
   "dest": {

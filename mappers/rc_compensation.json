@@ -59,7 +59,8 @@
       "customer_language": "english",
       "call_back_number" : "RECHARGE_COMPENSATION_SERVICE.CALL_BACK_NO",
       "card_serial" : "RECHARGE_COMPENSATION_SERVICE.CARDSERIAL",
-      "card_denomination" : "RECHARGE_COMPENSATION_SERVICE.CARD_DOMINATION"
+      "card_denomination" : "RECHARGE_COMPENSATION_SERVICE.CARD_DOMINATION",
+      "service_type" : "rc_compensation"
     }
   },
   "dest": {
