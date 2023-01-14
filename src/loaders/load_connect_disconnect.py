@@ -44,6 +44,13 @@ def apply_modifier(
     if body.get('call_back_number'):
         body['call_back_number'] = msisdn_fixer(body.get('call_back_number'))
 
+    if body.get('prepaid_postpaid') and body.get('prepaid_postpaid') in lookup:
+        prepaid_postpaid = lookup[body['prepaid_postpaid']].get('KEY_VALUE')
+        if prepaid_postpaid == 'PRE-PAID':
+            body['prepaid_postpaid'] = 'prepaid'
+        else:
+            body['prepaid_postpaid'] = 'postpaid'
+
     service_type = db_manager.create_alias('OTHER_SERVICE.REQUEST_TYPE_FILTER')
     if db_row.get(service_type, "") == 'Reconnect':
         body['service_type'] = 'reconnect'
