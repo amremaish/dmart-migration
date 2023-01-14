@@ -1,5 +1,5 @@
 from utils.decorators import process_mapper
-from utils.default_loader import default_loader, meta_fixer
+from utils.default_loader import default_loader, meta_fixer, msisdn_fixer
 
 
 @process_mapper(mapper="user_admins", remove_null_field=True)
@@ -32,6 +32,9 @@ def apply_modifier(
             body['department'] = "technical_support"
         else:
             body['department'] = "others"
+
+    if meta.get('msisdn'):
+        meta['msisdn'] = msisdn_fixer(meta.get('msisdn'))
 
     return {
         "space_name": space_name,
