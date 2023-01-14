@@ -8,7 +8,8 @@
         "type": "string"
       },
     "alternative_msisdn": {
-      "type": "string"
+      "type": "string",
+      "pattern": "^7[5789]\\d{8}$"
     },
       "language": {
         "type": "string"

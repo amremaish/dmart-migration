@@ -2,7 +2,7 @@ from creator import creator
 from dmart.enums import UserType
 from dmart.helper import to_float, governorates_mapper
 from utils.decorators import process_mapper
-from utils.default_loader import default_loader, meta_fixer
+from utils.default_loader import default_loader, meta_fixer, msisdn_fixer
 
 
 @process_mapper(
@@ -70,6 +70,10 @@ def apply_modifier(
                 body['address']['governorate_shortnames'] = [governorate]
             else:
                 body['address']['governorate_shortnames'] = None
+
+    if meta.get('msisdn'):
+        meta['msisdn'] = msisdn_fixer(meta.get('msisdn'))
+
     return {
         "space_name": space_name,
         "subpath": subpath,

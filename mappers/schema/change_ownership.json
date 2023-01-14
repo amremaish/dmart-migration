@@ -43,7 +43,6 @@
     "call_back_number": {
       "type": "string",
       "title": "Call-Back Number",
-      "readOnly": true,
       "description": "Call-Back Number",
       "pattern": "^7[5789]\\d{8}$"
     },
@@ -98,6 +97,11 @@
       "type": "string",
       "title": "Name of service or amount of credit remaining",
       "description": "Name of service or amount of credit remaining [Filled at submission]"
+    },
+    "contract_shortname": {
+      "type": "string",
+      "title": "Contract shortname",
+      "description": "Contract Shortname"
     }
   }
 }
