@@ -1,5 +1,6 @@
 from creator import creator
 from dmart.helper import governorates_mapper
+from utils.db import db_manager
 from utils.decorators import process_mapper
 from utils.default_loader import default_loader, meta_fixer
 
@@ -32,6 +33,8 @@ def apply_modifier(
             meta['state'] = 'assigned'
         elif state == '2':  # REJECTED
             meta['state'] = 'rejected'
+            reason = db_row.get(db_manager.create_alias('ORDER_HISTORY.REJECTREASON'))
+            meta['resolution_reason'] = reason if reason else ''
         elif state == '12':  # NOT DELIVERED
             meta['state'] = 'failed'
         elif state == '102':  # PENDING
@@ -58,8 +61,7 @@ def apply_modifier(
     # fix shortnames
     if body.get('order_composition') and len(body.get('order_composition')) > 0:
         order: dict = body.get('order_composition')[0]
-        x = creator.shortname_fixer(order.get('parent_category'))
-        body['order_composition'][0]['parent_category'] = x
+        body['order_composition'][0]['parent_category'] = creator.shortname_fixer(order.get('parent_category'))
         body['order_composition'][0]['category'] = creator.shortname_fixer(order.get('category'))
         body['order_composition'][0]['shortname'] = creator.shortname_fixer(order.get('shortname'))
 
