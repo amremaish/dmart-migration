@@ -57,6 +57,8 @@ def apply_modifier(
                 body['delivery_details']['governorate'] = governorate
             else:
                 body['delivery_details']['governorate'] = None
+    if meta.get('owner_shortname'):
+        meta['owner_shortname'] = f"pos_{meta['shortname']}"
 
     # fix shortnames
     if body.get('order_composition') and len(body.get('order_composition')) > 0:
