@@ -10,11 +10,13 @@ from settings import settings
 
 class DbManager:
     # connection  
+    connection: cx_Oracle.Connection = None
+    connection_pool: cx_Oracle.SessionPool = None
 
     def connect(self) -> bool:
         if settings.db_driver == DBType.MYSQL:
             try:
-                self.connection = mysql.connector.connect(
+                self.mysql_connection = mysql.connector.connect(
                     host=settings.db_host,
                     database=settings.db_name,
                     port=settings.db_port,
@@ -25,20 +27,23 @@ class DbManager:
                 print(ex)
                 return False
 
-            return self.connection.is_connected()
+            return self.mysql_connection.is_connected()
         elif settings.db_driver == DBType.ORACLE:
             try:
-                self.connection = cx_Oracle.connect(
+                self.connection_pool = cx_Oracle.SessionPool(
                     user=settings.db_user,
                     password=settings.db_password,
                     dsn=f'{settings.db_host}:{settings.db_port}/{settings.db_name}')
-
+                self.connection = self.connection_pool.acquire()
             except Exception as ex:
                 print(ex)
                 return False
             return True
         else:
             raise Exception("Not specified database driver")
+
+    def refresh_connection(self):
+        self.connection = self.connection_pool.acquire()
 
     def select_query(
             self,
@@ -96,7 +101,7 @@ class DbManager:
             print("-> Processing count: " + count_sql + sql)
             cursor.execute(count_sql + sql)
             count = cursor.fetchone()
-            print("-> count executed.")
+            print(f"-> count executed ({count[0]}).")
             print(f"-> Processing: {columns_sql}{sql}{limit_sql}")
             cursor.execute(f'{columns_sql}{sql}{limit_sql}')
             result = cursor.fetchall()

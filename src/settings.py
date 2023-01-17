@@ -12,7 +12,7 @@ class Settings(BaseSettings):
     db_password: str = 'tele123'
     db_port: str = "1526"
     db_name: str = 'mobtst'
-    fetch_limit = 1000
+    fetch_limit = 10000
     max_records = -1
     db_driver: str = DBType.ORACLE
 

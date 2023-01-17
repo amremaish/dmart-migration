@@ -1,7 +1,7 @@
 import re
 import time
 from datetime import datetime
-
+from multiprocessing import Process
 from creator import creator
 from dmart.helper import MSISDN_REGEX
 from settings import settings
@@ -10,85 +10,108 @@ from utils.db import db_manager
 
 def default_loader(args, kwargs, apply_modifier=None):
     # comes from process_mapper decorator
-    mapper_data: dict = kwargs['mapper_data']
-    remove_null_field: bool = kwargs['remove_null_field']
-    only_matched_schema: bool = kwargs['only_matched_schema']
-    appended_list: list = kwargs['appended_list']
-    disable_duplication_appended_list: bool = kwargs['disable_duplication_appended_list']
 
     offset: int = 0
     before_time = time.time()
     # load all lockup table
     lookup: dict = db_manager.load_lookup()
     while True:
-        sub_before_time = time.time()
-        db_result = db_manager.select_query(
-            table_name=mapper_data.get('source').get('table'),
-            columns=mapper_data.get('source').get('columns'),
-            join_tables=mapper_data.get('source').get('join'),
-            where=mapper_data.get('source').get('where'),
-            limit=settings.fetch_limit,
-            offset=offset)
-        for row in db_result.get('data'):
-            space_name = mapper_data.get('dest').get('space_name')
-            schema_shortname = mapper_data.get('dest').get('schema_shortname')
-            subpath = mapper_data.get('dest').get('subpath')
-            resource_type = mapper_data.get('dest').get('resource_type')
-            history_obj = None
+        processes: list[Process] = []
+        is_done = False
+        for _ in range(8):
+            process = Process(target=execute, args=(kwargs, apply_modifier, offset, lookup))
+            process.start()
+            processes.append(process)
+            offset += settings.fetch_limit
+            if offset > settings.max_records and settings.max_records != -1:
+                break
 
-            meta, body = creator.convert_db_to_meta(row, mapper_data)
-            creator.shortname_deep_fixer(meta)
-            creator.shortname_deep_fixer(body)
-            if apply_modifier:
-                modified = apply_modifier(
-                    space_name=space_name,
-                    subpath=subpath,
-                    resource_type=resource_type,
-                    schema_shortname=schema_shortname,
-                    meta=meta,
-                    body=body,
-                    db_row=row,
-                    lookup=lookup,
-                )
-                if modified.get('ignore'):
-                    continue
-                meta = modified["meta"]
-                body = modified["body"]
-                space_name = modified["space_name"]
-                subpath = modified["subpath"]
-                resource_type = modified["resource_type"]
-                if modified.get('history_obj'):
-                    history_obj = modified["history_obj"]
-
-            if not meta.get('owner_shortname'):
-                meta['owner_shortname'] = 'dmart'
-
-            if remove_null_field:
-                # loop it for remove empty dict
-                for i in range(3):
-                    meta = creator.delete_none(meta)
-                    body = creator.delete_none(body)
-
-            creator.save(
-                space_name=space_name,
-                subpath=subpath,
-                class_type=resource_type,
-                schema_shortname=schema_shortname,
-                meta=meta,
-                body=body,
-                history_obj=history_obj,
-                only_matched_schema=only_matched_schema,
-                appended_list=appended_list,
-                disable_duplication_appended_list=disable_duplication_appended_list
-            )
-        print(f'Executed in {"{:.2f}".format(time.time() - sub_before_time)} sec')
-        offset += db_result['returned']
+        for p in processes:
+            p.join()
+            is_done |= p.exitcode
 
         if offset > settings.max_records and settings.max_records != -1:
             break
-        if db_result['returned'] != settings.fetch_limit:
+
+        if is_done:
             break
     print(f'total time: {"{:.2f}".format(time.time() - before_time)} sec')
+
+
+def execute(kwargs, apply_modifier, offset, lookup):
+    sub_before_time = time.time()
+    mapper_data: dict = kwargs['mapper_data']
+    remove_null_field: bool = kwargs['remove_null_field']
+    only_matched_schema: bool = kwargs['only_matched_schema']
+    appended_list: list = kwargs['appended_list']
+    disable_duplication_appended_list: bool = kwargs['disable_duplication_appended_list']
+
+    db_manager.refresh_connection()
+    db_result = db_manager.select_query(
+        table_name=mapper_data.get('source').get('table'),
+        columns=mapper_data.get('source').get('columns'),
+        join_tables=mapper_data.get('source').get('join'),
+        where=mapper_data.get('source').get('where'),
+        limit=settings.fetch_limit,
+        offset=offset)
+
+    if not db_result.get('data'):
+        exit(True)
+
+    for row in db_result.get('data'):
+        space_name = mapper_data.get('dest').get('space_name')
+        schema_shortname = mapper_data.get('dest').get('schema_shortname')
+        subpath = mapper_data.get('dest').get('subpath')
+        resource_type = mapper_data.get('dest').get('resource_type')
+        history_obj = None
+
+        meta, body = creator.convert_db_to_meta(row, mapper_data)
+        creator.shortname_deep_fixer(meta)
+        creator.shortname_deep_fixer(body)
+        if apply_modifier:
+            modified = apply_modifier(
+                space_name=space_name,
+                subpath=subpath,
+                resource_type=resource_type,
+                schema_shortname=schema_shortname,
+                meta=meta,
+                body=body,
+                db_row=row,
+                lookup=lookup,
+            )
+            if modified.get('ignore'):
+                continue
+            meta = modified["meta"]
+            body = modified["body"]
+            space_name = modified["space_name"]
+            subpath = modified["subpath"]
+            resource_type = modified["resource_type"]
+            if modified.get('history_obj'):
+                history_obj = modified["history_obj"]
+
+        if not meta.get('owner_shortname'):
+            meta['owner_shortname'] = 'dmart'
+
+        if remove_null_field:
+            # loop it for remove empty dict
+            for i in range(3):
+                meta = creator.delete_none(meta)
+                body = creator.delete_none(body)
+
+        creator.save(
+            space_name=space_name,
+            subpath=subpath,
+            class_type=resource_type,
+            schema_shortname=schema_shortname,
+            meta=meta,
+            body=body,
+            history_obj=history_obj,
+            only_matched_schema=only_matched_schema,
+            appended_list=appended_list,
+            disable_duplication_appended_list=disable_duplication_appended_list
+        )
+    print(f'Executed in {"{:.2f}".format(time.time() - sub_before_time)} sec')
+    exit(False)
 
 
 def meta_fixer(meta: dict):
@@ -120,4 +143,3 @@ def msisdn_fixer(msisdn: str):
     if re.match(MSISDN_REGEX, msisdn):
         return msisdn
     return None
-
