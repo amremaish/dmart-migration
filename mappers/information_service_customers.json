@@ -61,7 +61,7 @@
   "dest": {
     "space_name": "aftersales",
     "subpath": "customers",
-    "schema_shortname": "customer",
+    "schema_shortname": "contract",
     "resource_type": "content"
   }
 }

@@ -43,7 +43,6 @@ def apply_modifier(
     if meta.get('resolution_reason'):
         meta['resolution_reason'] = creator.reason_fixer(meta['resolution_reason'])
 
-
     if body.get('msisdn'):
         body['msisdn'] = msisdn_fixer(body.get('msisdn'))
 

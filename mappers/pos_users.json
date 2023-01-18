@@ -29,6 +29,7 @@
     ],
     "columns": [
       "POS_USER.REGISTRATION_ID",
+      "POS_USER.POS_ID",
       "POS_USER.USER_ID",
       "POS_USER.NAME",
       "POS_USER.USERNAME",
@@ -62,7 +63,7 @@
   },
   "columns_mapper": {
     "meta": {
-      "shortname": "POS_USER.USER_ID",
+      "shortname": "POS_USER.POS_ID",
       "msisdn": "POS_USER.MOBILE_NO",
       "displayname": {
         "en": "POS_USER.USERNAME",
