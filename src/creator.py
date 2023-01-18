@@ -93,7 +93,7 @@ class SpaceCreator:
                 try:
                     old_body = json.load(json_file)
                 except:
-                    print("can't read json: " + old_body)
+                    print("can't read json: " + str(old_body))
 
             with open(body_path, "r") as json_file:
                 old_meta = json.load(json_file)
