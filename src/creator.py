@@ -99,7 +99,7 @@ class SpaceCreator:
                     try:
                         old_meta = json.load(json_file)
                     except:
-                        print(f"can't read old_meta json with shortname {meta.get('shortname')}: {str(old_body)} ")
+                        print(f"can't read old_meta json with shortname {meta.get('shortname')}: {str(old_meta)} ")
 
             meta, body = self.apply_appended_list(
                 old_meta=old_meta,
