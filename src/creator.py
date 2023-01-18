@@ -25,6 +25,12 @@ class SpaceCreator:
         if not self.spaces_path.is_dir():
             os.mkdir(self.spaces_path)
 
+    def reason_fixer(self, reason: str):
+        if not reason:
+            return ''
+        reason = reason.replace('-', '')
+        return reason.strip().lower().replace(' ', '_')
+
     def shortname_fixer(self, shortname: str):
         if not shortname:
             return ''

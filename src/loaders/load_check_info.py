@@ -1,5 +1,6 @@
 from datetime import datetime
 
+from creator import creator
 from utils.db import db_manager
 from utils.decorators import process_mapper
 from utils.default_loader import default_loader, meta_fixer, msisdn_fixer
@@ -41,6 +42,10 @@ def apply_modifier(
             meta['state'] = 'cancelled'
         else:
             meta['state'] = ''
+
+    # resolution_reason fixer
+    if meta.get('resolution_reason'):
+        meta['resolution_reason'] = creator.reason_fixer(meta['resolution_reason'])
 
     if meta.get('owner_shortname'):
         meta['owner_shortname'] = f'pos_{meta["owner_shortname"]}'

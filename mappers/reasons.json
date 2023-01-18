@@ -1,0 +1,33 @@
+{
+  "source": {
+    "table": "LOOKUP",
+    "columns": [
+      "LOOKUP.CODE",
+      "LOOKUP.NAME_AR",
+      "LOOKUP.NAME_EN",
+      "LOOKUP.NAME_KU"
+    ],
+    "where": "CODE like '%REASON%'"
+  },
+  "columns_mapper": {
+    "meta": {
+      "shortname": "LOOKUP.CODE"
+    },
+    "body": {
+      "resolutions": [
+        {
+          "key": "LOOKUP.NAME_EN",
+          "english": "LOOKUP.NAME_EN",
+          "arabic": "LOOKUP.NAME_AR",
+          "kurdish": "LOOKUP.NAME_KU"
+        }
+      ]
+    }
+  },
+  "dest": {
+    "space_name": "other",
+    "subpath": "reasons",
+    "schema_shortname": "reasons",
+    "resource_type": "content"
+  }
+}

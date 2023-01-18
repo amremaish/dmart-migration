@@ -1,0 +1,13 @@
+{
+  "type": "object",
+  "title": "title",
+  "properties": {
+    "resolutions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  }
+}

@@ -47,6 +47,10 @@ def apply_modifier(
     if body.get('distributor_name'):
         body['distributor_name'] = creator.shortname_fixer(body.get('distributor_name'))
 
+    # resolution_reason fixer
+    if meta.get('resolution_reason'):
+        meta['resolution_reason'] = creator.reason_fixer(meta['resolution_reason'])
+
     # fix governorate
     if body.get('delivery_details', {}).get('governorate'):
         governorate = body.get('delivery_details', {}).get('governorate')
