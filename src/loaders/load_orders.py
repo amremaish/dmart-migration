@@ -41,7 +41,6 @@ def apply_modifier(
             meta['state'] = 'pending'
         elif state == '11':  # DELIVERED
             meta['state'] = 'delivered'
-            meta['is_open'] = False
         else:
             meta['state'] = ''
 

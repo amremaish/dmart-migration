@@ -41,9 +41,6 @@ def apply_modifier(
     if body.get('msisdn'):
         body['msisdn'] = msisdn_fixer(body.get('msisdn'))
 
-    if body.get('call_back_number'):
-        body['call_back_number'] = msisdn_fixer(body.get('call_back_number'))
-
     if body.get('call_back_number_second_party'):
         body['call_back_number_second_party'] = msisdn_fixer(body.get('call_back_number_second_party'))
 
