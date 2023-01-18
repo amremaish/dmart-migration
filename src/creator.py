@@ -135,7 +135,7 @@ class SpaceCreator:
 
         if mata_path.is_file() and body_path.is_file() and not appended_list:
             return
-        if meta.get('shortname') == '840367':
+        if meta.get('shortname') == '840367' or meta.get('shortname') == '351830' :
             print('840367 meta:')
             print(meta_obj.json(exclude_none=True))
             print('840367 body:')
