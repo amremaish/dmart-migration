@@ -156,6 +156,8 @@ class SpaceCreator:
             path = one_list.split('.', 1)[1]
             if one_list.startswith("body"):
                 appended_list = self.find_list_in_dict(path, new_body)
+                if not appended_list:
+                    continue
                 new_body = self.append_list_in_dict(
                     old_body,
                     appended_list,
@@ -165,6 +167,8 @@ class SpaceCreator:
                 )
             if one_list.startswith("meta"):
                 appended_list = self.find_list_in_dict(path, new_meta)
+                if not appended_list:
+                    continue
                 new_meta = self.append_list_in_dict(
                     old_meta,
                     appended_list,
@@ -183,7 +187,7 @@ class SpaceCreator:
                 break
             obj = obj[loc]
             itr = itr + 1
-        return obj[path[-1]]
+        return obj.get(path[-1])
 
     def append_list_in_dict(
             self,

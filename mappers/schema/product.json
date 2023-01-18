@@ -19,6 +19,7 @@
     },
     "governorate_shortnames": {
       "type": "array",
+      "uniqueItems": true,
       "items": {
         "type": "string",
         "enum": [
@@ -40,13 +41,13 @@
           "kirkuk",
           "salahaldeen",
           "sulaimaniya"
-        ],
-        "uniqueItems": true
+        ]
       },
       "title": "Governorate availability"
     },
     "role_shortnames": {
       "type": "array",
+      "uniqueItems": true,
       "items": {
         "type": "string",
         "enum": [
@@ -55,15 +56,9 @@
           "zain_lite",
           "ros",
           "activating_pos"
-        ],
-        "uniqueItems": true
+        ]
       },
       "title": "POS type availability "
     }
-  },
-  "required": [
-    "governorate_shortnames",
-    "role_shortnames",
-    "status"
-  ]
+  }
 }
