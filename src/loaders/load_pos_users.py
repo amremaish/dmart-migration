@@ -26,7 +26,10 @@ def apply_modifier(
         lookup: dict
 ):
     meta = meta_fixer(meta)
-    meta['shortname'] = f"pos_{meta['shortname']}"
+    ignore = False
+    if not meta.get('shortname'):
+        ignore = True
+
     meta['type'] = UserType.mobile
 
     if not body.get('language'):
@@ -80,5 +83,6 @@ def apply_modifier(
         "resource_type": resource_type,
         "schema_shortname": schema_shortname,
         "meta": meta,
-        "body": body
+        "body": body,
+        "ignore": ignore
     }

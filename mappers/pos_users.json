@@ -77,7 +77,7 @@
     },
     "body": {
       "language": "LOOKUP.NAME_EN",
-      "channel_shortname": "POS_USER.USER_ID",
+      "channel_shortname": "POS_USER.POS_ID",
       "mothers_name": "",
       "nationality": "",
       "registration_id": "POS_USER.REGISTRATION_ID",

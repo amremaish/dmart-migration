@@ -47,8 +47,6 @@ def apply_modifier(
     if meta.get('resolution_reason'):
         meta['resolution_reason'] = creator.reason_fixer(meta['resolution_reason'])
 
-    if meta.get('owner_shortname'):
-        meta['owner_shortname'] = f'pos_{meta["owner_shortname"]}'
 
     if body.get('msisdn'):
         body['msisdn'] = msisdn_fixer(body.get('msisdn'))

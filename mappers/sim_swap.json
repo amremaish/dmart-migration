@@ -29,7 +29,7 @@
       "SIM_SWAP.NAME",
       "SIM_SWAP.CALLBACK_NUMBER",
       "LOOKUP.NAME_EN",
-      "POS_USER.USER_ID"
+      "POS_USER.POS_ID"
     ]
   },
   "columns_mapper": {
@@ -40,7 +40,7 @@
         "ar": "",
         "kd": ""
       },
-      "owner_shortname" : "POS_USER.USER_ID",
+      "owner_shortname" : "POS_USER.POS_ID",
       "updated_at": "SIM_SWAP.UPDATED_DATE",
       "created_at": "SIM_SWAP.CREATION_DATE",
       "is_active": "SIM_SWAP.STATUS",

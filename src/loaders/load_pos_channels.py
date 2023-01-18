@@ -21,6 +21,9 @@ def apply_modifier(
         lookup: dict
 ):
     meta = meta_fixer(meta)
+    ignore = False
+    if not meta.get('shortname'):
+        ignore = True
 
     if body["type"] == '':
         body["type"] = 0
@@ -40,5 +43,6 @@ def apply_modifier(
         "resource_type": resource_type,
         "schema_shortname": schema_shortname,
         "meta": meta,
-        "body": body
+        "body": body,
+        "ignore": ignore
     }

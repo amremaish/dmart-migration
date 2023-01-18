@@ -69,7 +69,7 @@
       "ORDER_HISTORY.CREATION_DATE",
       "ORDER_HISTORY.STATUS",
       "ORDER_HISTORY.REJECTREASON",
-      "POS_USER.USER_ID",
+      "POS_USER.POS_ID",
       "REGION.NAME_EN",
       "DISTRIBUTORS.NAME",
       "CATEGORY.CATEGORY_NAME",
@@ -82,7 +82,7 @@
   "columns_mapper": {
     "meta": {
       "shortname": "ORDER_HISTORY.ID",
-      "owner_shortname": "POS_USER.USER_ID",
+      "owner_shortname": "POS_USER.POS_ID",
       "updated_at": "ORDER_HISTORY.UPDATED_DATE",
       "created_at": "ORDER_HISTORY.CREATION_DATE",
       "is_active": true,

@@ -31,7 +31,7 @@
       "INFORMATION_SERVICE.STATUS_MSG",
       "INFORMATION_SERVICE.STATUS",
       "INFORMATION_SERVICE.MOBILE_NUMBER",
-      "POS_USER.USER_ID",
+      "POS_USER.POS_ID",
       "INFORMATION_SERVICE.CUSTOMER_NAME",
       "INFORMATION_SERVICE.CALLBACK_PHONE",
       "CHANGE_OWNERSHIP_SERVICE.SECOND_CUSTOMER_NAME",
@@ -51,7 +51,7 @@
         "ar": "",
         "kd": ""
       },
-      "owner_shortname" : "POS_USER.USER_ID",
+      "owner_shortname" : "POS_USER.POS_ID",
       "updated_at": "INFORMATION_SERVICE.UPDATED_DATE",
       "created_at": "INFORMATION_SERVICE.CREATION_DATE",
       "is_active": "INFORMATION_SERVICE.STATUS",

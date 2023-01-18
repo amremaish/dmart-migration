@@ -48,8 +48,6 @@ def apply_modifier(
     if len(service_short_codes) > 0 and service_short_codes[0] is None:
         body['service_short_codes'] = []
 
-    if meta.get('owner_shortname'):
-        meta['owner_shortname'] = f'pos_{meta["owner_shortname"]}'
 
     if body.get('msisdn'):
         body['msisdn'] = msisdn_fixer(body.get('msisdn'))

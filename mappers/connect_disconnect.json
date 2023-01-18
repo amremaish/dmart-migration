@@ -32,7 +32,7 @@
       "OTHER_SERVICE.STATUS",
       "OTHER_SERVICE.CUSTOMER_MSISDN",
       "OTHER_SERVICE.REQUEST_TYPE_FILTER",
-      "POS_USER.USER_ID",
+      "POS_USER.POS_ID",
       "SIM_CONNECTING_SERVICE.CALL_BACK_NUMBER",
       "SIM_CONNECTING_SERVICE.CIVILIAN_ID",
       "SIM_CONNECTING_SERVICE.OWNER_NAME",
@@ -49,7 +49,7 @@
         "ar": "",
         "kd": ""
       },
-      "owner_shortname": "POS_USER.USER_ID",
+      "owner_shortname": "POS_USER.POS_ID",
       "updated_at": "OTHER_SERVICE.UPDATED_DATE",
       "created_at": "OTHER_SERVICE.CREATION_DATE",
       "is_active": "OTHER_SERVICE.STATUS",

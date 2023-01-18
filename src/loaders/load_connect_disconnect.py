@@ -36,8 +36,6 @@ def apply_modifier(
         else:
             meta['state'] = ''
 
-    if meta.get('owner_shortname'):
-        meta['owner_shortname'] = f'pos_{meta["owner_shortname"]}'
 
     # resolution_reason fixer
     if meta.get('resolution_reason'):
