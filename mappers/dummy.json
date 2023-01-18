@@ -53,7 +53,8 @@
       "customer_name" : "INFORMATION_SERVICE.CUSTOMER_NAME",
       "call_back_number" : "INFORMATION_SERVICE.CALLBACK_PHONE",
       "iccid" :  "INFORMATION_SERVICE.SIM_SERIAL",
-      "service_type" :  "dummy"
+      "service_type" :  "dummy",
+      "contract_shortname" :  "INFORMATION_SERVICE.ID"
     }
   },
   "dest": {

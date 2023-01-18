@@ -46,6 +46,22 @@ def apply_modifier(
     if body.get('call_back_number'):
         body['call_back_number'] = msisdn_fixer(body.get('call_back_number'))
 
+    if body.get('frequently_called_numbers'):
+        frequently_called_numbers = body.get('frequently_called_numbers')
+        frequently_called_numbers = frequently_called_numbers[1:]
+        frequently_called_numbers = frequently_called_numbers[:-1]
+        frequently_called_numbers = frequently_called_numbers.replace(' ', '')
+        frequently_called_numbers = frequently_called_numbers.split(',')
+        fixed_number = []
+        for number in frequently_called_numbers:
+            fixed = msisdn_fixer(number)
+            if fixed and fixed not in fixed_number:
+                fixed_number.append(fixed)
+        body['frequently_called_numbers'] = None if len(fixed_number) == 0 else fixed_number
+
+    if body.get('contract_shortname'):
+        body['contract_shortname'] = str(body['contract_shortname'])
+
     history_obj = None
     start = db_manager.create_alias('INFORMATION_SERVICE.ACTION_START_TIME')
     end = db_manager.create_alias('INFORMATION_SERVICE.ACTION_END_TIME')

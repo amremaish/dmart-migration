@@ -15,7 +15,7 @@
         "join_type": "LEFT"
       }
     ],
-    "where" : "SERVICE_TYPE_MSG = 'Migration'",
+    "where": "SERVICE_TYPE_MSG = 'Migration'",
     "columns": [
       "INFORMATION_SERVICE.ID",
       "INFORMATION_SERVICE.ACTION_START_TIME",
@@ -30,7 +30,6 @@
       "INFORMATION_SERVICE.CALLBACK_PHONE",
       "INFORMATION_SERVICE.SIM_SERIAL",
       "LOOKUP.NAME_EN"
-
     ]
   },
   "columns_mapper": {
@@ -41,7 +40,7 @@
         "ar": "",
         "kd": ""
       },
-      "owner_shortname" : "POS_USER.POS_ID",
+      "owner_shortname": "POS_USER.POS_ID",
       "updated_at": "INFORMATION_SERVICE.UPDATED_DATE",
       "created_at": "INFORMATION_SERVICE.CREATION_DATE",
       "is_active": "INFORMATION_SERVICE.STATUS",
@@ -50,10 +49,11 @@
     },
     "body": {
       "msisdn": "INFORMATION_SERVICE.MOBILE_NUMBER",
-      "customer_name" : "INFORMATION_SERVICE.CUSTOMER_NAME",
-      "call_back_number" : "INFORMATION_SERVICE.CALLBACK_PHONE",
-      "iccid" :  "INFORMATION_SERVICE.SIM_SERIAL",
-      "service_type" :  "migration"
+      "customer_name": "INFORMATION_SERVICE.CUSTOMER_NAME",
+      "call_back_number": "INFORMATION_SERVICE.CALLBACK_PHONE",
+      "iccid": "INFORMATION_SERVICE.SIM_SERIAL",
+      "contract_shortname": "INFORMATION_SERVICE.ID",
+      "service_type": "migration"
     }
   },
   "dest": {

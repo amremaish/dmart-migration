@@ -46,6 +46,9 @@ def apply_modifier(
     if body.get('call_back_number'):
         body['call_back_number'] = msisdn_fixer(body.get('call_back_number'))
 
+    if body.get('contract_shortname'):
+        body['contract_shortname'] = str(body['contract_shortname'])
+
     history_obj = None
     start = db_manager.create_alias('INFORMATION_SERVICE.ACTION_START_TIME')
     end = db_manager.create_alias('INFORMATION_SERVICE.ACTION_END_TIME')

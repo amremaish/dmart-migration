@@ -13,9 +13,15 @@
         "pk_id": "LOOKUP.ID",
         "fk_id": "INFORMATION_SERVICE.REASON",
         "join_type": "LEFT"
+      },
+      {
+        "table": "CHANGE_OWNERSHIP_SERVICE",
+        "pk_id": "CHANGE_OWNERSHIP_SERVICE.ID",
+        "fk_id": "INFORMATION_SERVICE.ID",
+        "join_type": "LEFT"
       }
     ],
-    "where" : "SERVICE_TYPE_MSG = 'Change Ownership one side'",
+    "where": "SERVICE_TYPE_MSG = 'Change Ownership one side'",
     "columns": [
       "INFORMATION_SERVICE.ID",
       "INFORMATION_SERVICE.ACTION_START_TIME",
@@ -29,8 +35,10 @@
       "INFORMATION_SERVICE.CUSTOMER_NAME",
       "INFORMATION_SERVICE.CALLBACK_PHONE",
       "INFORMATION_SERVICE.SIM_SERIAL",
-      "LOOKUP.NAME_EN"
-
+      "LOOKUP.NAME_EN",
+      "CHANGE_OWNERSHIP_SERVICE.LAST_RECHARGE",
+      "CHANGE_OWNERSHIP_SERVICE.USED_NUMBERS",
+      "CHANGE_OWNERSHIP_SERVICE.CALLS_AREA"
     ]
   },
   "columns_mapper": {
@@ -41,7 +49,7 @@
         "ar": "",
         "kd": ""
       },
-      "owner_shortname" : "POS_USER.POS_ID",
+      "owner_shortname": "POS_USER.POS_ID",
       "updated_at": "INFORMATION_SERVICE.UPDATED_DATE",
       "created_at": "INFORMATION_SERVICE.CREATION_DATE",
       "is_active": "INFORMATION_SERVICE.STATUS",
@@ -51,9 +59,13 @@
     "body": {
       "service_type": "one_side",
       "msisdn": "INFORMATION_SERVICE.MOBILE_NUMBER",
-      "customer_name" : "INFORMATION_SERVICE.CUSTOMER_NAME",
-      "call_back_number" : "INFORMATION_SERVICE.CALLBACK_PHONE",
-      "iccid" :  "INFORMATION_SERVICE.SIM_SERIAL"
+      "customer_name": "INFORMATION_SERVICE.CUSTOMER_NAME",
+      "call_back_number": "INFORMATION_SERVICE.CALLBACK_PHONE",
+      "iccid": "INFORMATION_SERVICE.SIM_SERIAL",
+      "last_recharge_date": "CHANGE_OWNERSHIP_SERVICE.LAST_RECHARGE",
+      "governorate_name_area_most_contacted": "CHANGE_OWNERSHIP_SERVICE.CALLS_AREA",
+      "frequently_called_numbers": "CHANGE_OWNERSHIP_SERVICE.USED_NUMBERS",
+      "contract_shortname": "INFORMATION_SERVICE.ID"
     }
   },
   "dest": {
