@@ -44,14 +44,16 @@ def apply_modifier(
         if role:
             if role == 'fs':
                 body['role_shortnames'] = ['franshise']
-            elif role == 'zain_light':
-                body['role_shortnames'] = ['zain_lite']
+            if role == 'supermarket':
+                body['role_shortnames'] = ['voucher_pos']
+            elif role == 'ros':
+                body['role_shortnames'] = ['ros']
             elif role == 'pos':
                 body['role_shortnames'] = ['activating_pos']
-            elif role == 'sales':
-                body['website'] = ['vouchers_pos']
+            elif role == 'zain_light':
+                body['role_shortnames'] = ['zain_lite']
             else:
-                body['role_shortnames'] = ['ros']
+                del body['role_shortnames']
 
     sub_cat = db_row.get(db_manager.create_alias('SUB_CATEGORY.SUB_CATEGORY_NAME'))
     cat = db_row.get(db_manager.create_alias('CATEGORY.CATEGORY_NAME'))
