@@ -30,7 +30,7 @@
   },
   "dest": {
     "space_name": "aftersales",
-    "subpath": "customers",
+    "subpath": "contracts",
     "schema_shortname": "contract",
     "resource_type": "content"
   }
