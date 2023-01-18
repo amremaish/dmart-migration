@@ -48,23 +48,24 @@ def apply_modifier(
     if len(service_short_codes) > 0 and service_short_codes[0] is None:
         body['service_short_codes'] = []
 
-
     if body.get('msisdn'):
         body['msisdn'] = msisdn_fixer(body.get('msisdn'))
 
     if body.get('call_back_number'):
         body['call_back_number'] = msisdn_fixer(body.get('call_back_number'))
 
-    service_type_id = db_row.get(db_manager.create_alias('VAS_SERVICE.SERVICE_TYPE'))
-    request_type_id = db_row.get(db_manager.create_alias('VAS_SERVICE.REQUEST_TYPE'))
-    if service_type_id in lookup:
-        body['sub_service_type'] = lookup[service_type_id].get('KEY_VALUE')
-
-    if request_type_id in lookup:
-        body['service_type'] = lookup[request_type_id].get('KEY_VALUE').lower()
-
     if body.get('service_short_code'):
         body['service_short_code'] = body['service_short_code'].split(',')
+
+    if body.get('service_type') and body.get('service_type') in lookup:
+        body['service_type'] = lookup[body.get('service_type')].get('KEY_VALUE').lower()
+    else:
+        del body['service_type']
+
+    if body.get('sub_service_type') and body.get('sub_service_type') in lookup:
+        body['sub_service_type'] = lookup[body.get('sub_service_type')].get('KEY_VALUE')
+    else:
+        del body['sub_service_type']
 
     if body.get('msisdn') and body.get('msisdn').startswith('964'):
         body['msisdn'] = body.get('msisdn')[3:]

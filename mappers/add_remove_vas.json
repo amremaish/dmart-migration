@@ -21,7 +21,7 @@
         "join_type": "LEFT"
       }
     ],
-    "where" : "REQUEST_TYPE_FILTER = 'Add-Remove VAS Service'",
+    "where": "REQUEST_TYPE_FILTER = 'Add-Remove VAS Service'",
     "columns": [
       "OTHER_SERVICE.ID",
       "OTHER_SERVICE.ACTION_START_TIME",
@@ -37,7 +37,6 @@
       "VAS_SERVICE.REQUEST_TYPE",
       "VAS_SERVICE.SHORT_CODE",
       "LOOKUP.NAME_EN"
-
     ]
   },
   "columns_mapper": {
@@ -48,7 +47,7 @@
         "ar": "",
         "kd": ""
       },
-      "owner_shortname" : "POS_USER.POS_ID",
+      "owner_shortname": "POS_USER.POS_ID",
       "updated_at": "OTHER_SERVICE.UPDATED_DATE",
       "created_at": "OTHER_SERVICE.CREATION_DATE",
       "is_active": "OTHER_SERVICE.STATUS",
@@ -60,7 +59,9 @@
       "customer_language": "english",
       "service_short_codes": [
         "VAS_SERVICE.SHORT_CODE"
-      ]
+      ],
+      "service_type": "VAS_SERVICE.REQUEST_TYPE",
+      "sub_service_type": "VAS_SERVICE.SERVICE_TYPE"
     }
   },
   "dest": {
