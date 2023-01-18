@@ -89,7 +89,10 @@ class SpaceCreator:
 
         if appended_list and body_path.is_file() and mata_path.is_file():
             with open(body_path, "r") as json_file:
-                old_body = json.load(json_file)
+                try:
+                    old_body = json.load(json_file)
+                except:
+                    print("can't read json: " + old_body)
 
             with open(body_path, "r") as json_file:
                 old_meta = json.load(json_file)
