@@ -88,18 +88,14 @@ class SpaceCreator:
         mata_path = path / filename
 
         if appended_list and body_path.is_file() and mata_path.is_file():
-            with open(body_path, "r") as json_file:
-                old_body = ''
-                try:
+            try:
+                with open(body_path, "r") as json_file:
                     old_body = json.load(json_file)
-                except:
-                    print(f"can't old_body read json with shortname {meta.get('shortname')}: {str(old_body)} ")
 
                 with open(body_path, "r") as json_file:
-                    try:
-                        old_meta = json.load(json_file)
-                    except:
-                        print(f"can't read old_meta json with shortname {meta.get('shortname')}: {str(old_meta)} ")
+                    old_meta = json.load(json_file)
+            except:
+                return
 
             meta, body = self.apply_appended_list(
                 old_meta=old_meta,
@@ -135,11 +131,6 @@ class SpaceCreator:
 
         if mata_path.is_file() and body_path.is_file() and not appended_list:
             return
-        if meta.get('shortname') == '840367' or meta.get('shortname') == '351830' :
-            print('840367 meta:')
-            print(meta_obj.json(exclude_none=True))
-            print('840367 body:')
-            print(json.dumps(body))
 
         # save meta
         with open(mata_path, "w") as f:
