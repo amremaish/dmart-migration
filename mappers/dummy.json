@@ -15,7 +15,7 @@
         "join_type": "LEFT"
       }
     ],
-    "where" : "SERVICE_TYPE_MSG = 'Dummy'",
+    "where" : "SERVICE_TYPE_MSG = 'Dummy' and REQUEST_TYPE = 'Check-Info'",
     "columns": [
       "INFORMATION_SERVICE.ID",
       "INFORMATION_SERVICE.ACTION_START_TIME",

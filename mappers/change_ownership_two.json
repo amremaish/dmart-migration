@@ -21,7 +21,7 @@
         "join_type": "LEFT"
       }
     ],
-    "where" : "SERVICE_TYPE_MSG = 'Change Ownership two side'",
+    "where" : "SERVICE_TYPE_MSG = 'Change Ownership two side' and REQUEST_TYPE = 'Check-Info'",
     "columns": [
       "INFORMATION_SERVICE.ID",
       "INFORMATION_SERVICE.ACTION_START_TIME",

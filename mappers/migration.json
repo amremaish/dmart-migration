@@ -15,7 +15,7 @@
         "join_type": "LEFT"
       }
     ],
-    "where": "SERVICE_TYPE_MSG = 'Migration'",
+    "where": "SERVICE_TYPE_MSG = 'Migration' and REQUEST_TYPE = 'Check-Info'",
     "columns": [
       "INFORMATION_SERVICE.ID",
       "INFORMATION_SERVICE.ACTION_START_TIME",

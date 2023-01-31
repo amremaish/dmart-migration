@@ -24,7 +24,8 @@
       "INFORMATION_SERVICE.BIRTH_PLACE",
       "INFORMATION_SERVICE.CITY",
       "INFORMATION_SERVICE.DISTRICT_ONE"
-    ]
+    ],
+    "where": "REQUEST_TYPE = 'Registration'"
   },
   "columns_mapper": {
     "meta": {
