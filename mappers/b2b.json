@@ -1,0 +1,134 @@
+{
+  "source": {
+    "table": "SIM_TRANSACTION",
+    "join": [
+      {
+        "table": "SIM_TRANSACTION_USER_DETAIL",
+        "pk_id": "SIM_TRANSACTION.ID",
+        "fk_id": "SIM_TRANSACTION_USER_DETAIL.SIM_TRANSACTION_ID",
+        "join_type": "LEFT"
+      },
+      {
+        "table": "POS_USER",
+        "pk_id": "POS_USER.ID",
+        "fk_id": "SIM_TRANSACTION.POS_ID",
+        "join_type": "LEFT"
+      }
+    ],
+    "columns": [
+      "SIM_TRANSACTION.ID",
+      "SIM_TRANSACTION.MSISDN",
+      "SIM_TRANSACTION.STATUS",
+      "SIM_TRANSACTION.NAME",
+      "SIM_TRANSACTION.CONTRACT_TYPE",
+      "SIM_TRANSACTION.CUSTOMER_TYPE",
+      "SIM_TRANSACTION.STATUS_MSG",
+      "SIM_TRANSACTION.CONTRACT_NAME",
+      "SIM_TRANSACTION.CREATION_DATE",
+      "SIM_TRANSACTION.UPDATED_DATE",
+      "SIM_TRANSACTION.EMAIL",
+      "SIM_TRANSACTION.DOCU_OBJECT_ID",
+      "SIM_TRANSACTION.LATITUDE",
+      "SIM_TRANSACTION.LONGITUDE",
+      "SIM_TRANSACTION.CALL_BACK_NUMBER",
+      "SIM_TRANSACTION_USER_DETAIL.ID_PAGE_NUMBER",
+      "SIM_TRANSACTION_USER_DETAIL.RECORD_NUMBER",
+      "SIM_TRANSACTION_USER_DETAIL.MOTHER_NAME",
+      "SIM_TRANSACTION_USER_DETAIL.BIRTH_DATE",
+      "SIM_TRANSACTION_USER_DETAIL.BIRTH_PLACE",
+      "SIM_TRANSACTION_USER_DETAIL.GENDER",
+      "SIM_TRANSACTION_USER_DETAIL.NATIONALITY_ID",
+      "SIM_TRANSACTION_USER_DETAIL.GOVERNORATE_ID",
+      "SIM_TRANSACTION_USER_DETAIL.CITY",
+      "SIM_TRANSACTION_USER_DETAIL.DISTRICT_ONE",
+      "SIM_TRANSACTION_USER_DETAIL.STREET_NAME",
+      "SIM_TRANSACTION_USER_DETAIL.HOUSE_NUMBER",
+      "SIM_TRANSACTION_USER_DETAIL.PHONE",
+      "SIM_TRANSACTION_USER_DETAIL.WEBSITE",
+      "SIM_TRANSACTION_USER_DETAIL.DISTRICT_TWO",
+      "SIM_TRANSACTION_USER_DETAIL.LICENSE_NUMBER",
+      "SIM_TRANSACTION_USER_DETAIL.ISSUE_DATE",
+      "SIM_TRANSACTION_USER_DETAIL.DISTRICT_ONE_CIN",
+      "SIM_TRANSACTION_USER_DETAIL.COMPANY_NAME",
+      "SIM_TRANSACTION_USER_DETAIL.COMPANY_CITY",
+      "SIM_TRANSACTION_USER_DETAIL.COMPANY_DISTRICT_ONE",
+      "SIM_TRANSACTION_USER_DETAIL.COMPANY_DISTRICT_TWO",
+      "SIM_TRANSACTION_USER_DETAIL.COMPANY_EMAIL",
+      "SIM_TRANSACTION_USER_DETAIL.COMPANY_GOVERNORATE",
+      "SIM_TRANSACTION_USER_DETAIL.COMPANY_HOUSE_NUMBER",
+      "SIM_TRANSACTION_USER_DETAIL.COMPANY_STREET",
+      "SIM_TRANSACTION_USER_DETAIL.SUBSCRIBER_CARD_TYPE_ID",
+      "SIM_TRANSACTION_USER_DETAIL.FAX",
+      "SIM_TRANSACTION_USER_DETAIL.SUBSCRIBER_CARD_TYPE"
+    ]
+  },
+  "columns_mapper": {
+    "meta": {
+      "shortname": "SIM_TRANSACTION.ID",
+      "displayname": {
+        "en": "SIM_TRANSACTION.NAME",
+        "ar": "SIM_TRANSACTION.NAME",
+        "kd": "SIM_TRANSACTION.NAME"
+      },
+      "is_active": "SIM_TRANSACTION.STATUS",
+      "state": "SIM_TRANSACTION.STATUS_MSG",
+      "msisdn": "SIM_TRANSACTION.MSISDN",
+      "updated_at": "SIM_TRANSACTION.UPDATED_DATE",
+      "created_at": "SIM_TRANSACTION.CREATION_DATE",
+      "workflow_shortname" : "b2b"
+    },
+    "body": {
+      "company_data": {
+        "contract_type": "SIM_TRANSACTION.CONTRACT_TYPE",
+        "callback_number": "SIM_TRANSACTION.CALL_BACK_NUMBER",
+        "company_type": "others"
+      },
+      "authorized_details": {
+        "date_of_birth": "SIM_TRANSACTION_USER_DETAIL.BIRTH_DATE",
+        "place_of_birth": "SIM_TRANSACTION_USER_DETAIL.BIRTH_PLACE",
+        "nationality": "SIM_TRANSACTION_USER_DETAIL.NATIONALITY_ID",
+        "gender": "SIM_TRANSACTION_USER_DETAIL.GENDER",
+        "mother_name": "SIM_TRANSACTION_USER_DETAIL.MOTHER_NAME",
+        "subscriber_email": "SIM_TRANSACTION_USER_DETAIL.COMPANY_EMAIL",
+        "id_type": "civil_id",
+        "id_page_number": "SIM_TRANSACTION_USER_DETAIL.ID_PAGE_NUMBER",
+        "id_record_number": "SIM_TRANSACTION_USER_DETAIL.RECORD_NUMBER",
+        "street": "SIM_TRANSACTION_USER_DETAIL.STREET_NAME",
+        "governorate_shortname": "SIM_TRANSACTION_USER_DETAIL.GOVERNORATE_ID",
+        "city": "SIM_TRANSACTION_USER_DETAIL.CITY",
+        "house_number": "SIM_TRANSACTION_USER_DETAIL.HOUSE_NUMBER",
+        "other_phone_number": "SIM_TRANSACTION_USER_DETAIL.PHONE"
+      },
+      "company_details": {
+        "company_name": "SIM_TRANSACTION_USER_DETAIL.COMPANY_NAME",
+        "company_house": "SIM_TRANSACTION_USER_DETAIL.COMPANY_HOUSE_NUMBER",
+        "company_street": "SIM_TRANSACTION_USER_DETAIL.COMPANY_STREET",
+        "company_district_name": "SIM_TRANSACTION_USER_DETAIL.COMPANY_DISTRICT_ONE",
+        "company_city": "SIM_TRANSACTION_USER_DETAIL.COMPANY_CITY",
+        "company_governorate_shortname": "SIM_TRANSACTION_USER_DETAIL.COMPANY_GOVERNORATE",
+        "license_number": "SIM_TRANSACTION_USER_DETAIL.LICENSE_NUMBER",
+        "company_issue_date": "SIM_TRANSACTION_USER_DETAIL.ISSUE_DAT",
+        "company_website": "",
+        "company_email": "SIM_TRANSACTION_USER_DETAIL.COMPANY_EMAIL",
+        "company_fax": "SIM_TRANSACTION_USER_DETAIL.FAX",
+        "company_phone": "SIM_TRANSACTION_USER_DETAIL.PHONE",
+        "payment_type": "",
+        "bank": "",
+        "bank_branch": "",
+        "bank_address": "",
+        "account_number": "",
+        "company_record": "",
+        "tax_card": "",
+        "official_authority": "",
+        "identity": ""
+      },
+      "customer_data": []
+    }
+  },
+  "dest": {
+    "space_name": "aftersales",
+    "subpath": "tickets/b2b",
+    "schema_shortname": "b2b",
+    "resource_type": "ticket"
+  }
+}
