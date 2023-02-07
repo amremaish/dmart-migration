@@ -36,12 +36,12 @@ def apply_modifier(
     if body.get('msisdn'):
         body['msisdn'] = msisdn_fixer(body.get('msisdn'))
 
-    if body.get('contract_type'):
-        val = lookup.get(body['contract_type'], {}).get('KEY_VALUE', None)
+    if body.get('company_data', {}).get('contract_type'):
+        val = lookup.get(body['company_data']['contract_type'], {}).get('KEY_VALUE', None)
         if val == 'PRE-PAID':
-            body['contract_type'] = 'prepaid'
+            body['company_data']['contract_type'] = 'prepaid'
         else:
-            body['contract_type'] = 'postpaid'
+            body['company_data']['contract_type'] = 'postpaid'
 
     if body.get('governorate_shortname'):
         governorate = body.get('governorate_shortname')
