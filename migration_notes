@@ -25,4 +25,6 @@ migrate sim_swap_customers
 migrate other_service_customers
 migrate information_service_customers
 -------- other ------------------
-migrate reasons
+migrate reasons # Don't migrate
+---- movers (move attachments)-----
+move contracts

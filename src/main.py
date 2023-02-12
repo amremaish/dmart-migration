@@ -9,10 +9,12 @@ from enum import Enum
 from settings import settings
 from utils.mappers import mappers
 from utils.db import db_manager
+from utils.move_attachments import move_attachments
 
 
 class OperationsType(str, Enum):
     MIGRTAE = "migrate"
+    MOVE = "move"
 
 
 def import_from(module, name):
@@ -38,7 +40,8 @@ def serve(text: str):
     if operation == OperationsType.MIGRTAE:
         func = import_from(f'loaders.load_{loader}', 'load')
         func()
-
+    if operation == OperationsType.MOVE:
+        move_attachments(loader)
 
 def main_loop():
     check = db_manager.connect()

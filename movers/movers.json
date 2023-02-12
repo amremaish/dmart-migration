@@ -1,0 +1,11 @@
+{
+  "contracts": {
+    "folder_path": "/home/amr/Downloads/amr/contracts",
+    "space_name": "aftersales",
+    "subpath": "contracts",
+    "extra": {
+      "from_date" :  "1996-01-20",
+      "to_date" : ""
+    }
+  }
+}

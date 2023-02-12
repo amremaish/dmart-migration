@@ -1,5 +1,7 @@
 import re
 
+from dmart.enums import ContentType
+
 # regex
 SUBPATH = r"^[\w\/]{1,64}$"
 SHORTNAME = r"^\w{1,32}$"
@@ -38,6 +40,21 @@ governorates_mapper: dict[str, str] = {
     'nasriya': 'thiqar',
     'kut': 'wassit'
 }
+
+
+def split_file_name(file_name: str):
+    file_name = file_name.split('.')
+    ext = file_name[1]
+    type = None
+    if 'png' == ext or 'jpg' == ext or 'jpeg' == ext:
+        type = ContentType.image
+    elif 'pdf' == ext:
+        type = ContentType.pdf
+    elif 'json' == ext:
+        type = ContentType.json
+    elif 'xml' == ext:
+        type = ContentType.markdown
+    return file_name[0], file_name[1], type
 
 
 def camel_case(snake_str):
