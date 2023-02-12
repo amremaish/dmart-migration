@@ -20,13 +20,11 @@ def apply_modifier(
         db_row: dict,
         lookup: dict
 ):
-    ignore = False
+
     meta = meta_fixer(meta)
     msisdn = msisdn_fixer(body.get('msisdn'))
     if msisdn:
         body['msisdn'] = str(msisdn)
-    else:
-        ignore = True
 
     # fix customer_type
     if body.get('customer_type') in lookup:
@@ -63,16 +61,11 @@ def apply_modifier(
     # fix residence_number
     if body.get('residence_number'):
         body['residence_number'] = to_int(body.get('residence_number'))
-
-    if not body.get('gender') and not body.get('address', {}).get('line'):
-        ignore = True
-
     return {
         "space_name": space_name,
         "subpath": subpath,
         "resource_type": resource_type,
         "schema_shortname": schema_shortname,
         "meta": meta,
-        "body": body,
-        'ignore': ignore
+        "body": body
     }
