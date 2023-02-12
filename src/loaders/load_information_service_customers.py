@@ -25,7 +25,6 @@ def apply_modifier(
     msisdn = msisdn_fixer(body.get('msisdn'))
     if msisdn:
         body['msisdn'] = str(msisdn)
-        meta['shortname'] = str(msisdn)
     else:
         ignore = True
 
