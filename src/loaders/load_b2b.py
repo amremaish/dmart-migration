@@ -1,8 +1,7 @@
-from datetime import datetime
+import re
 
 from creator import creator
-from dmart.helper import governorates_mapper
-from utils.db import db_manager
+from dmart.helper import governorates_mapper, ID_RECORD_NUMBER_REGEX
 from utils.decorators import process_mapper
 from utils.default_loader import default_loader, meta_fixer, msisdn_fixer
 
@@ -25,6 +24,9 @@ def apply_modifier(
 ):
     meta = meta_fixer(meta)
 
+    if meta.get('owner_shortname'):
+        meta['owner_shortname'] = f"pos_{meta['owner_shortname']}"
+
     if meta.get('state'):
         if meta.get('state') == 'PENDING':
             meta['state'] = 'pending'
@@ -43,23 +45,31 @@ def apply_modifier(
         else:
             body['company_data']['contract_type'] = 'postpaid'
 
-    if body.get('governorate_shortname'):
-        governorate = body.get('governorate_shortname')
-        if governorate:
-            governorate = governorates_mapper.get(creator.shortname_fixer(governorate))
-            if governorate:
-                body['governorate_shortname'] = governorate
-            else:
-                body['governorate_shortname'] = None
+    if body.get('authorized_details', {}).get('nationality'):
+        nationality = body.get('authorized_details', {}).get('nationality')
+        if nationality:
+            body['authorized_details']['nationality'] = lookup.get(nationality, {}).get('NAME_EN', None)
 
-    if body.get('company_governorate_shortname'):
-        governorate = body.get('company_governorate_shortname')
+    if body.get('authorized_details', {}).get('governorate_shortname'):
+        governorate = body.get('authorized_details', {}).get('governorate_shortname')
         if governorate:
-            governorate = governorates_mapper.get(creator.shortname_fixer(governorate))
-            if governorate:
-                body['company_governorate_shortname'] = governorate
-            else:
-                body['company_governorate_shortname'] = None
+            governorate = governorates_mapper.get(creator.shortname_fixer(governorate), None)
+            body['authorized_details']['governorate_shortname'] = governorate
+
+    if body.get('company_details', {}).get('company_governorate_shortname'):
+        governorate = body.get('company_details', {}).get('company_governorate_shortname')
+        if governorate:
+            governorate = governorates_mapper.get(creator.shortname_fixer(governorate), None)
+            body['company_details']['company_governorate_shortname'] = governorate
+
+    id_record_number = body.get('authorized_details', {}).get('id_record_number')
+    id_page_number = body.get('authorized_details', {}).get('id_page_number')
+
+    if not id_record_number or not re.match(ID_RECORD_NUMBER_REGEX, id_record_number):
+        del body['authorized_details']['id_record_number']
+
+    if not id_page_number or not re.match(ID_RECORD_NUMBER_REGEX, id_page_number):
+        del body['authorized_details']['id_page_number']
 
     return {
         "space_name": space_name,

@@ -15,6 +15,7 @@ PASSWORD = r"^(?=.*\d)(?=.*[A-Z])[a-zA-Z\d]{8,24}$"
 EMAIL = r"^[\w\.-]+@([\w-]+\.)+[\w-]{2,4}$"
 META_DOC_ID = r"^\w*:\w*:meta:[\w\/]+$"
 MSISDN_REGEX = "^7[5789]\d{8}$"  # Exactly 10 digits, not starting with zero
+ID_RECORD_NUMBER_REGEX = "^[a-zA-Z0-9؀-ۿ]{1,20}$"
 OTP_CODE = r"^\d{6}$"  # Exactly 6 digits
 INVITATION = r"^([a-zA-Z0-9_=]+)\.([a-zA-Z0-9_=]+)\.([a-zA-Z0-9_\-\+\/=]*)$"
 ##################################################################################
