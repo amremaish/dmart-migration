@@ -10,6 +10,7 @@ import jsonschema
 
 from dmart import core
 from dmart.helper import branch_path, default_branch, snake_case, camel_case
+from settings import settings
 from utils.db import db_manager
 from utils.mappers import mappers
 
@@ -21,7 +22,7 @@ class SpaceCreator:
 
     def scan(self):
         # init spaces
-        self.spaces_path = Path(str(mappers.dir_path) + '/spaces')
+        self.spaces_path = Path(str(mappers.dir_path) + f'/{settings.spaces_name}')
         if not self.spaces_path.is_dir():
             os.mkdir(self.spaces_path)
 
