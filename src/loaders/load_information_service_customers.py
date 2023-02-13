@@ -1,5 +1,8 @@
+import re
+
 from creator import creator
-from dmart.helper import to_int, governorates_mapper
+from dmart.helper import to_int, governorates_mapper, ICCID_REGEX
+from utils.db import db_manager
 from utils.decorators import process_mapper
 from utils.default_loader import default_loader, meta_fixer, msisdn_fixer
 
@@ -20,15 +23,31 @@ def apply_modifier(
         db_row: dict,
         lookup: dict
 ):
-
     meta = meta_fixer(meta)
+
+    body['ticket_locator']['shortname'] = str(body['ticket_locator']['shortname'])
+    type = db_manager.create_alias('INFORMATION_SERVICE.SERVICE_TYPE_MSG')
+    type = db_row.get(type)
+    ticket_subpath = 'tickets/'
+    if type == 'Change Ownership one side' or type == 'Change Ownership two side':
+        ticket_subpath += 'change_ownership'
+    elif type == 'Dummy':
+        ticket_subpath += 'dummy'
+    elif type == 'Correct-Info':
+        ticket_subpath += 'correct_info'
+    elif type == 'Migration':
+        ticket_subpath += 'migration'
+
+    if body.get('ticket_locator'):
+        body['ticket_locator']['subpath'] = ticket_subpath
+
     msisdn = msisdn_fixer(body.get('msisdn'))
     if msisdn:
         body['msisdn'] = str(msisdn)
 
     # fix customer_type
     if body.get('customer_type') in lookup:
-        body['customer_type'] = lookup[body.get('customer_type')].get('NAME_EN').lower()
+        body['customer_type'] = lookup[body.get('customer_type')].get('NAME_EN').lower().replace(' ', '_')
 
     # fix gender
     if body.get('gender') == 'M':
@@ -58,9 +77,9 @@ def apply_modifier(
     if body.get('id_page_no'):
         body['id_page_no'] = to_int(body.get('id_page_no'))
 
-    # fix residence_number
-    if body.get('residence_number'):
-        body['residence_number'] = to_int(body.get('residence_number'))
+    if not body.get('iccid') or not re.match(ICCID_REGEX, body.get('iccid')):
+        del body['iccid']
+
     return {
         "space_name": space_name,
         "subpath": subpath,
