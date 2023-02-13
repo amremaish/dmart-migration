@@ -74,6 +74,6 @@
     "space_name": "aftersales",
     "subpath": "contracts",
     "schema_shortname": "contract",
-    "resource_type": "content"
+    "resource_type": "ticket"
   }
 }
