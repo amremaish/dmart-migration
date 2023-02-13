@@ -110,7 +110,7 @@ def save_attachment(space_name, subpath, entry_shortname, owner_shortname, file_
     payload = Payload(
         content_type=type,
         checksum=generate_checksum(file_path),
-        body=file_path.name,
+        body=f'{name}.{ext}',
     )
     owner_shortname = creator.shortname_fixer(owner_shortname)
     attach = Attachment(shortname=name, owner_shortname=owner_shortname, payload=payload)
