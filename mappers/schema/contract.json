@@ -1,35 +1,70 @@
 {
   "type": "object",
-  "title": "customer schema",
+  "title": "contract schema",
   "properties": {
+    "ticket_locator": {
+      "type": "object",
+      "properties": {
+        "shortname": {
+          "type": "string"
+        },
+        "subpath": {
+          "type": "string"
+        }
+      },
+      "required": []
+    },
+    "customer_name": {
+      "type": "string"
+    },
     "msisdn": {
       "type": "string"
     },
     "iccid": {
-      "type": "string"
+      "type": "string",
+      "pattern": "^89964\\d{14}$"
     },
     "customer_type": {
       "type": "string",
       "enum": [
         "individual",
-        "refugee",
-        "local company",
         "government",
         "multinational",
         "others",
-        "corporate"
+        "refugee",
+        "local_company"
       ]
     },
-    "id_number": {
-      "type": "string"
+    "customer_id_type": {
+      "type": "string",
+      "enum": [
+        "civilian_id",
+        "national_id",
+        "passport"
+      ]
+    },
+    "civilian_id_number": {
+      "type": "number",
+      "pattern": "^[0-9]{8}$"
+    },
+    "national_id_number": {
+      "type": "number",
+      "pattern": "^[0-9]{12}$"
     },
     "id_page_no": {
       "type": "number"
     },
+    "passport_number": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9]{7,9}$"
+    },
     "record_number": {
       "type": "string"
     },
-    "id_creation": {
+    "id_creation_date": {
+      "type": "string"
+    },
+    "email": {
       "type": "string"
     },
     "mother_name": {
@@ -38,13 +73,22 @@
     "address": {
       "type": "object",
       "properties": {
+        "address_name": {
+          "type": "string"
+        },
         "governorate_shortname": {
           "type": "string"
         },
-        "line": {
+        "sector": {
           "type": "string"
         },
         "district": {
+          "type": "string"
+        },
+        "street_name": {
+          "type": "string"
+        },
+        "building_number": {
           "type": "string"
         }
       },
@@ -67,7 +111,7 @@
       "type": "string"
     },
     "residence_number": {
-      "type": "number"
+      "type": "string"
     }
   },
   "required": []

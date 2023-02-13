@@ -3,6 +3,7 @@
     "table": "INFORMATION_SERVICE",
     "columns": [
       "INFORMATION_SERVICE.ID",
+      "INFORMATION_SERVICE.SERVICE_TYPE_MSG",
       "INFORMATION_SERVICE.ACTION_START_TIME",
       "INFORMATION_SERVICE.ACTION_END_TIME",
       "INFORMATION_SERVICE.CREATION_DATE",
@@ -23,6 +24,8 @@
       "INFORMATION_SERVICE.CUSTOMER_TYPE",
       "INFORMATION_SERVICE.BIRTH_PLACE",
       "INFORMATION_SERVICE.CITY",
+      "INFORMATION_SERVICE.STREET_NAME",
+      "INFORMATION_SERVICE.HOUSE_NUMBER",
       "INFORMATION_SERVICE.DISTRICT_ONE"
     ],
     "where": "REQUEST_TYPE = 'Registration'"
@@ -31,18 +34,24 @@
     "meta": {
       "shortname": "INFORMATION_SERVICE.ID",
       "displayname": {
-        "en": "",
-        "ar": "",
-        "kd": ""
+        "en": "INFORMATION_SERVICE.CUSTOMER_NAME",
+        "ar": "INFORMATION_SERVICE.CUSTOMER_NAME",
+        "kd": "INFORMATION_SERVICE.CUSTOMER_NAME"
       },
       "updated_at": "INFORMATION_SERVICE.UPDATED_DATE",
       "created_at": "INFORMATION_SERVICE.CREATION_DATE",
       "is_active": "INFORMATION_SERVICE.STATUS"
     },
     "body": {
+      "ticket_locator" : {
+        "shortname" : "INFORMATION_SERVICE.ID",
+        "subpath" : ""
+      },
+      "customer_name": "INFORMATION_SERVICE.CUSTOMER_NAME",
       "msisdn": "INFORMATION_SERVICE.MOBILE_NUMBER",
       "iccid": "INFORMATION_SERVICE.SIM_SERIAL",
       "customer_type": "INFORMATION_SERVICE.CUSTOMER_TYPE",
+      "customer_id_type": "civilian_id",
       "id_number": "INFORMATION_SERVICE.ID_NO",
       "id_page_no": "INFORMATION_SERVICE.ID_PAGE_NUMBER",
       "record_number": "INFORMATION_SERVICE.RECORD_NUMBER",
@@ -53,9 +62,11 @@
       "nationality": "INFORMATION_SERVICE.NATIONALITY_ID",
       "residence_number": "INFORMATION_SERVICE.RESIDENCE_NUMBER",
       "address": {
-          "governorate_shortname" : "INFORMATION_SERVICE.GOVERNORATE_ID",
-          "line" : "INFORMATION_SERVICE.CITY",
-          "district" : "INFORMATION_SERVICE.DISTRICT_ONE"
+        "governorate_shortname": "INFORMATION_SERVICE.GOVERNORATE_ID",
+        "sector": "INFORMATION_SERVICE.CITY",
+        "street_name": "INFORMATION_SERVICE.STREET_NAME",
+        "building_number": "INFORMATION_SERVICE.HOUSE_NUMBER",
+        "district": "INFORMATION_SERVICE.DISTRICT_ONE"
       }
     }
   },
