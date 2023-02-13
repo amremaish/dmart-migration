@@ -9,7 +9,8 @@ from pathlib import Path
 
 from creator import creator
 from dmart.core import Attachment, Payload
-from dmart.helper import split_file_name
+from dmart.helper import split_file_name, to_int
+from utils.db import db_manager
 
 
 def load_mover(mover: str):
@@ -39,18 +40,20 @@ def move_attachments(loader: str):
     print("Successfully done.")
 
 
-def apply_compare_date(from_date, to_date, folder_date):
+def apply_compare_date(from_date, to_date, folder_date, format: str = None):
+    if not format:
+        format = '%Y-%m-%d'
     try:
         if from_date:
             from_date = datetime.strptime(from_date, '%Y-%m-%d')
-            folder_date = datetime.strptime(folder_date, '%Y-%m-%d')
+            folder_date = datetime.strptime(folder_date, format)
             if to_date:
                 to_date = datetime.strptime(to_date, '%Y-%m-%d')
                 return from_date < folder_date < to_date
 
             return from_date < folder_date
     except:
-        print(f"can't convert dates (empty is ok) {from_date} or {folder_date} or {to_date} to Y-m-d")
+        print(f"can't convert dates {from_date} or {folder_date} or {to_date} to Y-m-d")
 
     return False
 
@@ -80,7 +83,7 @@ def save_attachment(space_name, subpath, entry_shortname, owner_shortname, file_
             / '.dm'
             / str(entry_shortname)
     )
-    if not folder_path.exists():
+    if not folder_path.exists() or not entry_shortname:
         print(f'WARRING: this "{folder_path}" entry folder does not exist.')
         return None
 
@@ -99,27 +102,55 @@ def save_attachment(space_name, subpath, entry_shortname, owner_shortname, file_
         file.write(attach.json(exclude_none=True))
 
 
+def find_pos_shortname(pos_id):
+    try:
+        db_result = db_manager.select_query(
+            table_name="POS_USER",
+            columns=['ID', 'POS_ID'],
+            where=f"ID = '{str(to_int(pos_id))}'",
+            limit=1,
+            offset=0)
+        if db_result.get('total') > 0:
+            return db_result.get('data')[0].get('POS_ID')
+    except:
+        pass
+    return ''
+
+
+def find_sim_swap_id(contract_name):
+    try:
+        db_result = db_manager.select_query(
+            table_name="SIM_SWAP",
+            columns=['ID', 'CONTRACT_NAME'],
+            where=f"CONTRACT_NAME = '{contract_name}'",
+            limit=1,
+            offset=0)
+        if db_result.get('total') > 0:
+            return db_result.get('data')[0].get('ID')
+    except:
+        pass
+    return ''
+
+
 def move_contracts(folder_path, space_name, subpath, extra: dict):
     contracts_paths = []
     # load zip files
-    for _, dirs, _ in os.walk(folder_path):
+    for date_dir in os.scandir(folder_path):
         # loop into dates
-        for dir in dirs:
-            if not apply_compare_date(extra.get('from_date'), extra.get('to_date'), dir):
-                continue
-            for _, _, files in os.walk(f'{folder_path}/{dir}'):
-                # loop into zip files
-                for file in files:
-                    if file.endswith(".zip"):
-                        shortname, owner_shortname = extract_shortname_file_name(file)
-                        if shortname:
-                            contracts_paths.append(
-                                {
-                                    'shortname': shortname,
-                                    'owner_shortname': owner_shortname,
-                                    'path': f'{folder_path}/{dir}/{file}'
-                                }
-                            )
+        if not apply_compare_date(extra.get('from_date'), extra.get('to_date'), date_dir.name):
+            continue
+        for file in os.scandir(date_dir.path):
+            # loop into zip files
+            if file.name.endswith(".zip"):
+                shortname, owner_shortname = extract_shortname_file_name(file.name)
+                if shortname:
+                    contracts_paths.append(
+                        {
+                            'shortname': shortname,
+                            'owner_shortname': owner_shortname,
+                            'path': file.path
+                        }
+                    )
 
     for contract in contracts_paths:
         shortname = contract.get('shortname')
@@ -133,3 +164,27 @@ def move_contracts(folder_path, space_name, subpath, extra: dict):
                 save_attachment(space_name, subpath, shortname, owner_shortname, Path(f'{tmp_folder}/{file.filename}'))
             shutil.rmtree(tmp_folder)
 
+
+def move_sim_swap(folder_path, space_name, subpath, extra: dict):
+    contracts_paths = []
+    for date_dir in os.scandir(folder_path):
+        # loop into dates
+        if not apply_compare_date(extra.get('from_date'), extra.get('to_date'), date_dir.name, '%y%m%d'):
+            continue
+        for pos_dir in os.scandir(date_dir.path):
+            for contract_dir in os.scandir(pos_dir.path):
+                contracts_paths.append(
+                    {
+                        'shortname': contract_dir.name,
+                        'owner_shortname': pos_dir.name,
+                        'path': contract_dir.path
+                    }
+                )
+
+    for contract in contracts_paths:
+        owner_shortname = find_pos_shortname(contract.get('owner_shortname'))
+        if not owner_shortname:
+            owner_shortname = 'dmart'
+        shortname = find_sim_swap_id(contract.get('shortname'))
+        for file in os.scandir(contract.get('path')):
+            save_attachment(space_name, subpath, shortname, owner_shortname, Path(file.path))

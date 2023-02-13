@@ -28,3 +28,4 @@ migrate information_service_customers
 migrate reasons # Don't migrate
 ---- movers (move attachments)-----
 move contracts
+move sim_swap

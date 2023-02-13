@@ -7,5 +7,14 @@
       "from_date" :  "1996-01-20",
       "to_date" : ""
     }
+  },
+  "sim_swap": {
+    "folder_path": "/home/amr/Downloads/amr/simswap",
+    "space_name": "aftersales",
+    "subpath": "tickets/sim_swap",
+    "extra": {
+      "from_date" :  "1996-01-20",
+      "to_date" : ""
+    }
   }
 }
