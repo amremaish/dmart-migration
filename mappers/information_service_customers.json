@@ -40,7 +40,8 @@
       },
       "updated_at": "INFORMATION_SERVICE.UPDATED_DATE",
       "created_at": "INFORMATION_SERVICE.CREATION_DATE",
-      "is_active": "INFORMATION_SERVICE.STATUS"
+      "is_active": "INFORMATION_SERVICE.STATUS",
+      "workflow_shortname": "contract"
     },
     "body": {
       "ticket_locator" : {
