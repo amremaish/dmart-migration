@@ -75,6 +75,25 @@ def generate_checksum(file_path):
         return checksum
 
 
+def fix_attachment_name(file_name):
+    name, ext, type = split_file_name(file_name)
+    if 'SECOND_FINGERPRINT' in file_name:
+        name = 'second_fingerprint'
+    elif 'SECOND_SIGNATURE' in file_name:
+        name = 'second_signature'
+    elif 'SECOND_CUST_PHOTO' in file_name:
+        name = 'second_live_photo'
+    elif 'FINGERPRINT' in file_name:
+        name = 'fingerprint'
+    elif 'SIGNATURE' in file_name:
+        name = 'signature'
+    elif 'CUST_PHOTO' in file_name:
+        name = 'live_photo'
+    else:
+        name = file_name
+    return name, ext, type
+
+
 def save_attachment(space_name, subpath, entry_shortname, owner_shortname, file_path: Path):
     folder_path = (
             creator.spaces_path
@@ -87,17 +106,18 @@ def save_attachment(space_name, subpath, entry_shortname, owner_shortname, file_
         print(f'WARRING: this "{folder_path}" entry folder does not exist.')
         return None
 
-    name, ext, type = split_file_name(file_path.name)
+    name, ext, type = fix_attachment_name(file_path.name)
     payload = Payload(
         content_type=type,
         checksum=generate_checksum(file_path),
         body=file_path.name,
     )
+    owner_shortname = creator.shortname_fixer(owner_shortname)
     attach = Attachment(shortname=name, owner_shortname=owner_shortname, payload=payload)
     attachment_path = folder_path / 'attachments.media'
     if not attachment_path.exists():
         os.makedirs(attachment_path)
-    shutil.copyfile(file_path, attachment_path / file_path.name)
+    shutil.copyfile(file_path, attachment_path / f'{name}.{ext}')
     with open(attachment_path / f'meta.{name}.json', 'w') as file:
         file.write(attach.json(exclude_none=True))
 
@@ -139,18 +159,19 @@ def move_contracts(folder_path, space_name, subpath, extra: dict):
         # loop into dates
         if not apply_compare_date(extra.get('from_date'), extra.get('to_date'), date_dir.name):
             continue
-        for file in os.scandir(date_dir.path):
-            # loop into zip files
-            if file.name.endswith(".zip"):
-                shortname, owner_shortname = extract_shortname_file_name(file.name)
-                if shortname:
-                    contracts_paths.append(
-                        {
-                            'shortname': shortname,
-                            'owner_shortname': owner_shortname,
-                            'path': file.path
-                        }
-                    )
+        for pos_dir in os.scandir(date_dir.path):
+            for file in os.scandir(pos_dir.path):
+                # loop into zip files
+                if file.name.endswith(".zip"):
+                    shortname, owner_shortname = extract_shortname_file_name(file.name)
+                    if shortname:
+                        contracts_paths.append(
+                            {
+                                'shortname': shortname,
+                                'owner_shortname': pos_dir.name,
+                                'path': file.path
+                            }
+                        )
 
     for contract in contracts_paths:
         shortname = contract.get('shortname')
