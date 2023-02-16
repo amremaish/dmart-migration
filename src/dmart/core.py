@@ -260,7 +260,7 @@ class Collabolator(Resource):
 class Ticket(Meta):
     state: str = 'pending'
     workflow_shortname: str
-    collaborators: list[Collabolator] | None = None
+    collaborators: dict[str, str] | None = None
     resolution_reason: str | None = None
 
 
