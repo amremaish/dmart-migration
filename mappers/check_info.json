@@ -13,6 +13,12 @@
         "pk_id": "LOOKUP.ID",
         "fk_id": "SIM_SWAP.REASON",
         "join_type": "LEFT"
+      },
+      {
+        "table": "USER_ADMIN",
+        "pk_id": "USER_ADMIN.ID",
+        "fk_id": "SIM_SWAP.USER_ID",
+        "join_type": "LEFT"
       }
     ],
     "where" : "REQUEST_TYPE = 'Check-Info'",
@@ -30,7 +36,8 @@
       "SIM_SWAP.TOTERS_LINK",
       "SIM_SWAP.CALLBACK_NUMBER",
       "LOOKUP.NAME_EN",
-      "POS_USER.POS_ID"
+      "POS_USER.POS_ID",
+      "USER_ADMIN.USER_NAME"
     ]
   },
   "columns_mapper": {
@@ -46,7 +53,10 @@
       "created_at": "SIM_SWAP.CREATION_DATE",
       "is_active": "SIM_SWAP.STATUS",
       "state": "SIM_SWAP.STATUS_MSG",
-      "resolution_reason": "LOOKUP.NAME_EN"
+      "resolution_reason": "LOOKUP.NAME_EN",
+      "collaborators": {
+        "locked_by": "USER_ADMIN.USER_NAME"
+      }
     },
     "body": {
       "msisdn": "SIM_SWAP.MSISDN",

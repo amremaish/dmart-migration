@@ -24,6 +24,12 @@ def apply_modifier(
 ):
     meta = meta_fixer(meta)
 
+    if meta.get('collaborators', {}).get('locked_by'):
+        meta['collaborators']['locked_by'] = creator.shortname_fixer(meta['collaborators']['locked_by'])
+    else:
+        if meta.get('collaborators', {}):
+            del meta['collaborators']
+
     meta['workflow_shortname'] = 'check_info'
     if meta.get('state'):
         if meta.get('state') == 'DELIVERED':
