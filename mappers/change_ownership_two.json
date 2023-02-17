@@ -19,6 +19,12 @@
         "pk_id": "CHANGE_OWNERSHIP_SERVICE.ID",
         "fk_id": "INFORMATION_SERVICE.ID",
         "join_type": "LEFT"
+      },
+      {
+        "table": "USER_ADMIN",
+        "pk_id": "USER_ADMIN.ID",
+        "fk_id": "SIM_SWAP.USER_ID",
+        "join_type": "LEFT"
       }
     ],
     "where" : "SERVICE_TYPE_MSG = 'Change Ownership two side' and REQUEST_TYPE = 'Check-Info'",
@@ -36,7 +42,8 @@
       "INFORMATION_SERVICE.CALLBACK_PHONE",
       "CHANGE_OWNERSHIP_SERVICE.SECOND_CUSTOMER_NAME",
       "CHANGE_OWNERSHIP_SERVICE.SECOND_CUSTOMER_CALLBACK",
-      "LOOKUP.NAME_EN"
+      "LOOKUP.NAME_EN",
+      "INFORMATION_SERVICE.USER_NAME"
 
     ]
   },
@@ -53,7 +60,10 @@
       "created_at": "INFORMATION_SERVICE.CREATION_DATE",
       "is_active": "INFORMATION_SERVICE.STATUS",
       "state": "INFORMATION_SERVICE.STATUS_MSG",
-      "resolution_reason": "LOOKUP.NAME_EN"
+      "resolution_reason": "LOOKUP.NAME_EN",
+      "collaborators": {
+        "locked_by": "USER_ADMIN.USER_NAME"
+      }
     },
     "body": {
       "service_type": "two_side",

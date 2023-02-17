@@ -19,6 +19,12 @@
         "pk_id": "OTHER_SERVICE.ID",
         "fk_id": "VAS_SERVICE.ID",
         "join_type": "LEFT"
+      },
+      {
+        "table": "USER_ADMIN",
+        "pk_id": "USER_ADMIN.ID",
+        "fk_id": "OTHER_SERVICE.USER_ID",
+        "join_type": "LEFT"
       }
     ],
     "where": "REQUEST_TYPE_FILTER = 'Add-Remove VAS Service'",
@@ -36,7 +42,8 @@
       "VAS_SERVICE.SERVICE_TYPE",
       "VAS_SERVICE.REQUEST_TYPE",
       "VAS_SERVICE.SHORT_CODE",
-      "LOOKUP.NAME_EN"
+      "LOOKUP.NAME_EN",
+      "USER_ADMIN.USER_NAME"
     ]
   },
   "columns_mapper": {
@@ -52,7 +59,10 @@
       "created_at": "OTHER_SERVICE.CREATION_DATE",
       "is_active": "OTHER_SERVICE.STATUS",
       "state": "OTHER_SERVICE.STATUS_MSG",
-      "resolution_reason": "LOOKUP.NAME_EN"
+      "resolution_reason": "LOOKUP.NAME_EN",
+      "collaborators": {
+        "locked_by": "USER_ADMIN.USER_NAME"
+      }
     },
     "body": {
       "msisdn": "OTHER_SERVICE.CUSTOMER_MSISDN",

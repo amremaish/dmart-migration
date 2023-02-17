@@ -19,6 +19,12 @@
         "pk_id": "OTHER_SERVICE.ID",
         "fk_id": "RECHARGE_COMPENSATION_SERVICE.ID",
         "join_type": "LEFT"
+      },
+      {
+        "table": "USER_ADMIN",
+        "pk_id": "USER_ADMIN.ID",
+        "fk_id": "OTHER_SERVICE.USER_ID",
+        "join_type": "LEFT"
       }
     ],
     "where" : "REQUEST_TYPE_FILTER = 'RC Compensation'",
@@ -35,7 +41,8 @@
       "RECHARGE_COMPENSATION_SERVICE.CALL_BACK_NO",
       "RECHARGE_COMPENSATION_SERVICE.CARDSERIAL",
       "RECHARGE_COMPENSATION_SERVICE.CARD_DOMINATION",
-      "LOOKUP.NAME_EN"
+      "LOOKUP.NAME_EN",
+      "USER_ADMIN.USER_NAME"
 
     ]
   },
@@ -52,7 +59,10 @@
       "created_at": "OTHER_SERVICE.CREATION_DATE",
       "is_active": "OTHER_SERVICE.STATUS",
       "state": "OTHER_SERVICE.STATUS_MSG",
-      "resolution_reason": "LOOKUP.NAME_EN"
+      "resolution_reason": "LOOKUP.NAME_EN",
+      "collaborators": {
+        "locked_by": "USER_ADMIN.USER_NAME"
+      }
     },
     "body": {
       "msisdn": "OTHER_SERVICE.CUSTOMER_MSISDN",
