@@ -13,6 +13,12 @@
         "pk_id": "LOOKUP.ID",
         "fk_id": "INFORMATION_SERVICE.REASON",
         "join_type": "LEFT"
+      },
+      {
+        "table": "USER_ADMIN",
+        "pk_id": "USER_ADMIN.ID",
+        "fk_id": "SIM_SWAP.USER_ID",
+        "join_type": "LEFT"
       }
     ],
     "where" : "SERVICE_TYPE_MSG = 'Dummy' and REQUEST_TYPE = 'Check-Info'",
@@ -29,7 +35,8 @@
       "INFORMATION_SERVICE.SIM_SERIAL",
       "POS_USER.POS_ID",
       "INFORMATION_SERVICE.CUSTOMER_NAME",
-      "LOOKUP.NAME_EN"
+      "LOOKUP.NAME_EN",
+      "USER_ADMIN.USER_NAME"
 
     ]
   },
@@ -46,7 +53,10 @@
       "created_at": "INFORMATION_SERVICE.CREATION_DATE",
       "is_active": "INFORMATION_SERVICE.STATUS",
       "state": "INFORMATION_SERVICE.STATUS_MSG",
-      "resolution_reason": "LOOKUP.NAME_EN"
+      "resolution_reason": "LOOKUP.NAME_EN",
+      "collaborators": {
+        "locked_by": "USER_ADMIN.USER_NAME"
+      }
     },
     "body": {
       "msisdn": "INFORMATION_SERVICE.MOBILE_NUMBER",
