@@ -17,7 +17,7 @@
       {
         "table": "USER_ADMIN",
         "pk_id": "USER_ADMIN.ID",
-        "fk_id": "SIM_SWAP.USER_ID",
+        "fk_id": "INFORMATION_SERVICE.USER_ID",
         "join_type": "LEFT"
       }
     ],
