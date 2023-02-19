@@ -3,7 +3,7 @@ import time
 from datetime import datetime
 from multiprocessing import Process
 from creator import creator
-from dmart.helper import MSISDN_REGEX
+from dmart.helper import MSISDN_REGEX, governorates_mapper
 from settings import settings
 from utils.db import db_manager
 
@@ -68,6 +68,7 @@ def execute(kwargs, apply_modifier, offset, lookup):
         meta, body = creator.convert_db_to_meta(row, mapper_data)
         creator.shortname_deep_fixer(meta)
         creator.shortname_deep_fixer(body)
+        meta, body = fix_for_all(meta, body, lookup)
         if apply_modifier:
             modified = apply_modifier(
                 space_name=space_name,
@@ -112,6 +113,20 @@ def execute(kwargs, apply_modifier, offset, lookup):
         )
     print(f'Executed in {"{:.2f}".format(time.time() - sub_before_time)} sec')
     exit(False)
+
+
+def fix_for_all(meta: dict, body: dict, lookup: dict):
+    if meta.get('collaborators', {}).get('locked_by'):
+        meta['collaborators']['locked_by'] = creator.shortname_fixer(meta['collaborators']['locked_by'])
+    else:
+        if meta.get('collaborators', {}):
+            del meta['collaborators']
+
+    if meta.get('reporter', {}).get('governorate'):
+        governorate = lookup[meta['reporter']['governorate']].get('NAME_EN')
+        governorate = governorates_mapper.get(creator.shortname_fixer(governorate), None)
+        meta['reporter']['governorate'] = governorate
+    return meta, body
 
 
 def meta_fixer(meta: dict):

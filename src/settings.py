@@ -13,8 +13,8 @@ class Settings(BaseSettings):
     db_port: str = "1526"
     db_name: str = 'mobtst'
     spaces_name = 'spaces'
-    fetch_limit = 10000
-    max_records = -1
+    fetch_limit = 100
+    max_records = 100
     db_driver: str = DBType.ORACLE
 
     class Config:

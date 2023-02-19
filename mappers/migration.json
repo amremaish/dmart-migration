@@ -13,6 +13,30 @@
         "pk_id": "LOOKUP.ID",
         "fk_id": "INFORMATION_SERVICE.REASON",
         "join_type": "LEFT"
+      },
+      {
+        "table": "USER_ADMIN",
+        "pk_id": "USER_ADMIN.ID",
+        "fk_id": "INFORMATION_SERVICE.USER_ID",
+        "join_type": "LEFT"
+      },
+      {
+        "table": "USER_TYPE",
+        "pk_id": "USER_TYPE.ID",
+        "fk_id": "POS_USER.TYPE_ID",
+        "join_type": "LEFT"
+      },
+      {
+        "table": "POS_DISTRIBUTORS",
+        "pk_id": "POS_DISTRIBUTORS.POS_USER_ID",
+        "fk_id": "POS_USER.ID",
+        "join_type": "LEFT"
+      },
+      {
+        "table": "DISTRIBUTORS",
+        "pk_id": "POS_DISTRIBUTORS.DISTRIBUTOR_ID",
+        "fk_id": "DISTRIBUTORS.ID",
+        "join_type": "LEFT"
       }
     ],
     "where": "SERVICE_TYPE_MSG = 'Migration' and REQUEST_TYPE = 'Check-Info'",
@@ -29,7 +53,13 @@
       "INFORMATION_SERVICE.CUSTOMER_NAME",
       "INFORMATION_SERVICE.CALLBACK_PHONE",
       "INFORMATION_SERVICE.SIM_SERIAL",
-      "LOOKUP.NAME_EN"
+      "LOOKUP.NAME_EN",
+      "USER_ADMIN.USER_NAME",
+      "POS_USER.GOVERNORATE_ID",
+      "DISTRIBUTORS.NAME",
+      "USER_TYPE.NAME",
+      "POS_USER.MOBILE_NO",
+      "POS_USER.NAME"
     ]
   },
   "columns_mapper": {
@@ -45,7 +75,17 @@
       "created_at": "INFORMATION_SERVICE.CREATION_DATE",
       "is_active": "INFORMATION_SERVICE.STATUS",
       "state": "INFORMATION_SERVICE.STATUS_MSG",
-      "resolution_reason": "LOOKUP.NAME_EN"
+      "resolution_reason": "LOOKUP.NAME_EN",
+      "collaborators": {
+        "locked_by": "USER_ADMIN.USER_NAME"
+      },
+      "reporter": {
+        "type": "USER_TYPE.NAME",
+        "name": "POS_USER.NAME",
+        "msisdn": "POS_USER.MOBILE_NO",
+        "distributor": "DISTRIBUTORS.NAME",
+        "governorate": "POS_USER.GOVERNORATE_ID"
+      }
     },
     "body": {
       "msisdn": "INFORMATION_SERVICE.MOBILE_NUMBER",

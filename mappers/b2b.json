@@ -13,6 +13,24 @@
         "pk_id": "POS_USER.ID",
         "fk_id": "SIM_TRANSACTION.POS_ID",
         "join_type": "LEFT"
+      },
+      {
+        "table": "USER_TYPE",
+        "pk_id": "USER_TYPE.ID",
+        "fk_id": "POS_USER.TYPE_ID",
+        "join_type": "LEFT"
+      },
+      {
+        "table": "POS_DISTRIBUTORS",
+        "pk_id": "POS_DISTRIBUTORS.POS_USER_ID",
+        "fk_id": "POS_USER.ID",
+        "join_type": "LEFT"
+      },
+      {
+        "table": "DISTRIBUTORS",
+        "pk_id": "POS_DISTRIBUTORS.DISTRIBUTOR_ID",
+        "fk_id": "DISTRIBUTORS.ID",
+        "join_type": "LEFT"
       }
     ],
     "columns": [
@@ -61,7 +79,12 @@
       "SIM_TRANSACTION_USER_DETAIL.COMPANY_STREET",
       "SIM_TRANSACTION_USER_DETAIL.SUBSCRIBER_CARD_TYPE_ID",
       "SIM_TRANSACTION_USER_DETAIL.FAX",
-      "SIM_TRANSACTION_USER_DETAIL.SUBSCRIBER_CARD_TYPE"
+      "SIM_TRANSACTION_USER_DETAIL.SUBSCRIBER_CARD_TYPE",
+      "POS_USER.GOVERNORATE_ID",
+      "DISTRIBUTORS.NAME",
+      "USER_TYPE.NAME",
+      "POS_USER.MOBILE_NO",
+      "POS_USER.NAME"
     ]
   },
   "columns_mapper": {
@@ -79,7 +102,14 @@
       "email": "SIM_TRANSACTION_USER_DETAIL.COMPANY_EMAIL",
       "updated_at": "SIM_TRANSACTION.UPDATED_DATE",
       "created_at": "SIM_TRANSACTION.CREATION_DATE",
-      "workflow_shortname": "b2b"
+      "workflow_shortname": "b2b",
+      "reporter": {
+        "type": "USER_TYPE.NAME",
+        "name": "POS_USER.NAME",
+        "msisdn": "POS_USER.MOBILE_NO",
+        "distributor": "DISTRIBUTORS.NAME",
+        "governorate" : "POS_USER.GOVERNORATE_ID"
+      }
     },
     "body": {
       "company_data": {

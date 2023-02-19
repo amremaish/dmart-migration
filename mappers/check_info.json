@@ -19,9 +19,27 @@
         "pk_id": "USER_ADMIN.ID",
         "fk_id": "SIM_SWAP.USER_ID",
         "join_type": "LEFT"
+      },
+      {
+        "table": "USER_TYPE",
+        "pk_id": "USER_TYPE.ID",
+        "fk_id": "POS_USER.TYPE_ID",
+        "join_type": "LEFT"
+      },
+      {
+        "table": "POS_DISTRIBUTORS",
+        "pk_id": "POS_DISTRIBUTORS.POS_USER_ID",
+        "fk_id": "POS_USER.ID",
+        "join_type": "LEFT"
+      },
+      {
+        "table": "DISTRIBUTORS",
+        "pk_id": "POS_DISTRIBUTORS.DISTRIBUTOR_ID",
+        "fk_id": "DISTRIBUTORS.ID",
+        "join_type": "LEFT"
       }
     ],
-    "where" : "REQUEST_TYPE = 'Check-Info'",
+    "where": "REQUEST_TYPE = 'Check-Info'",
     "columns": [
       "SIM_SWAP.ID",
       "SIM_SWAP.ACTION_START_TIME",
@@ -37,7 +55,12 @@
       "SIM_SWAP.CALLBACK_NUMBER",
       "LOOKUP.NAME_EN",
       "POS_USER.POS_ID",
-      "USER_ADMIN.USER_NAME"
+      "POS_USER.GOVERNORATE_ID",
+      "USER_ADMIN.USER_NAME",
+      "DISTRIBUTORS.NAME",
+      "USER_TYPE.NAME",
+      "POS_USER.MOBILE_NO",
+      "POS_USER.NAME"
     ]
   },
   "columns_mapper": {
@@ -48,7 +71,7 @@
         "ar": "",
         "kd": ""
       },
-      "owner_shortname" : "POS_USER.POS_ID",
+      "owner_shortname": "POS_USER.POS_ID",
       "updated_at": "SIM_SWAP.UPDATED_DATE",
       "created_at": "SIM_SWAP.CREATION_DATE",
       "is_active": "SIM_SWAP.STATUS",
@@ -56,15 +79,22 @@
       "resolution_reason": "LOOKUP.NAME_EN",
       "collaborators": {
         "locked_by": "USER_ADMIN.USER_NAME"
+      },
+      "reporter": {
+        "type": "USER_TYPE.NAME",
+        "name": "POS_USER.NAME",
+        "msisdn": "POS_USER.MOBILE_NO",
+        "distributor": "DISTRIBUTORS.NAME",
+        "governorate" : "POS_USER.GOVERNORATE_ID"
       }
     },
     "body": {
       "msisdn": "SIM_SWAP.MSISDN",
-      "iccid" : "SIM_SWAP.ICCID",
-      "customer_name" : "SIM_SWAP.NAME",
-      "callback_number" : "SIM_SWAP.CALLBACK_NUMBER",
-      "delivery_tracking_link" : "SIM_SWAP.TOTERS_LINK",
-      "service_type" : "check_info"
+      "iccid": "SIM_SWAP.ICCID",
+      "customer_name": "SIM_SWAP.NAME",
+      "callback_number": "SIM_SWAP.CALLBACK_NUMBER",
+      "delivery_tracking_link": "SIM_SWAP.TOTERS_LINK",
+      "service_type": "check_info"
     }
   },
   "dest": {

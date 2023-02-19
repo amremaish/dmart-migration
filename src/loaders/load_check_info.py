@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from creator import creator
+from dmart.helper import governorates_mapper
 from utils.db import db_manager
 from utils.decorators import process_mapper
 from utils.default_loader import default_loader, meta_fixer, msisdn_fixer
@@ -23,12 +24,6 @@ def apply_modifier(
         lookup: dict
 ):
     meta = meta_fixer(meta)
-
-    if meta.get('collaborators', {}).get('locked_by'):
-        meta['collaborators']['locked_by'] = creator.shortname_fixer(meta['collaborators']['locked_by'])
-    else:
-        if meta.get('collaborators', {}):
-            del meta['collaborators']
 
     meta['workflow_shortname'] = 'check_info'
     if meta.get('state'):

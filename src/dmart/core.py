@@ -257,8 +257,18 @@ class Collabolator(Resource):
     shortname: str
 
 
+class Reporter(Resource):
+    type: str | None = None
+    name: str | None = None
+    channel: str | None = None
+    distributor: str | None = None
+    governorate: str | None = None
+    msisdn: str | None = None
+    channel_address: dict | None = None
+
 class Ticket(Meta):
     state: str = 'pending'
+    reporter: Reporter | None = None
     workflow_shortname: str
     collaborators: dict[str, str] | None = None
     resolution_reason: str | None = None
