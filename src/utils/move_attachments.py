@@ -89,8 +89,7 @@ def fix_attachment_name(file_name):
         name = 'signature'
     elif 'CUST_PHOTO' in file_name:
         name = 'live_photo'
-    else:
-        name = file_name
+
     return name, ext, type
 
 
