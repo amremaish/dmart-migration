@@ -97,7 +97,7 @@
     }
   },
   "dest": {
-    "space_name": "aftersales",
+    "space_name": "b2c",
     "subpath": "tickets/migration",
     "schema_shortname": "migration",
     "resource_type": "ticket"

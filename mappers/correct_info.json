@@ -97,7 +97,7 @@
     }
   },
   "dest": {
-    "space_name": "aftersales",
+    "space_name": "b2c",
     "subpath": "tickets/correct_info",
     "schema_shortname": "correct_info",
     "resource_type": "ticket"

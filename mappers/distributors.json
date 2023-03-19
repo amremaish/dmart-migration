@@ -51,7 +51,7 @@
     }
   },
   "dest": {
-    "space_name": "management",
+    "space_name": "applications",
     "subpath": "collections/distributors",
     "schema_shortname": "distributor_profile",
     "resource_type": "content"

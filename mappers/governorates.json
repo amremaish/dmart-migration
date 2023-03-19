@@ -46,7 +46,7 @@
     }
   },
   "dest": {
-    "space_name": "ordering",
+    "space_name": "applications",
     "subpath": "collections/governorates",
     "schema_shortname": "governorate",
     "resource_type": "content"

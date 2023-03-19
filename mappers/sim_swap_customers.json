@@ -31,8 +31,8 @@
     }
   },
   "dest": {
-    "space_name": "aftersales",
-    "subpath": "contracts",
+    "space_name": "contracts",
+    "subpath": "tickets",
     "schema_shortname": "contract",
     "resource_type": "content"
   }

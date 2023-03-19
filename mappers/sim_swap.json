@@ -95,7 +95,7 @@
     }
   },
   "dest": {
-    "space_name": "aftersales",
+    "space_name": "b2c",
     "subpath": "tickets/sim_swap",
     "schema_shortname": "sim_swap",
     "resource_type": "ticket"

@@ -104,7 +104,7 @@
     }
   },
   "dest": {
-    "space_name": "aftersales",
+    "space_name": "b2c",
     "subpath": "tickets/rc_compensation",
     "schema_shortname": "rc_compensation",
     "resource_type": "ticket"
