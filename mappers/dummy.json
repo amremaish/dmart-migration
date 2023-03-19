@@ -98,7 +98,7 @@
     }
   },
   "dest": {
-    "space_name": "aftersales",
+    "space_name": "b2c",
     "subpath": "tickets/dummy",
     "schema_shortname": "dummy",
     "resource_type": "ticket"

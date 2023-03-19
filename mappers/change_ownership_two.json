@@ -106,7 +106,7 @@
     }
   },
   "dest": {
-    "space_name": "aftersales",
+    "space_name": "b2c",
     "subpath": "tickets/change_ownership",
     "schema_shortname": "change_ownership",
     "resource_type": "ticket"

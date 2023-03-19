@@ -105,7 +105,7 @@
     }
   },
   "dest": {
-    "space_name": "aftersales",
+    "space_name": "b2c",
     "subpath": "tickets/add_remove_vas",
     "schema_shortname": "add_remove_vas",
     "resource_type": "ticket"

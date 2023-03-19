@@ -107,7 +107,7 @@
     }
   },
   "dest": {
-    "space_name": "aftersales",
+    "space_name": "b2c",
     "subpath": "tickets/connect_disconnect",
     "schema_shortname": "connect_disconnect",
     "resource_type": "ticket"

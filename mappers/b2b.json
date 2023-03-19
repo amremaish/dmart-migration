@@ -161,7 +161,7 @@
     }
   },
   "dest": {
-    "space_name": "aftersales",
+    "space_name": "b2b",
     "subpath": "tickets/b2b",
     "schema_shortname": "b2b",
     "resource_type": "ticket"
