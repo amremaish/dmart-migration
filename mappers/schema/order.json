@@ -19,13 +19,25 @@
         "sector": {
           "type": "string"
         },
-        "subsector": {
+        "district": {
           "type": "string"
         },
         "address": {
           "type": "string"
+        },
+        "planned_delivery_date": {
+          "type": "string"
+        },
+        "scheduled_delivery": {
+          "type": "string"
         }
       },
+      "required": [
+        "region",
+        "governorate",
+        "sector",
+        "address"
+      ],
       "title": "Delivery details"
     },
     "order_composition": {
@@ -48,8 +60,19 @@
           "fulfillment": {
             "type": "number"
           }
-        }
+        },
+        "required": [
+          "parent_category",
+          "category",
+          "shortname",
+          "quantity"
+        ]
       }
     }
-  }
+  },
+  "required": [
+    "distributor_name",
+    "delivery_details",
+    "order_composition"
+  ]
 }

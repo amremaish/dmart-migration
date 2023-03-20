@@ -18,11 +18,12 @@
       "type": "string"
     },
     "msisdn": {
-      "type": "string"
+      "type": "string",
+      "pattern": "^7[89]\\d{8}$"
     },
     "iccid": {
       "type": "string",
-      "pattern": "^89964\\d{14}$"
+      "pattern": "^89964\\d{12,14}$"
     },
     "customer_type": {
       "type": "string",
@@ -40,7 +41,9 @@
       "enum": [
         "civilian_id",
         "national_id",
-        "passport"
+        "passport",
+        "voter_card",
+        "unified_id"
       ]
     },
     "civilian_id_number": {
@@ -111,6 +114,9 @@
       "type": "string"
     },
     "residence_number": {
+      "type": "string"
+    },
+    "docu_object_id": {
       "type": "string"
     }
   },

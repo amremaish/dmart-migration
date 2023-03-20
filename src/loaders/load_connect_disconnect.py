@@ -1,3 +1,4 @@
+import re
 from datetime import datetime
 
 from creator import creator
@@ -45,6 +46,9 @@ def apply_modifier(
 
     if body.get('call_back_number'):
         body['call_back_number'] = msisdn_fixer(body.get('call_back_number'))
+
+    if body.get('civilian_id') and not re.match("^\d{8}$", body.get('civilian_id')):
+        del body['civilian_id']
 
     if body.get('prepaid_postpaid') and body.get('prepaid_postpaid') in lookup:
         prepaid_postpaid = lookup[body['prepaid_postpaid']].get('KEY_VALUE')

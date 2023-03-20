@@ -7,7 +7,7 @@ from utils.decorators import process_mapper
 from utils.default_loader import default_loader, meta_fixer, msisdn_fixer
 
 
-@process_mapper(mapper="information_service_customers", remove_null_field=True)
+@process_mapper(mapper="contracts", remove_null_field=True)
 def load(*args, **kwargs):
     default_loader(args, kwargs, apply_modifier)
     print("Successfully done.")
@@ -77,7 +77,7 @@ def apply_modifier(
     if body.get('id_page_no'):
         body['id_page_no'] = to_int(body.get('id_page_no'))
 
-    if not body.get('iccid') or not re.match(ICCID_REGEX, body.get('iccid')):
+    if body.get('iccid') and not re.match(ICCID_REGEX, body.get('iccid')):
         del body['iccid']
 
     return {

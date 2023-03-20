@@ -1,7 +1,7 @@
 import re
 
 from creator import creator
-from dmart.helper import governorates_mapper, ID_RECORD_NUMBER_REGEX
+from dmart.helper import governorates_mapper, ID_RECORD_NUMBER_REGEX, ICCID_REGEX
 from utils.decorators import process_mapper
 from utils.default_loader import default_loader, meta_fixer, msisdn_fixer
 
@@ -70,6 +70,14 @@ def apply_modifier(
 
     if not id_page_number or not re.match(ID_RECORD_NUMBER_REGEX, id_page_number):
         del body['authorized_details']['id_page_number']
+
+    if len(body.get('customer_details', [])) > 0:
+        if body['customer_details'][0].get('iccid') and\
+                not re.match(ICCID_REGEX, body['customer_details'][0].get('iccid')):
+            del body['customer_details'][0]['iccid']
+
+        if body['customer_details'][0].get('msisdn'):
+            body['customer_details'][0]['msisdn'] = msisdn_fixer(body['customer_details'][0].get('msisdn'))
 
     return {
         "space_name": space_name,

@@ -62,7 +62,6 @@
 
     },
     "body": {
-      "language": "LOOKUP.NAME_EN",
       "registration_id": "DISTRIBUTORS_USER.REGISTRATION_ID",
       "address": {
         "longitude": "DISTRIBUTORS_USER.LONGITUDE",

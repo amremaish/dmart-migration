@@ -1,6 +1,8 @@
+import re
 from datetime import datetime
 
 from creator import creator
+from dmart.helper import ICCID_REGEX
 from utils.db import db_manager
 from utils.decorators import process_mapper
 from utils.default_loader import default_loader, meta_fixer, msisdn_fixer
@@ -46,6 +48,9 @@ def apply_modifier(
 
     if body.get('call_back_number'):
         body['call_back_number'] = msisdn_fixer(body.get('call_back_number'))
+
+    if body.get('iccid') and not re.match(ICCID_REGEX, body.get('iccid')):
+        del body['iccid']
 
     if body.get('frequently_called_numbers'):
         frequently_called_numbers = body.get('frequently_called_numbers')

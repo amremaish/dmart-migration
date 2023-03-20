@@ -1,6 +1,8 @@
+import re
 from datetime import datetime
 
 from creator import creator
+from dmart.helper import ICCID_REGEX
 from utils.db import db_manager
 from utils.decorators import process_mapper
 from utils.default_loader import default_loader, meta_fixer, msisdn_fixer
@@ -49,6 +51,9 @@ def apply_modifier(
 
     if body.get('contract_shortname'):
         body['contract_shortname'] = str(body['contract_shortname'])
+
+    if body.get('iccid') and not re.match(ICCID_REGEX, body.get('iccid')):
+        del body['iccid']
 
     history_obj = None
     start = db_manager.create_alias('INFORMATION_SERVICE.ACTION_START_TIME')

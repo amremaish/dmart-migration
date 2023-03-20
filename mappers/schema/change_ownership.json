@@ -8,11 +8,12 @@
       "type": "string",
       "title": "Service Type",
       "description": "Connect/Disconnect",
-      "enum": [
-        "one_side",
-        "two_side"
-      ]
+      "enum": ["one_side", "two_side"]
     },
+    "irm_info": {
+      "type": "object",
+      "properties": {}
+  },
     "registration_name": {
       "type": "string",
       "title": "Registration name",
@@ -28,12 +29,15 @@
       "title": "MSISDN",
       "description": "Mobile Station Integrated Services Digital Network for POS [Filled at submission]",
       "minLength": 10,
-      "maxLength": 11
+      "maxLength": 11,
+      "pattern": "^7[89]\\d{8}$"
+
     },
     "iccid": {
       "type": "string",
       "title": "ICCID",
-      "description": "ICCID of end customer [Filled at submission]"
+      "description": "ICCID of end customer [Filled at submission]",
+      "pattern": "^89964\\d{12,14}$"
     },
     "customer_name": {
       "type": "string",
@@ -55,12 +59,13 @@
       "type": "string",
       "title": "SIM MSISDN(Second Party)",
       "description": "Subscriber SIM's MSISDN(Second Party) [Filled at submission]",
-      "pattern": "^7[5789]\\d{8}$"
+      "pattern": "^7[89]\\d{8}$"
     },
     "iccid_second_party": {
       "type": "string",
       "title": "ICCID(Second Party)",
-      "description": "Integrated Circuit Card Identification Number for second party [Filled at submission]"
+      "description": "Integrated Circuit Card Identification Number for second party [Filled at submission]",
+      "pattern": "^89964\\d{12,14}$"
     },
     "call_back_number_second_party": {
       "type": "string",

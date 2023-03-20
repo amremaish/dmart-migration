@@ -20,10 +20,8 @@ migrate b2b
 ----------------------------------
 migrate products
 migrate orders
--------- customers ---------------
-migrate sim_swap_customers
-migrate other_service_customers
-migrate information_service_customers
+-------- contracts ---------------
+migrate contracts
 -------- other ------------------
 migrate reasons # Don't migrate
 ---- movers (move attachments)-----

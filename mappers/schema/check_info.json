@@ -9,6 +9,10 @@
       "title": "Registration name",
       "description": "IRM API integration source"
     },
+    "irm_info": {
+      "type": "object",
+      "properties": {}
+    },
     "sim_status": {
       "type": "string",
       "title": "SIM Status",
@@ -18,7 +22,8 @@
       "type": "string",
       "title": "MSISDN",
       "description": "Mobile Station Integrated Services Digital Network for POS [Filled at submission]",
-      "comment": "this field has the to read from user who submits the ticket"
+      "comment": "this field has the to read from user who submits the ticket",
+      "pattern": "^7[89]\\d{8}$"
     },
     "customer_name": {
       "type": "string",
@@ -38,6 +43,46 @@
         "check_info"
       ],
       "default": "check_info"
+    },
+    "address": {
+      "type": "object",
+      "properties": {
+        "apartment": {
+          "type": "string"
+        },
+        "building_ref": {
+          "type": "string"
+        },
+        "street": {
+          "type": "string"
+        }
+      },
+      "required": []
+    },
+    "location": {
+      "type": "object",
+      "properties": {
+        "latitude": {
+          "type": "string"
+        },
+        "longitude": {
+          "type": "string"
+        }
+      },
+      "required": []
+    },
+    "transaction_id": {
+      "type": "string"
+    },
+    "language": {
+      "type": "string",
+      "enum": [
+        "english",
+        "arabic"
+      ]
+    },
+    "delivery_date": {
+      "type": "string"
     }
   }
 }
