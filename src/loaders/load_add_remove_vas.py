@@ -3,7 +3,7 @@ from datetime import datetime
 from creator import creator
 from utils.db import db_manager
 from utils.decorators import process_mapper
-from utils.default_loader import default_loader, meta_fixer, msisdn_fixer
+from utils.default_loader import default_loader, meta_fixer, callback_fixer, msisdn_fixer
 
 
 @process_mapper(
@@ -52,7 +52,7 @@ def apply_modifier(
         body['msisdn'] = msisdn_fixer(body.get('msisdn'))
 
     if body.get('call_back_number'):
-        body['call_back_number'] = msisdn_fixer(body.get('call_back_number'))
+        body['call_back_number'] = callback_fixer(body.get('call_back_number'))
 
     if body.get('service_short_code'):
         body['service_short_code'] = body['service_short_code'].split(',')

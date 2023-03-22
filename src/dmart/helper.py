@@ -14,7 +14,8 @@ USERNAME = r"^\w{3,10}$"
 PASSWORD = r"^(?=.*\d)(?=.*[A-Z])[a-zA-Z\d]{8,24}$"
 EMAIL = r"^[\w\.-]+@([\w-]+\.)+[\w-]{2,4}$"
 META_DOC_ID = r"^\w*:\w*:meta:[\w\/]+$"
-MSISDN_REGEX = "^7[5789]\d{8}$"  # Exactly 10 digits, not starting with zero
+CALLBACK_REGEX = "^7[5789]\d{8}$"  # Exactly 10 digits, not starting with zero
+MSISDN_REGEX = "7[89]\d{8}$"  # Exactly 10 digits, not starting with zero
 ID_RECORD_NUMBER_REGEX = "^[a-zA-Z0-9؀-ۿ]{1,20}$"
 ICCID_REGEX = "^89964\d{14}$"
 OTP_CODE = r"^\d{6}$"  # Exactly 6 digits
@@ -32,10 +33,10 @@ governorates_mapper: dict[str, str] = {
     'erbil': 'erbil',
     'karbala': 'karbala',
     'karkuk': 'kirkuk',
-    'amara': 'missan',
+    'amara': 'amara',
     'samawa': 'muthanna',
     'najaf': 'najaf',
-    'mosul': 'mosel',
+    'mosul': 'mousl',
     'dewaniya': 'qaddissiya',
     'salahaldeen': 'salahaldeen',
     'sulaimaniya': 'sulaimaniya',

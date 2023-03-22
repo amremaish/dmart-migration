@@ -1,6 +1,6 @@
 from creator import creator
 from utils.decorators import process_mapper
-from utils.default_loader import default_loader, meta_fixer, msisdn_fixer
+from utils.default_loader import default_loader, meta_fixer
 
 
 @process_mapper(

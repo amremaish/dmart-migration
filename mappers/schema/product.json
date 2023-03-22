@@ -19,35 +19,36 @@
     },
     "governorate_shortnames": {
       "type": "array",
-      "uniqueItems": true,
+        "uniqueItems": true,
       "items": {
         "type": "string",
         "enum": [
+          "amara",
           "anbar",
           "babil",
-          "baghdad",
+          "baghdad_karkh",
+          "baghdad_rasafa",
           "basra",
+          "diyala",
           "duhook",
-          "thiqar",
-          "qaddissiya",
-          "missan",
           "erbil",
           "karbala",
+          "kirkuk",
+          "mousl",
           "muthanna",
           "najaf",
-          "mosel",
-          "wassit",
-          "diyala",
-          "kirkuk",
+          "qaddissiya",
           "salahaldeen",
-          "sulaimaniya"
+          "sulaimaniya",
+          "thiqar",
+          "wassit"
         ]
       },
       "title": "Governorate availability"
     },
     "role_shortnames": {
       "type": "array",
-      "uniqueItems": true,
+        "uniqueItems": true,
       "items": {
         "type": "string",
         "enum": [

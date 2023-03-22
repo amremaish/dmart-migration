@@ -3,7 +3,7 @@ import re
 from creator import creator
 from dmart.helper import governorates_mapper, ID_RECORD_NUMBER_REGEX, ICCID_REGEX
 from utils.decorators import process_mapper
-from utils.default_loader import default_loader, meta_fixer, msisdn_fixer
+from utils.default_loader import default_loader, meta_fixer, callback_fixer, msisdn_fixer
 
 
 @process_mapper(mapper="b2b", remove_null_field=True)
@@ -77,7 +77,7 @@ def apply_modifier(
             del body['customer_details'][0]['iccid']
 
         if body['customer_details'][0].get('msisdn'):
-            body['customer_details'][0]['msisdn'] = msisdn_fixer(body['customer_details'][0].get('msisdn'))
+            body['customer_details'][0]['msisdn'] = callback_fixer(body['customer_details'][0].get('msisdn'))
 
     return {
         "space_name": space_name,

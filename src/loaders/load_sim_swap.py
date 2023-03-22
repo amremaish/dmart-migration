@@ -1,9 +1,11 @@
+import re
 from datetime import datetime
 
 from creator import creator
+from dmart.helper import ICCID_REGEX
 from utils.db import db_manager
 from utils.decorators import process_mapper
-from utils.default_loader import default_loader, meta_fixer, msisdn_fixer
+from utils.default_loader import default_loader, meta_fixer, callback_fixer, msisdn_fixer
 
 
 @process_mapper(mapper="sim_swap", remove_null_field=True)
@@ -50,6 +52,9 @@ def apply_modifier(
 
     if not body.get('msisdn'):
         ignore = True
+
+    if body.get('iccid') and not re.match(ICCID_REGEX, body.get('iccid')):
+        del body['iccid']
 
     history_obj = None
     start = db_manager.create_alias('SIM_SWAP.ACTION_START_TIME')

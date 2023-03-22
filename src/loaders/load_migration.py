@@ -5,7 +5,7 @@ from creator import creator
 from dmart.helper import ICCID_REGEX
 from utils.db import db_manager
 from utils.decorators import process_mapper
-from utils.default_loader import default_loader, meta_fixer, msisdn_fixer
+from utils.default_loader import default_loader, meta_fixer, callback_fixer, msisdn_fixer
 
 
 @process_mapper(mapper="migration", remove_null_field=True)
@@ -46,7 +46,7 @@ def apply_modifier(
         body['msisdn'] = msisdn_fixer(body.get('msisdn'))
 
     if body.get('call_back_number'):
-        body['call_back_number'] = msisdn_fixer(body.get('call_back_number'))
+        body['call_back_number'] = callback_fixer(body.get('call_back_number'))
 
     if body.get('contract_shortname'):
         body['contract_shortname'] = str(body['contract_shortname'])

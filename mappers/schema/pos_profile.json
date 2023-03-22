@@ -4,16 +4,6 @@
   "additionalProperties": false,
   "type": "object",
   "properties": {
-    "language": {
-      "type": "string",
-      "enum": [
-        "arabic",
-        "english",
-        "kurdish"
-      ],
-      "title": "Account language",
-      "description": "Account language of end user"
-    },
     "mothers_name": {
       "type": "string",
       "title": "Account holder mother's name",
@@ -45,7 +35,8 @@
       "type": "string"
     },
     "sim_iccid": {
-      "type": "string"
+      "type": "string",
+      "pattern": "^89964\\d{14}$"
     },
     "pos_id": {
       "type": "string"
@@ -90,9 +81,9 @@
               "type": "string",
               "title": "Sector name"
             },
-            "sub_sector": {
+            "district": {
               "type": "string",
-              "title": "Sub Sector"
+              "title": "District"
             },
             "distributor": {
               "type": "string",

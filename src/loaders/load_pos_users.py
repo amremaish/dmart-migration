@@ -1,8 +1,10 @@
+import re
+
 from creator import creator
 from dmart.enums import UserType
-from dmart.helper import to_float, governorates_mapper
+from dmart.helper import to_float, governorates_mapper, ICCID_REGEX
 from utils.decorators import process_mapper
-from utils.default_loader import default_loader, meta_fixer, msisdn_fixer
+from utils.default_loader import default_loader, meta_fixer, callback_fixer, msisdn_fixer
 
 
 @process_mapper(
@@ -32,25 +34,9 @@ def apply_modifier(
 
     meta['type'] = UserType.mobile
 
-    if not body.get('language'):
-        body['language'] = ''
+    if body.get('sim_iccid') is not None and not re.match(ICCID_REGEX, body.get('sim_iccid')):
+        del body['sim_iccid']
 
-    if not body.get('registration_id'):
-        body['registration_id'] = ''
-
-    if not body.get('sim_iccid'):
-        body['sim_iccid'] = ''
-
-    if not body.get('device_serial'):
-        body['device_serial'] = ''
-
-    if not body.get('device_id'):
-        body['device_id'] = ''
-
-    if not body.get('language'):
-        body['language'] = 'english'
-    else:
-        body['language'] = body.get('language').lower()
     if not body.get('address'):
         body['address'] = {'line': '', 'longitude': 0, 'latitude': 0, 'governorate_shortnames': []}
     else:

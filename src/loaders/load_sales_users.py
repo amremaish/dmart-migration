@@ -3,7 +3,7 @@ from dmart.helper import governorates_mapper
 from utils.decorators import process_mapper
 from utils.default_loader import default_loader, meta_fixer
 
-from utils.default_loader import msisdn_fixer
+from utils.default_loader import callback_fixer
 
 
 @process_mapper(mapper="sales_users", remove_null_field=True)
@@ -35,7 +35,7 @@ def apply_modifier(
                 body['governorate_shortnames'] = None
 
     if body.get('alternative_msisdn'):
-        body['alternative_msisdn'] = msisdn_fixer(body.get('alternative_msisdn'))
+        body['alternative_msisdn'] = callback_fixer(body.get('alternative_msisdn'))
 
     return {
         "space_name": space_name,

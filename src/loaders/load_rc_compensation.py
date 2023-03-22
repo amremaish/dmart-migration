@@ -1,9 +1,10 @@
+import re
 from datetime import datetime
 
 from creator import creator
 from utils.db import db_manager
 from utils.decorators import process_mapper
-from utils.default_loader import default_loader, meta_fixer, msisdn_fixer
+from utils.default_loader import default_loader, meta_fixer, callback_fixer, msisdn_fixer
 
 
 @process_mapper(mapper="rc_compensation", remove_null_field=True)
@@ -36,6 +37,9 @@ def apply_modifier(
         else:
             meta['state'] = ''
 
+    if body.get('card_serial') and not re.match("^\d{14}$", body.get('card_serial')):
+        del body['card_serial']
+
     # resolution_reason fixer
     if meta.get('resolution_reason'):
         meta['resolution_reason'] = creator.reason_fixer(meta['resolution_reason'])
@@ -44,12 +48,12 @@ def apply_modifier(
         body['msisdn'] = msisdn_fixer(body.get('msisdn'))
 
     if body.get('call_back_number'):
-        body['call_back_number'] = msisdn_fixer(body.get('call_back_number'))
+        body['call_back_number'] = callback_fixer(body.get('call_back_number'))
 
     if body.get('card_denomination'):
         val = lookup.get(body['card_denomination'], {}).get('NAME_EN', None)
         if val:
-            val += '_iqd'
+            val += 'k'
         body['card_denomination'] = val
 
     history_obj = None
