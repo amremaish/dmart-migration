@@ -1,16 +1,16 @@
 {
   "contracts": {
-    "folder_path": "/home/amr/Downloads/amr/contracts",
-    "space_name": "aftersales",
-    "subpath": "contracts",
+    "folder_path": "/home/pos/contracts-legacy/",
+    "space_name": "contracts",
+    "subpath": "tickets",
     "extra": {
       "from_date" :  "1996-01-20",
       "to_date" : ""
     }
   },
   "sim_swap": {
-    "folder_path": "/home/amr/Downloads/amr/simswap",
-    "space_name": "aftersales",
+    "folder_path": "/home/pos/simswap"
+    "space_name": "b2c",
     "subpath": "tickets/sim_swap",
     "extra": {
       "from_date" :  "1996-01-20",

@@ -39,7 +39,7 @@
         "join_type": "LEFT"
       }
     ],
-    "where": "REQUEST_TYPE = 'SIM-Swap'",
+    "where": "REQUEST_TYPE = 'SIM-Swap' and SIM_SWAP.CREATION_DATE > TO_DATE('2023-02-13','YYYY-MM-DD') and SIM_SWAP.CREATION_DATE < TO_DATE('2023-02-17','YYYY-MM-DD')",
     "columns": [
       "SIM_SWAP.ID",
       "SIM_SWAP.ACTION_START_TIME",
