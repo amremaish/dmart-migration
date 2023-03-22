@@ -48,7 +48,7 @@ def apply_modifier(
             if role == 'fs':
                 body['role_shortnames'] = ['franshise']
             elif role == 'supermarket':
-                body['role_shortnames'] = ['vouchers_pos']
+                body['role_shortnames'] = ['voucher_pos']
             elif role == 'ros':
                 body['role_shortnames'] = ['ros']
             elif role == 'pos':

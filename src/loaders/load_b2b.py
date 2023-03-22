@@ -33,7 +33,7 @@ def apply_modifier(
         elif meta.get('state') == 'INCOMPLETE':
             meta['state'] = 'failed'
         elif meta.get('state') == 'UPLOADED':
-            meta['state'] = 'pending'
+            meta['state'] = 'uploaded'
 
     if body.get('msisdn'):
         body['msisdn'] = msisdn_fixer(body.get('msisdn'))
@@ -54,12 +54,16 @@ def apply_modifier(
         governorate = body.get('authorized_details', {}).get('governorate_shortname')
         if governorate:
             governorate = governorates_mapper.get(creator.shortname_fixer(governorate), None)
+            if governorate == 'baghdad':
+                governorate = 'baghdad_karkh'
             body['authorized_details']['governorate_shortname'] = governorate
 
     if body.get('company_details', {}).get('company_governorate_shortname'):
         governorate = body.get('company_details', {}).get('company_governorate_shortname')
         if governorate:
             governorate = governorates_mapper.get(creator.shortname_fixer(governorate), None)
+            if governorate == 'baghdad':
+                governorate = 'baghdad_karkh'
             body['company_details']['company_governorate_shortname'] = governorate
 
     id_record_number = body.get('authorized_details', {}).get('id_record_number')

@@ -22,6 +22,7 @@ migrate products
 migrate orders
 -------- contracts ---------------
 migrate contracts
+migrate b2b_contracts
 -------- other ------------------
 migrate reasons # Don't migrate
 ---- movers (move attachments)-----

@@ -125,6 +125,8 @@ def fix_for_all(meta: dict, body: dict, lookup: dict):
     if meta.get('reporter', {}).get('governorate'):
         governorate = lookup[meta['reporter']['governorate']].get('NAME_EN')
         governorate = governorates_mapper.get(creator.shortname_fixer(governorate), None)
+        if governorate == 'baghdad':
+            governorate = 'baghdad_karkh'
         meta['reporter']['governorate'] = governorate
     return meta, body
 

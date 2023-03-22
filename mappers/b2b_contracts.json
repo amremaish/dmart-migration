@@ -1,0 +1,91 @@
+{
+  "source": {
+    "table": "SIM_TRANSACTION",
+    "join": [
+      {
+        "table": "SIM_TRANSACTION_USER_DETAIL",
+        "pk_id": "SIM_TRANSACTION.ID",
+        "fk_id": "SIM_TRANSACTION_USER_DETAIL.SIM_TRANSACTION_ID",
+        "join_type": "LEFT"
+      },
+      {
+        "table": "POS_USER",
+        "pk_id": "POS_USER.ID",
+        "fk_id": "SIM_TRANSACTION.POS_ID",
+        "join_type": "LEFT"
+      }
+    ],
+    "columns": [
+      "SIM_TRANSACTION.ID",
+      "SIM_TRANSACTION.CREATION_DATE",
+      "SIM_TRANSACTION.UPDATED_DATE",
+      "SIM_TRANSACTION.STATUS",
+      "SIM_TRANSACTION.STATUS_MSG",
+      "SIM_TRANSACTION.DEVICE_ICCID",
+      "SIM_TRANSACTION.MSISDN",
+      "SIM_TRANSACTION_USER_DETAIL.GOVERNORATE_ID",
+      "SIM_TRANSACTION.NAME",
+      "SIM_TRANSACTION_USER_DETAIL.GENDER",
+      "SIM_TRANSACTION_USER_DETAIL.BIRTH_DATE",
+      "SIM_TRANSACTION_USER_DETAIL.MOTHER_NAME",
+      "SIM_TRANSACTION_USER_DETAIL.ID_PAGE_NUMBER",
+      "SIM_TRANSACTION_USER_DETAIL.RECORD_NUMBER",
+      "SIM_TRANSACTION_USER_DETAIL.NATIONALITY_ID",
+      "SIM_TRANSACTION.CUSTOMER_TYPE",
+      "SIM_TRANSACTION_USER_DETAIL.BIRTH_PLACE",
+      "SIM_TRANSACTION_USER_DETAIL.CITY",
+      "SIM_TRANSACTION_USER_DETAIL.STREET_NAME",
+      "SIM_TRANSACTION_USER_DETAIL.HOUSE_NUMBER",
+      "SIM_TRANSACTION_USER_DETAIL.DISTRICT_ONE",
+      "POS_USER.POS_ID"
+    ]
+  },
+  "columns_mapper": {
+    "meta": {
+      "shortname": "SIM_TRANSACTION.ID",
+      "displayname": {
+        "en": "SIM_TRANSACTION.NAME",
+        "ar": "SIM_TRANSACTION.NAME",
+        "kd": "SIM_TRANSACTION.NAME"
+      },
+      "owner_shortname": "POS_USER.POS_ID",
+      "updated_at": "SIM_TRANSACTION.UPDATED_DATE",
+      "created_at": "SIM_TRANSACTION.CREATION_DATE",
+      "is_active": "SIM_TRANSACTION.STATUS",
+      "state" : "SIM_TRANSACTION.STATUS_MSG",
+      "workflow_shortname": "contract"
+    },
+    "body": {
+      "ticket_locator" : {
+        "shortname" : "SIM_TRANSACTION.ID",
+        "space" : "b2b",
+        "subpath" : ""
+      },
+      "customer_name": "SIM_TRANSACTION.NAME",
+      "msisdn": "SIM_TRANSACTION.MSISDN",
+      "iccid": "SIM_TRANSACTION.DEVICE_ICCID",
+      "customer_type": "SIM_TRANSACTION.CUSTOMER_TYPE",
+      "customer_id_type": "civilian_id",
+      "id_page_no": "SIM_TRANSACTION_USER_DETAIL.ID_PAGE_NUMBER",
+      "record_number": "SIM_TRANSACTION_USER_DETAIL.RECORD_NUMBER",
+      "mother_name": "SIM_TRANSACTION_USER_DETAIL.MOTHER_NAME",
+      "gender": "SIM_TRANSACTION_USER_DETAIL.GENDER",
+      "birth_date": "SIM_TRANSACTION_USER_DETAIL.BIRTH_DATE",
+      "birth_place": "SIM_TRANSACTION_USER_DETAIL.BIRTH_PLACE",
+      "nationality": "SIM_TRANSACTION_USER_DETAIL.NATIONALITY_ID",
+      "address": {
+        "governorate_shortname": "SIM_TRANSACTION_USER_DETAIL.GOVERNORATE_ID",
+        "sector": "SIM_TRANSACTION_USER_DETAIL.CITY",
+        "street_name": "SIM_TRANSACTION_USER_DETAIL.STREET_NAME",
+        "building_number": "SIM_TRANSACTION_USER_DETAIL.HOUSE_NUMBER",
+        "district": "SIM_TRANSACTION_USER_DETAIL.DISTRICT_ONE"
+      }
+    }
+  },
+  "dest": {
+    "space_name": "contracts",
+    "subpath": "tickets",
+    "schema_shortname": "contract",
+    "resource_type": "ticket"
+  }
+}

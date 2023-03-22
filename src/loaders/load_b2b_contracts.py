@@ -7,7 +7,7 @@ from utils.decorators import process_mapper
 from utils.default_loader import default_loader, meta_fixer, callback_fixer, msisdn_fixer
 
 
-@process_mapper(mapper="contracts", remove_null_field=True)
+@process_mapper(mapper="b2b_contracts", remove_null_field=True)
 def load(*args, **kwargs):
     default_loader(args, kwargs, apply_modifier)
     print("Successfully done.")
@@ -26,20 +26,17 @@ def apply_modifier(
     meta = meta_fixer(meta)
 
     body['ticket_locator']['shortname'] = str(body['ticket_locator']['shortname'])
-    type = db_manager.create_alias('INFORMATION_SERVICE.SERVICE_TYPE_MSG')
-    type = db_row.get(type)
-    ticket_subpath = 'tickets/'
-    if type == 'Change Ownership one side' or type == 'Change Ownership two side':
-        ticket_subpath += 'change_ownership'
-    elif type == 'Dummy':
-        ticket_subpath += 'dummy'
-    elif type == 'Correct-Info':
-        ticket_subpath += 'correct_info'
-    elif type == 'Migration':
-        ticket_subpath += 'migration'
+
+    if meta.get('state'):
+        if meta.get('state') == 'PENDING':
+            meta['state'] = 'pending'
+        elif meta.get('state') == 'INCOMPLETE':
+            meta['state'] = 'failed'
+        elif meta.get('state') == 'UPLOADED':
+            meta['state'] = 'uploaded'
 
     if body.get('ticket_locator'):
-        body['ticket_locator']['subpath'] = ticket_subpath
+        body['ticket_locator']['subpath'] = 'tickets/b2b'
 
     msisdn = msisdn_fixer(body.get('msisdn'))
     if msisdn:

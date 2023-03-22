@@ -30,7 +30,10 @@ def apply_modifier(
         if governorate:
             governorate = governorates_mapper.get(creator.shortname_fixer(governorate))
             if governorate:
-                body['governorate_shortnames'] = [governorate]
+                if governorate == 'baghdad':
+                    body['governorate_shortnames'] = ['baghdad_karkh', 'baghdad_rasafa']
+                else:
+                    body['governorate_shortnames'] = [governorate]
             else:
                 body['governorate_shortnames'] = None
 

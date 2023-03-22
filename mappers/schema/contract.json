@@ -10,6 +10,9 @@
         },
         "subpath": {
           "type": "string"
+        },
+        "space": {
+          "type": "string"
         }
       },
       "required": []

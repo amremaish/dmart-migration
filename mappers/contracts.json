@@ -46,6 +46,7 @@
     "body": {
       "ticket_locator" : {
         "shortname" : "INFORMATION_SERVICE.ID",
+        "space" : "b2c",
         "subpath" : ""
       },
       "customer_name": "INFORMATION_SERVICE.CUSTOMER_NAME",
