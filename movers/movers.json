@@ -9,7 +9,7 @@
     }
   },
   "sim_swap": {
-    "folder_path": "/home/pos/simswap"
+    "folder_path": "/home/pos/simswap",
     "space_name": "b2c",
     "subpath": "tickets/sim_swap",
     "extra": {
