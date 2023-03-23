@@ -59,7 +59,7 @@ def apply_modifier(
         frequently_called_numbers = frequently_called_numbers.replace(' ', '')
         frequently_called_numbers = frequently_called_numbers.split(',')
         fixed_number = []
-        for number in frequently_called_numbers:
+        for number in frequently_called_numbers[:10]:
             fixed = callback_fixer(number)
             if fixed and fixed not in fixed_number:
                 fixed_number.append(fixed)
