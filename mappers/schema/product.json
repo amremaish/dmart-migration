@@ -52,8 +52,8 @@
       "items": {
         "type": "string",
         "enum": [
-          "vouchers_pos",
-          "franshise",
+          "voucher_pos",
+          "franchise",
           "zain_lite",
           "ros",
           "activating_pos"
