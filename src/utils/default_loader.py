@@ -116,8 +116,8 @@ def execute(kwargs, apply_modifier, offset, lookup):
 
 
 def fix_for_all(meta: dict, body: dict, lookup: dict):
-    if meta.get('collaborators', {}).get('locked_by'):
-        meta['collaborators']['locked_by'] = creator.shortname_fixer(meta['collaborators']['locked_by'])
+    if meta.get('collaborators', {}).get('processed_by'):
+        meta['collaborators']['processed_by'] = creator.shortname_fixer(meta['collaborators']['processed_by'])
     else:
         if meta.get('collaborators', {}):
             del meta['collaborators']
@@ -132,6 +132,7 @@ def fix_for_all(meta: dict, body: dict, lookup: dict):
 
 
 def meta_fixer(meta: dict):
+    meta = fix_reporter_type(meta)
     if not meta.get('updated_at'):
         meta['updated_at'] = meta.get('created_at')
 
@@ -172,3 +173,23 @@ def msisdn_fixer(msisdn: str):
     if re.match(MSISDN_REGEX, msisdn):
         return msisdn
     return None
+
+
+def fix_reporter_type(meta: dict):
+    if meta.get('reporter', {}).get('type'):
+        role: str = meta.get('reporter', {}).get('type')
+        if role:
+            role = role.lower()
+            if role == 'fs' or role == 'franshise':
+                meta['reporter']['type'] = 'franchise'
+            elif role == 'supermarket':
+                meta['reporter']['type'] = 'voucher_pos'
+            elif role == 'ros':
+                meta['reporter']['type'] = 'ros'
+            elif role == 'pos':
+                meta['reporter']['type'] = 'activating_pos'
+            elif role == 'zain_light':
+                meta['reporter']['type'] = 'zain_lite'
+            else:
+                del meta['reporter']['type']
+    return meta

@@ -85,7 +85,7 @@
       "state": "INFORMATION_SERVICE.STATUS_MSG",
       "resolution_reason": "LOOKUP.NAME_EN",
       "collaborators": {
-        "locked_by": "USER_ADMIN.USER_NAME"
+        "processed_by": "USER_ADMIN.USER_NAME"
       },
       "reporter": {
         "type": "USER_TYPE.NAME",
