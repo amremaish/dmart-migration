@@ -154,15 +154,20 @@ def find_sim_swap_id(contract_name):
 def move_contracts(folder_path, space_name, subpath, extra: dict):
     contracts_paths = []
     # load zip files
+    print(f'scan folder: {folder_path}')
     for date_dir in os.scandir(folder_path):
         # loop into dates
         if not apply_compare_date(extra.get('from_date'), extra.get('to_date'), date_dir.name):
             continue
+        print(f'scan folder: {date_dir.path}')
         for pos_dir in os.scandir(date_dir.path):
+            print(f'scan folder: {date_dir.path}')
             for file in os.scandir(pos_dir.path):
+                print(f'add file: {str(file.path)}')
                 # loop into zip files
                 if file.name.endswith(".zip"):
                     shortname, owner_shortname = extract_shortname_file_name(file.name)
+                    print(f'{shortname} contract is added')
                     if shortname:
                         contracts_paths.append(
                             {
