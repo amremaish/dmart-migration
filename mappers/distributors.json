@@ -46,8 +46,7 @@
       "is_active": "DISTRIBUTORS.STATUS"
     },
     "body": {
-      "language": "",
-      "governorate_shortname": "REGION.NAME_EN"
+      "governorate_shortnames": ["REGION.NAME_EN"]
     }
   },
   "dest": {

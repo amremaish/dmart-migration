@@ -6,7 +6,16 @@
   "properties": {
     "type": {
       "type": "string",
-      "title": "Channel type"
+      "title": "Channel type",
+      "enum": [
+        "distributor_direct_sales",
+        "franchise_store",
+        "ros",
+        "sub_dealer",
+        "supermarket",
+        "universal_point_of_sale_pos",
+        "zain_cash"
+      ]
     },
     "outlet_type": {
       "type": "string",
@@ -162,21 +171,31 @@
         }
       }
     },
-    "msisdn": {
-      "type": "string",
-      "title": "Channel mobile number"
-    },
-    "alternative_msisdn": {
-      "type": "array",
-      "items": {
-        "type": "string",
-        "pattern": "^7[5789]\\d{8}$"
-      }
-    },
-    "whatsapp_number": {
-      "type": "string",
-      "title": "Channel WhatsApp number",
-      "pattern": "^7[5789]\\d{8}$"
+    "contact": {
+      "type": "object",
+      "properties": {
+        "msisdn": {
+          "type": "string"
+        },
+        "alternative_msisdn": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "title": "alternative msisdn",
+            "pattern": "^7[5789]\\d{8}$",
+            "maxItem": 3
+          }
+        },
+        "whatsapp_number": {
+          "type": "string",
+          "title": "Channel WhatsApp number",
+          "pattern": "^7[5789]\\d{8}$"
+
+        }
+      },
+      "required": [
+        "msisdn"
+      ]
     },
     "owner_shortname": {
       "type": "string",
@@ -214,7 +233,10 @@
                 }
               }
             }
-          }
+          },
+          "required": [
+            "activation_tool_available"
+          ]
         },
         "mvd_line": {
           "type": "object",
@@ -234,7 +256,10 @@
               },
               "title": "MSISDN of MVD line"
             }
-          }
+          },
+          "required": [
+            "mvd_line_available"
+          ]
         },
         "evd_terminal": {
           "type": "object",
@@ -262,9 +287,13 @@
                 }
               }
             }
-          }
+          },
+          "required": [
+            "evd_terminal_available"
+          ]
         }
-      }
+      },
+      "required": []
     },
     "other_services": {
       "type": "object",
@@ -284,8 +313,14 @@
         "zaincash_code": {
           "type": "string",
           "title": "ZainCash code"
+        },
+        "sim_swap_service_available": {
+          "type": "string"
         }
-      }
+      },
+      "required": [
+        "zaincash_service_available"
+      ]
     },
     "sub_account": {
       "type": "object",
@@ -296,5 +331,14 @@
         }
       }
     }
-  }
+  },
+  "required": [
+    "type",
+    "zain_signage",
+    "outlet_type",
+    "competitor_signage",
+    "internet_availability",
+    "shop_size",
+    "location"
+  ]
 }

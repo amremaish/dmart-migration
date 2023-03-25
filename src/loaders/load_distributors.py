@@ -6,6 +6,7 @@ from utils.default_loader import default_loader, meta_fixer
 
 @process_mapper(
     mapper="distributors",
+    appended_list=["body.governorate_shortnames"],
     remove_null_field=True
 )
 def load(*args, **kwargs):
@@ -25,17 +26,18 @@ def apply_modifier(
 ):
     meta = meta_fixer(meta)
 
-    if body.get('governorate_shortname'):
-        governorate = body.get('governorate_shortname')
+    if body.get('governorate_shortnames'):
+        governorate = body.get('governorate_shortnames')
+        governorate = None if len(governorate) == 0 else governorate[0]
         if governorate:
             governorate = governorates_mapper.get(creator.shortname_fixer(governorate))
             if governorate:
                 if governorate == 'baghdad':
-                    body['governorate_shortname'] = 'baghdad_karkh'
+                    body['governorate_shortnames'] = ['baghdad_karkh', 'baghdad_rasafa']
                 else:
-                    body['governorate_shortname'] = governorate
+                    body['governorate_shortnames'] = [governorate]
             else:
-                body['governorate_shortname'] = None
+                body['governorate_shortnames'] = None
     return {
         "space_name": space_name,
         "subpath": subpath,
