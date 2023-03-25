@@ -1,6 +1,6 @@
 {
   "contracts": {
-    "folder_path": "/home/pos/contracts-legacy/",
+    "folder_path": "/home/pos/contracts-legacy",
     "space_name": "contracts",
     "subpath": "tickets",
     "extra": {
