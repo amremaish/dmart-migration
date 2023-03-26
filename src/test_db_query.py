@@ -15,7 +15,7 @@ connection = cx_Oracle.connect(
     dsn=f'{db_host}:{db_port}/{db_name}')
 
 print("Connected")
-query = "SELECT count(*) FROM SIM_SWAP LEFT JOIN POS_USER on POS_USER.ID = SIM_SWAP.POS_ID LEFT JOIN LOOKUP on LOOKUP.ID = SIM_SWAP.REASON WHERE REQUEST_TYPE = 'SIM-Swap'"
+query = "select  DEPARTMENT from USER_ADMIN group by DEPARTMENT"
 print("-> Executing: " + query)
 cursor = connection.cursor()
 cursor.execute(query)
