@@ -35,6 +35,15 @@ def apply_modifier(
         elif meta.get('state') == 'UPLOADED':
             meta['state'] = 'uploaded'
 
+    if body.get('company_data', {}).get('company_type'):
+        company_type: str = lookup.get(body['company_data']['company_type'], {}).get('NAME_EN').lower()
+        if company_type == 'local company':
+            body['company_data']['company_type'] = 'local_company'
+        else:
+            body['company_data']['company_type'] = company_type
+            if not company_type:
+                del body['company_data']['company_type']
+
     if body.get('msisdn'):
         body['msisdn'] = msisdn_fixer(body.get('msisdn'))
 

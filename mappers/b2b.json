@@ -114,7 +114,8 @@
     "body": {
       "company_data": {
         "contract_type": "SIM_TRANSACTION.CONTRACT_TYPE",
-        "callback_number": "SIM_TRANSACTION.CALL_BACK_NUMBER"
+        "callback_number": "SIM_TRANSACTION.CALL_BACK_NUMBER",
+        "company_type": "SIM_TRANSACTION.CUSTOMER_TYPE"
       },
       "authorized_details": {
         "date_of_birth": "SIM_TRANSACTION_USER_DETAIL.BIRTH_DATE",
