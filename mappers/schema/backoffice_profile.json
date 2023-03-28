@@ -1,0 +1,24 @@
+{
+  "type": "object",
+  "title": "backoffice",
+  "properties": {
+    "allowed_tickets_types": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+        "migration",
+        "sim_swap",
+        "check_info",
+        "dummy",
+        "add_remove_vas",
+        "change_ownership",
+        "connect_disconnect",
+        "correct_info",
+        "rc_compensation",
+        "postpaid_prime"]
+      }
+    }
+  },
+  "required": []
+}

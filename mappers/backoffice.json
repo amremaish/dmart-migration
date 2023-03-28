@@ -11,7 +11,8 @@
       "USER_ADMIN.DEPARTMENT",
       "USER_ADMIN.EMAIL",
       "USER_ADMIN.USER_NAME"
-    ]
+    ],
+    "where" : "USER_ADMIN.DEPARTMENT = 'B.O' or USER_ADMIN.DEPARTMENT = 'BO' or USER_ADMIN.DEPARTMENT = 'Back office Team' or USER_ADMIN.DEPARTMENT = 'Backoffice' or USER_ADMIN.DEPARTMENT = 'Back office Team ' or USER_ADMIN.DEPARTMENT = 'Backoffice '"
   },
   "columns_mapper": {
     "meta": {
@@ -27,19 +28,34 @@
       "email": "USER_ADMIN.EMAIL",
       "password": "USER_ADMIN.PASSWORD",
       "roles": [
-        "zain_superadmin",
-        "account_manager",
-        "super_admin"
+        "b2b",
+        "b2b_admin",
+        "b2c",
+        "b2c_admin",
+        "archive",
+        "archive_reader",
+        "archive_admin"
       ]
     },
     "body": {
-      "department": "USER_ADMIN.DEPARTMENT"
+      "department": [
+        "migration",
+        "sim_swap",
+        "check_info",
+        "dummy",
+        "add_remove_vas",
+        "change_ownership",
+        "connect_disconnect",
+        "correct_info",
+        "rc_compensation",
+        "postpaid_prime"
+      ]
     }
   },
   "dest": {
     "space_name": "management",
     "subpath": "users",
-    "schema_shortname": "admin_profile",
+    "schema_shortname": "backoffice_profile",
     "resource_type": "user"
   }
 }

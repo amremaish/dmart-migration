@@ -43,7 +43,11 @@
       "updated_at": "DISTRIBUTORS.UPDATED_DATE",
       "created_at": "DISTRIBUTORS.CREATION_DATE",
       "password": "DISTRIBUTORS.PASSWORD",
-      "is_active": "DISTRIBUTORS.STATUS"
+      "is_active": "DISTRIBUTORS.STATUS",
+      "roles": [
+        "distributor",
+        "distributor_admin"
+      ]
     },
     "body": {
       "governorate_shortnames": ["REGION.NAME_EN"]

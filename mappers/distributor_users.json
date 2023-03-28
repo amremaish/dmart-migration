@@ -58,8 +58,10 @@
       "password": "DISTRIBUTORS_USER.PASSWORD",
       "msisdn": "DISTRIBUTORS_USER.MSISDN",
       "is_active": "DISTRIBUTORS_USER.STATUS",
-      "owner_shortname": "DISTRIBUTORS.NAME"
-
+      "owner_shortname": "DISTRIBUTORS.NAME",
+      "roles": [
+        "sales_rep"
+      ]
     },
     "body": {
       "registration_id": "DISTRIBUTORS_USER.REGISTRATION_ID",
