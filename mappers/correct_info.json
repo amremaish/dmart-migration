@@ -39,7 +39,7 @@
         "join_type": "LEFT"
       }
     ],
-    "where": "SERVICE_TYPE_MSG = 'Correct-Info' and REQUEST_TYPE = 'Check-Info'",
+    "where": "SERVICE_TYPE_MSG = 'Correct-Info'",
     "columns": [
       "INFORMATION_SERVICE.ID",
       "INFORMATION_SERVICE.ACTION_START_TIME",
@@ -53,6 +53,7 @@
       "INFORMATION_SERVICE.CUSTOMER_NAME",
       "INFORMATION_SERVICE.CALLBACK_PHONE",
       "INFORMATION_SERVICE.SIM_SERIAL",
+      "INFORMATION_SERVICE.REQUEST_TYPE",
       "LOOKUP.NAME_EN",
       "USER_ADMIN.USER_NAME",
       "POS_USER.GOVERNORATE_ID",

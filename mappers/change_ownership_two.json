@@ -45,7 +45,7 @@
         "join_type": "LEFT"
       }
     ],
-    "where" : "SERVICE_TYPE_MSG = 'Change Ownership two side' and REQUEST_TYPE = 'Check-Info'",
+    "where" : "SERVICE_TYPE_MSG = 'Change Ownership two side'",
     "columns": [
       "INFORMATION_SERVICE.ID",
       "INFORMATION_SERVICE.ACTION_START_TIME",
@@ -60,6 +60,7 @@
       "INFORMATION_SERVICE.CALLBACK_PHONE",
       "CHANGE_OWNERSHIP_SERVICE.SECOND_CUSTOMER_NAME",
       "CHANGE_OWNERSHIP_SERVICE.SECOND_CUSTOMER_CALLBACK",
+      "INFORMATION_SERVICE.REQUEST_TYPE",
       "LOOKUP.NAME_EN",
       "USER_ADMIN.USER_NAME",
       "POS_USER.GOVERNORATE_ID",

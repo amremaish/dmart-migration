@@ -45,7 +45,7 @@
         "join_type": "LEFT"
       }
     ],
-    "where": "SERVICE_TYPE_MSG = 'Change Ownership one side' and REQUEST_TYPE = 'Check-Info'",
+    "where": "SERVICE_TYPE_MSG = 'Change Ownership one side'",
     "columns": [
       "INFORMATION_SERVICE.ID",
       "INFORMATION_SERVICE.ACTION_START_TIME",
@@ -59,6 +59,7 @@
       "INFORMATION_SERVICE.CUSTOMER_NAME",
       "INFORMATION_SERVICE.CALLBACK_PHONE",
       "INFORMATION_SERVICE.SIM_SERIAL",
+      "INFORMATION_SERVICE.REQUEST_TYPE",
       "LOOKUP.NAME_EN",
       "CHANGE_OWNERSHIP_SERVICE.LAST_RECHARGE",
       "CHANGE_OWNERSHIP_SERVICE.USED_NUMBERS",

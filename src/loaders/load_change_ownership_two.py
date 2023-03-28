@@ -64,6 +64,10 @@ def apply_modifier(
     if body.get('contract_shortname'):
         body['contract_shortname'] = str(body['contract_shortname'])
 
+    request_type = db_row.get(db_manager.create_alias('INFORMATION_SERVICE.REQUEST_TYPE'))
+    if request_type and request_type == 'Check-Info':
+        del body['contract_shortname']
+
     history_obj = None
     start = db_manager.create_alias('INFORMATION_SERVICE.ACTION_START_TIME')
     end = db_manager.create_alias('INFORMATION_SERVICE.ACTION_END_TIME')

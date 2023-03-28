@@ -39,7 +39,7 @@
         "join_type": "LEFT"
       }
     ],
-    "where" : "SERVICE_TYPE_MSG = 'Dummy' and REQUEST_TYPE = 'Check-Info'",
+    "where" : "SERVICE_TYPE_MSG = 'Dummy'",
     "columns": [
       "INFORMATION_SERVICE.ID",
       "INFORMATION_SERVICE.ACTION_START_TIME",
@@ -51,6 +51,7 @@
       "INFORMATION_SERVICE.MOBILE_NUMBER",
       "INFORMATION_SERVICE.CALLBACK_PHONE",
       "INFORMATION_SERVICE.SIM_SERIAL",
+      "INFORMATION_SERVICE.REQUEST_TYPE",
       "POS_USER.POS_ID",
       "INFORMATION_SERVICE.CUSTOMER_NAME",
       "LOOKUP.NAME_EN",
