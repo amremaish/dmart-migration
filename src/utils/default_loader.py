@@ -176,6 +176,8 @@ def msisdn_fixer(msisdn: str):
 
 
 def fix_reporter_type(meta: dict):
+    if meta.get('reporter', {}).get('msisdn'):
+        meta['reporter']['msisdn'] = msisdn_fixer(meta['reporter']['msisdn'])
     if meta.get('reporter', {}).get('type'):
         role: str = meta.get('reporter', {}).get('type')
         if role:
