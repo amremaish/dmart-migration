@@ -23,7 +23,7 @@ def apply_modifier(
         lookup: dict
 ):
     meta = meta_fixer(meta)
-    meta['shortname'] = f"sales_{meta['shortname']}"
+    meta['shortname'] = f"super_{meta['shortname']}"
     if body.get('governorate_shortnames'):
         governorate = body.get('governorate_shortnames')
         governorate = None if len(governorate) == 0 else governorate[0]

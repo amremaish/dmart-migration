@@ -47,12 +47,15 @@
       "is_active": "SALES_USER.STATUS"
     },
     "body": {
-      "sales_id" : "SALES_USER.SALES_ID",
-      "alternative_msisdn" : "SALES_USER.ALTERNATIVE_MSISDN",
+      "sales_id": "SALES_USER.SALES_ID",
+      "alternative_msisdn": "SALES_USER.ALTERNATIVE_MSISDN",
       "governorate_shortnames": [
         "REGION.NAME_EN"
       ]
-    }
+    },
+    "roles": [
+      "zain_superadmin"
+    ]
   },
   "dest": {
     "space_name": "management",
