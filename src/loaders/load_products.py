@@ -56,7 +56,7 @@ def apply_modifier(
             elif role == 'zain_light':
                 body['role_shortnames'] = ['zain_lite']
             else:
-                del body['role_shortnames']
+                body['role_shortnames'] = []
 
     cat_en = db_row.get(db_manager.create_alias('CATEGORY.CATEGORY_NAME'))
     cat_ar = db_row.get(db_manager.create_alias('CATEGORY.NAME_AR'))

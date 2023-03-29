@@ -93,7 +93,7 @@ class SpaceCreator:
                 with open(body_path, "r") as json_file:
                     old_body = json.load(json_file)
 
-                with open(body_path, "r") as json_file:
+                with open(mata_path, "r") as json_file:
                     old_meta = json.load(json_file)
             except:
                 return
@@ -157,30 +157,38 @@ class SpaceCreator:
             appended_list: list[str] = None,
             disable_duplication_appended_list: bool = False,
     ):
+        info = {'path_body': [], 'appended_list_body': [], 'path_meta': [], 'appended_list_meta': []}
         for one_list in appended_list:
             path = one_list.split('.', 1)[1]
             if one_list.startswith("body"):
-                appended_list = self.find_list_in_dict(path, new_body)
-                if not appended_list:
+                appended_list_body = self.find_list_in_dict(path, new_body)
+                if not appended_list_body:
                     continue
-                new_body = self.append_list_in_dict(
-                    old_body,
-                    appended_list,
-                    "",
-                    path,
-                    disable_duplication_appended_list
-                )
-            if one_list.startswith("meta"):
-                appended_list = self.find_list_in_dict(path, new_meta)
-                if not appended_list:
+                info['appended_list_body'].append(appended_list_body)
+                info['path_body'].append(path)
+            elif one_list.startswith("meta"):
+                appended_list_meta = self.find_list_in_dict(path, new_meta)
+                if not appended_list_meta:
                     continue
-                new_meta = self.append_list_in_dict(
-                    old_meta,
-                    appended_list,
-                    "",
-                    path,
-                    disable_duplication_appended_list
-                )
+                info['appended_list_meta'].append(appended_list_meta)
+                info['path_meta'].append(path)
+
+        if info['appended_list_body']:
+            new_body = self.append_list_in_dict(
+                old_body,
+                info['appended_list_body'],
+                "",
+                info['path_body'],
+                disable_duplication_appended_list
+            )
+        if info['appended_list_meta']:
+            new_meta = self.append_list_in_dict(
+                old_meta,
+                info['appended_list_meta'],
+                "",
+                info['path_meta'],
+                disable_duplication_appended_list
+            )
         return new_meta, new_body
 
     def find_list_in_dict(self, path: str, obj: dict):
@@ -197,9 +205,9 @@ class SpaceCreator:
     def append_list_in_dict(
             self,
             body: dict,
-            appended_list: list[str],
+            appended_list: list[list[str]],
             created_path: str = "",
-            appended_path="",
+            appended_path=Type[list[str]],
             disable_duplication_appended_list: bool = False
     ):
         for k, v in body.items():
@@ -207,13 +215,15 @@ class SpaceCreator:
                 created_path = created_path + f"{k}."
                 self.append_list_in_dict(body.get(k, {}), appended_list, created_path, appended_path)
                 created_path = ''
-            elif isinstance(v, list) and created_path + k == appended_path:
-                if disable_duplication_appended_list and len(appended_list) > 0 and appended_list[0] not in v:
-                    v += appended_list
+            elif isinstance(v, list) and (created_path + k) in appended_path:
+                idx = appended_path.index((created_path + k))
+                if disable_duplication_appended_list and len(appended_list[idx]) > 0 and appended_list[idx][0] not in v:
+                    v += appended_list[idx]
                 elif not disable_duplication_appended_list:
-                    v += appended_list
-            elif (isinstance(v, str) or isinstance(v, int) or v is None) and created_path + k == appended_path:
-                body[k] = appended_list if appended_list else ''
+                    v += appended_list[idx]
+            elif (isinstance(v, str) or isinstance(v, int) or v is None) and (created_path + k) in appended_path:
+                idx = appended_path.index((created_path + k))
+                body[k] = appended_list[idx] if appended_list[idx] else ''
 
         return body
 

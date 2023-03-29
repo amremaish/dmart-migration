@@ -1,8 +1,11 @@
+import os
 import re
 import time
 from datetime import datetime
 from multiprocessing import Process
 from creator import creator
+from dmart.core import Meta, Payload
+from dmart.enums import ContentType
 from dmart.helper import MSISDN_REGEX, governorates_mapper, CALLBACK_REGEX
 from settings import settings
 from utils.db import db_manager
@@ -195,3 +198,17 @@ def fix_reporter_type(meta: dict):
             else:
                 del meta['reporter']['type']
     return meta
+
+
+def create_meta_folder(space_name: str, subpath: str, shortname: str, displayname: dict):
+    path = creator.spaces_path / space_name / subpath / '.dm/meta.folder.json'
+    directory = os.path.dirname(path)
+    if path.is_file():
+        return
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+
+    payload = Payload(content_type=ContentType.json, schema_shortname='folder_rendering', body=f'{shortname}.json')
+    meta_obj = Meta(shortname=shortname, displayname=displayname, owner_shortname='dmart', payload=payload)
+    with open(path, "w") as f:
+        f.write(meta_obj.json(exclude_none=True))
