@@ -2,7 +2,7 @@ from creator import creator
 from dmart.helper import governorates_mapper
 from utils.db import db_manager
 from utils.decorators import process_mapper
-from utils.default_loader import default_loader, meta_fixer
+from utils.default_loader import default_loader, meta_fixer, create_meta_folder
 
 
 @process_mapper(
@@ -58,9 +58,27 @@ def apply_modifier(
             else:
                 del body['role_shortnames']
 
-    sub_cat = db_row.get(db_manager.create_alias('SUB_CATEGORY.SUB_CATEGORY_NAME'))
-    cat = db_row.get(db_manager.create_alias('CATEGORY.CATEGORY_NAME'))
-    subpath = f'products/{creator.shortname_fixer(cat)}/{creator.shortname_fixer(sub_cat)}'
+    cat_en = db_row.get(db_manager.create_alias('CATEGORY.CATEGORY_NAME'))
+    cat_ar = db_row.get(db_manager.create_alias('CATEGORY.NAME_AR'))
+    cat_kd = db_row.get(db_manager.create_alias('CATEGORY.NAME_KU'))
+    displayname = {'en': cat_en, 'ar': cat_ar, 'kd': cat_kd}
+    create_meta_folder(
+        space_name=space_name,
+        subpath=f'products/{creator.shortname_fixer(cat_en)}',
+        shortname=creator.shortname_fixer(cat_en),
+        displayname=displayname
+    )
+    sub_cat_en = db_row.get(db_manager.create_alias('SUB_CATEGORY.SUB_CATEGORY_NAME'))
+    sub_cat_ar = db_row.get(db_manager.create_alias('SUB_CATEGORY.NAME_AR'))
+    sub_cat_kd = db_row.get(db_manager.create_alias('SUB_CATEGORY.NAME_KU'))
+    subpath = f'products/{creator.shortname_fixer(cat_en)}/{creator.shortname_fixer(sub_cat_en)}'
+    displayname = {'en': sub_cat_en, 'ar': sub_cat_ar, 'kd': sub_cat_kd}
+    create_meta_folder(
+        space_name=space_name,
+        subpath=subpath,
+        shortname=creator.shortname_fixer(sub_cat_en),
+        displayname=displayname
+    )
     return {
         "space_name": space_name,
         "subpath": subpath,

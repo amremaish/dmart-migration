@@ -38,7 +38,7 @@
       ]
     },
     "body": {
-      "department": [
+      "allowed_tickets_types": [
         "migration",
         "sim_swap",
         "check_info",

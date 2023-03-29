@@ -61,7 +61,11 @@
       "REGION.NAME_EN",
       "USER_TYPE.NAME",
       "SUB_CATEGORY.SUB_CATEGORY_NAME",
-      "CATEGORY.CATEGORY_NAME"
+      "SUB_CATEGORY.NAME_AR",
+      "SUB_CATEGORY.NAME_KU",
+      "CATEGORY.CATEGORY_NAME",
+      "CATEGORY.NAME_AR",
+      "CATEGORY.NAME_KU"
     ]
   },
   "columns_mapper": {
