@@ -92,9 +92,9 @@
       "address": {
         "longitude": "POS_USER.LATITUDE",
         "latitude": "POS_USER.LONGITUDE",
-        "governorate_shortnames": [
-          "REGION.NAME_EN"
-        ]
+        "governorate":{
+          "shortname": "REGION.NAME_EN"
+        }
       }
     }
   },

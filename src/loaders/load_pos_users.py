@@ -9,7 +9,6 @@ from utils.default_loader import default_loader, meta_fixer, callback_fixer, msi
 
 @process_mapper(
     mapper="pos_users",
-    appended_list=["body.address.governorate_shortnames"],
     remove_null_field=True
 )
 def load(*args, **kwargs):
@@ -50,18 +49,17 @@ def apply_modifier(
         else:
             body['address']['latitude'] = to_float(body['address']['latitude'])
 
-    if body.get('address').get('governorate_shortnames'):
-        governorate = body.get('address').get('governorate_shortnames')
-        governorate = None if len(governorate) == 0 else governorate[0]
+    if body.get('address', {}).get('governorate', {}).get('shortname'):
+        governorate = body.get('address',).get('governorate').get('shortname')
         if governorate:
             governorate = governorates_mapper.get(creator.shortname_fixer(governorate))
             if governorate:
                 if governorate == 'baghdad':
-                    body['address']['governorate_shortnames'] = ['baghdad_karkh', 'baghdad_rasafa']
+                    body['address']['governorate']['shortnames'] = 'baghdad_karkh'
                 else:
-                    body['address']['governorate_shortnames'] = [governorate]
+                    body['address']['governorate']['shortnames'] = governorate
             else:
-                body['address']['governorate_shortnames'] = None
+                body['address']['governorate']['shortnames'] = None
 
     if meta.get('msisdn'):
         meta['msisdn'] = msisdn_fixer(meta.get('msisdn'))
