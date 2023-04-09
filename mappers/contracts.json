@@ -28,7 +28,7 @@
       "INFORMATION_SERVICE.HOUSE_NUMBER",
       "INFORMATION_SERVICE.DISTRICT_ONE"
     ],
-    "where": "REQUEST_TYPE = 'Registration'"
+    "where": "REQUEST_TYPE = 'Registration' INFORMATION_SERVICE.CREATION_DATE > TO_DATE('2023-02-10','YYYY-MM-DD') and INFORMATION_SERVICE.CREATION_DATE < TO_DATE('2023-02-14','YYYY-MM-DD')"
   },
   "columns_mapper": {
     "meta": {
