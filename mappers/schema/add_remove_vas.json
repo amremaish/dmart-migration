@@ -8,10 +8,7 @@
       "type": "string",
       "title": "Service Type",
       "description": "Captured from the form that submitted the ticket and filled from",
-      "enum": [
-        "add",
-        "remove"
-      ]
+      "enum": ["add", "remove"]
     },
     "irm_info": {
       "type": "object",
@@ -21,12 +18,7 @@
       "type": "string",
       "title": "Service Type",
       "description": "Captured from the form that submitted the ticket and filled from",
-      "enum": [
-        "MMS",
-        "VAS",
-        "GPRS",
-        "BBS"
-      ]
+      "enum": ["mms", "vas", "gprs", "bbs"]
     },
     "registration_name": {
       "type": "string",
