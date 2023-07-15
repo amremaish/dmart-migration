@@ -92,9 +92,9 @@
       "shortname": "SIM_TRANSACTION.ID",
       "owner_shortname": "SIM_TRANSACTION.POS_ID",
       "displayname": {
-        "en": "SIM_TRANSACTION.NAME",
-        "ar": "SIM_TRANSACTION.NAME",
-        "kd": "SIM_TRANSACTION.NAME"
+        "en": "",
+        "ar": "",
+        "kd": ""
       },
       "is_active": "SIM_TRANSACTION.STATUS",
       "state": "SIM_TRANSACTION.STATUS_MSG",
@@ -134,7 +134,7 @@
         "other_phone_number": "SIM_TRANSACTION_USER_DETAIL.PHONE"
       },
       "company_details": {
-        "company_name": "SIM_TRANSACTION_USER_DETAIL.COMPANY_NAME",
+        "company_name": "SIM_TRANSACTION.NAME",
         "company_building_number": "SIM_TRANSACTION_USER_DETAIL.COMPANY_HOUSE_NUMBER",
         "company_street_name": "SIM_TRANSACTION_USER_DETAIL.COMPANY_STREET",
         "company_district": "SIM_TRANSACTION_USER_DETAIL.COMPANY_DISTRICT_ONE",
