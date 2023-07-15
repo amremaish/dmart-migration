@@ -55,7 +55,6 @@
       "customer_type": "INFORMATION_SERVICE.CUSTOMER_TYPE",
       "customer_id_type": "civilian_id",
       "id_number": "INFORMATION_SERVICE.ID_NO",
-      "id_page_no": "INFORMATION_SERVICE.ID_PAGE_NUMBER",
       "record_number": "INFORMATION_SERVICE.RECORD_NUMBER",
       "mother_name": "INFORMATION_SERVICE.MOTHER_NAME",
       "gender": "INFORMATION_SERVICE.GENDER",

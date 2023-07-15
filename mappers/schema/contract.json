@@ -49,20 +49,9 @@
         "unified_id"
       ]
     },
-    "civilian_id_number": {
-      "type": "number",
-      "pattern": "^[0-9]{8}$"
-    },
-    "national_id_number": {
-      "type": "number",
-      "pattern": "^[0-9]{12}$"
-    },
-    "id_page_no": {
-      "type": "number"
-    },
-    "passport_number": {
+    "id_number": {
       "type": "string",
-      "pattern": "^[a-zA-Z0-9]{7,9}$"
+      "pattern": "^[a-zA-Z0-9]{1,14}$"
     },
     "record_number": {
       "type": "string"

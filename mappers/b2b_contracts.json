@@ -68,7 +68,6 @@
       "iccid": "SIM_TRANSACTION.DEVICE_ICCID",
       "customer_type": "SIM_TRANSACTION.CUSTOMER_TYPE",
       "customer_id_type": "civilian_id",
-      "id_page_no": "SIM_TRANSACTION_USER_DETAIL.ID_PAGE_NUMBER",
       "record_number": "SIM_TRANSACTION_USER_DETAIL.RECORD_NUMBER",
       "mother_name": "SIM_TRANSACTION_USER_DETAIL.MOTHER_NAME",
       "gender": "SIM_TRANSACTION_USER_DETAIL.GENDER",
