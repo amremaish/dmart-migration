@@ -25,7 +25,7 @@ def apply_modifier(
     meta = meta_fixer(meta)
 
     if meta.get('owner_shortname'):
-        meta['owner_shortname'] = f"pos_{meta['owner_shortname']}"
+        meta['owner_shortname'] = f"{meta['owner_shortname']}"
 
     if meta.get('state'):
         if meta.get('state') == 'PENDING':
