@@ -33,7 +33,7 @@
         "join_type": "LEFT"
       }
     ],
-    "where": "SIM_TRANSACTION.CREATION_DATE > TO_DATE('2023-02-10','YYYY-MM-DD') and SIM_TRANSACTION.CREATION_DATE < TO_DATE('2023-03-10','YYYY-MM-DD')",
+    "where": "SIM_TRANSACTION.CREATION_DATE > TO_DATE('2023-02-10','YYYY-MM-DD') and SIM_TRANSACTION.CREATION_DATE < TO_DATE('2023-04-10','YYYY-MM-DD')",
     "columns": [
       "SIM_TRANSACTION.POS_ID",
       "SIM_TRANSACTION.ID",
@@ -91,7 +91,7 @@
   "columns_mapper": {
     "meta": {
       "shortname": "SIM_TRANSACTION.ID",
-      "owner_shortname": "SIM_TRANSACTION.POS_ID",
+      "owner_shortname": "POS_USER.POS_ID",
       "displayname": {
         "en": "",
         "ar": "",
