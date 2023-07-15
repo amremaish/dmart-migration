@@ -157,7 +157,7 @@
   },
   "dest": {
     "space_name": "b2b",
-    "subpath": "tickets/b2b",
+    "subpath": "tickets",
     "schema_shortname": "b2b",
     "resource_type": "ticket"
   }

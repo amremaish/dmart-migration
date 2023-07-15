@@ -47,6 +47,21 @@ def apply_modifier(
     if body.get('msisdn'):
         body['msisdn'] = msisdn_fixer(body.get('msisdn'))
 
+    if body.get('company_data').get('callback_number'):
+        body['company_data']['callback_number'] = msisdn_fixer(body['company_data']['callback_number'])
+
+    if body.get('authorized_details').get('other_phone_number'):
+        body['authorized_details']['other_phone_number'] = msisdn_fixer(
+            body['authorized_details']['other_phone_number'])
+
+    if body.get('company_details').get('company_phone'):
+        body['company_details']['company_phone'] = msisdn_fixer(body['company_details']['company_phone'])
+
+    if body.get('authorized_details').get('gender') == 'M':
+        body['authorized_details']['gender'] = 'male'
+    elif body.get('authorized_details').get('gender') == 'F':
+        body['authorized_details']['gender'] = 'female'
+
     if body.get('company_data', {}).get('contract_type'):
         val = lookup.get(body['company_data']['contract_type'], {}).get('KEY_VALUE', None)
         if val == 'PRE-PAID':
