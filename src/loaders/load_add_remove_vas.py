@@ -63,7 +63,7 @@ def apply_modifier(
         del body['service_type']
 
     if body.get('sub_service_type') and body.get('sub_service_type') in lookup:
-        body['sub_service_type'] = lookup[body.get('sub_service_type')].get('KEY_VALUE').lower()
+        body['sub_service_type'] = lookup[body.get('sub_service_type')].get('KEY_VALUE').upper()
     else:
         del body['sub_service_type']
 
