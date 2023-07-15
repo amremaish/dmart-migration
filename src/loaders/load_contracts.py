@@ -38,6 +38,12 @@ def apply_modifier(
     elif type == 'Migration':
         ticket_subpath += 'migration'
 
+    if body.get("id_number") and ord(body["id_number"][0]) >= ord("٠"):
+        id_converted = ""
+        for c in body["id_number"]:
+            id_converted += str(ord(c) - ord("٠"))
+        body['id_number'] = id_converted
+
     if body.get('ticket_locator'):
         body['ticket_locator']['subpath'] = ticket_subpath
 
