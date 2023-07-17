@@ -107,7 +107,7 @@
       "workflow_shortname": "b2b",
       "reporter": {
         "type": "USER_TYPE.NAME",
-        "name": "POS_USER.NAME",
+        "name": "POS_USER.USERNAME",
         "msisdn": "POS_USER.MOBILE_NO",
         "distributor": "DISTRIBUTORS.NAME",
         "governorate" : "POS_USER.GOVERNORATE_ID"
