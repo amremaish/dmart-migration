@@ -86,6 +86,7 @@
       "USER_TYPE.NAME",
       "POS_USER.MOBILE_NO",
       "POS_USER.POS_ID",
+      "POS_USER.USERNAME",
       "POS_USER.NAME"
     ]
   },
