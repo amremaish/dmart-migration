@@ -3,6 +3,7 @@ import re
 from creator import creator
 from dmart.enums import UserType
 from dmart.helper import to_float, governorates_mapper, ICCID_REGEX
+from utils.db import db_manager
 from utils.decorators import process_mapper
 from utils.default_loader import default_loader, meta_fixer, callback_fixer, msisdn_fixer
 
@@ -63,6 +64,26 @@ def apply_modifier(
 
     if meta.get('msisdn'):
         meta['msisdn'] = msisdn_fixer(meta.get('msisdn'))
+
+    # add roles
+    role = db_row.get(db_manager.create_alias('USER_TYPE.NAME'))
+    role = role.lower()
+    if role:
+        if role == 'fs' or role == 'franshise':
+            meta['roles'] = ['franchise', "rc_compensation", "change_ownership", "sim_swap", "migration", "order",
+                             "contract"]
+        elif role == 'supermarket':
+            meta['roles'] = ['voucher_pos', "connect_disconnect", "migration", "correct_info", "rc_compensation",
+                             "dummy", "postpaid_prime", "change_ownership", "contract", "sim_swap", "add_remove_vas",
+                             "order"]
+        elif role == 'ros':
+            meta['roles'] = ['ros', "connect_disconnect", "migration", "correct_info", "rc_compensation", "dummy",
+                             "postpaid_prime", "change_ownership", "sim_swap", "add_remove_vas"]
+        elif role == 'pos':
+            meta['roles'] = ['activating_pos', "connect_disconnect", "migration", "correct_info", "rc_compensation",
+                             "dummy", "postpaid_prime", "change_ownership", "sim_swap", "add_remove_vas", "contract"]
+        elif role == 'zain_light':
+            meta['roles'] = ['zain_lite', "sim_swap", "order"]
 
     return {
         "space_name": space_name,

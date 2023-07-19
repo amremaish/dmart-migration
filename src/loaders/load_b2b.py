@@ -33,7 +33,7 @@ def apply_modifier(
         elif meta.get('state') == 'INCOMPLETE':
             meta['state'] = 'failed'
         elif meta.get('state') == 'UPLOADED':
-            meta['state'] = 'uploaded'
+            meta['state'] = 'approved'
 
     if body.get('company_data', {}).get('company_type'):
         company_type: str = lookup.get(body['company_data']['company_type'], {}).get('NAME_EN').lower()
