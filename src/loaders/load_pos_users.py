@@ -67,23 +67,23 @@ def apply_modifier(
 
     # add roles
     role = db_row.get(db_manager.create_alias('USER_TYPE.NAME'))
-    role = role.lower()
-    if role:
-        if role == 'fs' or role == 'franshise':
-            meta['roles'] = ['franchise', "rc_compensation", "change_ownership", "sim_swap", "migration", "order",
-                             "contract"]
-        elif role == 'supermarket':
-            meta['roles'] = ['voucher_pos', "connect_disconnect", "migration", "correct_info", "rc_compensation",
-                             "dummy", "postpaid_prime", "change_ownership", "contract", "sim_swap", "add_remove_vas",
-                             "order"]
-        elif role == 'ros':
-            meta['roles'] = ['ros', "connect_disconnect", "migration", "correct_info", "rc_compensation", "dummy",
-                             "postpaid_prime", "change_ownership", "sim_swap", "add_remove_vas"]
-        elif role == 'pos':
-            meta['roles'] = ['activating_pos', "connect_disconnect", "migration", "correct_info", "rc_compensation",
-                             "dummy", "postpaid_prime", "change_ownership", "sim_swap", "add_remove_vas", "contract"]
-        elif role == 'zain_light':
-            meta['roles'] = ['zain_lite', "sim_swap", "order"]
+    role = role.lower() if role else ""
+    if role == 'fs' or role == 'franshise':
+        meta['roles'] = ['franchise', "rc_compensation", "change_ownership", "sim_swap", "migration", "order",
+                         "contract"]
+    elif role == 'supermarket':
+        meta['roles'] = ['voucher_pos', "connect_disconnect", "migration", "correct_info", "rc_compensation",
+                         "dummy", "postpaid_prime", "change_ownership", "contract", "sim_swap", "add_remove_vas",
+                         "order"]
+    elif role == 'ros':
+        meta['roles'] = ['ros', "connect_disconnect", "migration", "correct_info", "rc_compensation", "dummy",
+                         "postpaid_prime", "change_ownership", "sim_swap", "add_remove_vas"]
+        print('ros')
+    elif role == 'pos':
+        meta['roles'] = ['activating_pos', "connect_disconnect", "migration", "correct_info", "rc_compensation",
+                         "dummy", "postpaid_prime", "change_ownership", "sim_swap", "add_remove_vas", "contract"]
+    elif role == 'zain_light':
+        meta['roles'] = ['zain_lite', "sim_swap", "order"]
 
     return {
         "space_name": space_name,
