@@ -78,7 +78,6 @@ def apply_modifier(
     elif role == 'ros':
         meta['roles'] = ['ros', "connect_disconnect", "migration", "correct_info", "rc_compensation", "dummy",
                          "postpaid_prime", "change_ownership", "sim_swap", "add_remove_vas"]
-        print('ros')
     elif role == 'pos':
         meta['roles'] = ['activating_pos', "connect_disconnect", "migration", "correct_info", "rc_compensation",
                          "dummy", "postpaid_prime", "change_ownership", "sim_swap", "add_remove_vas", "contract"]
