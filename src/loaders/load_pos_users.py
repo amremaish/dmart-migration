@@ -3,6 +3,7 @@ import re
 from creator import creator
 from dmart.enums import UserType
 from dmart.helper import to_float, governorates_mapper, ICCID_REGEX
+from loaders.load_pos_channels import channels
 from utils.db import db_manager
 from utils.decorators import process_mapper
 from utils.default_loader import default_loader, meta_fixer, callback_fixer, msisdn_fixer
@@ -83,6 +84,11 @@ def apply_modifier(
                          "dummy", "postpaid_prime", "change_ownership", "sim_swap", "add_remove_vas", "contract"]
     elif role == 'zain_light':
         meta['roles'] = ['zain_lite', "sim_swap", "order"]
+
+    # set channel shortname
+    if body.get('channel_shortname') and channels.get(body.get('channel_shortname', '')):
+        channel = channels.get(body.get('channel_shortname', ''))
+        body['channel_shortname'] = channel[0]
 
     return {
         "space_name": space_name,

@@ -84,7 +84,7 @@
       "roles": []
     },
     "body": {
-      "channel_shortname": "POS_USER.POS_ID",
+      "channel_shortname": "POS_USER.NAME",
       "registration_id": "POS_USER.REGISTRATION_ID",
       "device_id": "POS_USER.DEVICE_ID",
       "device_serial": "POS_USER.DEVICE_SERIAL",

@@ -1,3 +1,6 @@
+# notes
+# pos_channels and pos_users must be in the same run because of channels variable
+#########################
 migrate distributor_users
 migrate distributors
 migrate governorates

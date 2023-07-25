@@ -25,6 +25,7 @@
       "POS_USER.POS_ID",
       "POS_USER.NAME",
       "POS_USER.TYPE_ID",
+      "POS_USER.ADDRESS",
       "SECTOR.NAME_EN",
       "REGION.NAME_EN",
       "LOOKUP.NAME_EN"
@@ -32,7 +33,6 @@
   },
   "columns_mapper": {
     "meta": {
-      "shortname": "POS_USER.POS_ID",
       "displayname": {
         "en": "POS_USER.NAME",
         "ar": "POS_USER.NAME",
@@ -42,6 +42,7 @@
     "body": {
       "type": "LOOKUP.NAME_EN",
       "location": {
+        "line": "POS_USER.ADDRESS",
         "governorate": {
           "shortname" : "REGION.NAME_EN",
           "sector" : "SECTOR.NAME_EN"
