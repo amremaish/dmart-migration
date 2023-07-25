@@ -40,7 +40,6 @@
       }
     },
     "body": {
-      "type": "LOOKUP.NAME_EN",
       "location": {
         "line": "POS_USER.ADDRESS",
         "governorate": {

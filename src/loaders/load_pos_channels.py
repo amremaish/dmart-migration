@@ -10,7 +10,6 @@ from utils.default_loader import default_loader, meta_fixer
 @process_mapper(mapper="pos_channels", remove_null_field=True)
 def load(*args, **kwargs):
     default_loader(args, kwargs, apply_modifier)
-    print(len(global_vars.channels))
     print("Successfully done.")
 
 
@@ -35,6 +34,7 @@ def apply_modifier(
             meta['shortname'] = shortname
             meta['uuid'] = uuid
             global_vars.channels[name] = [shortname, body.get('location', {}).get('line')]
+            print(len(global_vars.channels))
         elif global_vars.channels[name] and global_vars.channels[name][1] and body.get('location', {}).get('line'):
             # if channels exists but has a valid value then replace it
             global_vars.channels[name][1] = body.get('location', {}).get('line')
