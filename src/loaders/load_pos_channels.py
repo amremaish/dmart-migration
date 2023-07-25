@@ -1,3 +1,4 @@
+import dbm
 from uuid import uuid4
 
 from creator import creator
@@ -34,13 +35,15 @@ def apply_modifier(
             meta['shortname'] = shortname
             meta['uuid'] = uuid
             global_vars.channels[name] = [shortname, body.get('location', {}).get('line')]
-            print(len(global_vars.channels))
         elif global_vars.channels[name] and global_vars.channels[name][1] and body.get('location', {}).get('line'):
             # if channels exists but has a valid value then replace it
             global_vars.channels[name][1] = body.get('location', {}).get('line')
             meta['shortname'] = global_vars.channels[name][0]
         else:
             ignore = True
+
+    with dbm.open('channels', 'c') as db:
+        db['channels'] = global_vars.channels
 
     if body.get('location', {}).get('governorate', {}).get('shortname'):
         governorate = body.get('location', {}).get('governorate', {}).get('shortname')

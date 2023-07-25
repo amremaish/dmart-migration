@@ -1,3 +1,4 @@
+import dbm
 import re
 
 from creator import creator
@@ -7,6 +8,7 @@ from global_vars import global_vars
 from utils.db import db_manager
 from utils.decorators import process_mapper
 from utils.default_loader import default_loader, meta_fixer, callback_fixer, msisdn_fixer
+
 
 
 @process_mapper(
@@ -85,11 +87,14 @@ def apply_modifier(
     elif role == 'zain_light':
         meta['roles'] = ['zain_lite', "sim_swap", "order"]
 
+
     # set channel shortname
     if body.get('channel_shortname'):
-        channel = global_vars.channels.get(body.get('channel_shortname', ''))
-        if channel:
-            body['channel_shortname'] = channel[0]
+        with dbm.open('channels', 'c') as channels:
+            print(len(channels))
+            channel = channels.get(body.get('channel_shortname', ''))
+            if channel:
+                body['channel_shortname'] = channel[0]
 
     return {
         "space_name": space_name,
