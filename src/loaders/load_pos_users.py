@@ -86,9 +86,10 @@ def apply_modifier(
         meta['roles'] = ['zain_lite', "sim_swap", "order"]
 
     # set channel shortname
-    if body.get('channel_shortname') and channels.get(body.get('channel_shortname', '')):
+    if body.get('channel_shortname'):
         channel = channels.get(body.get('channel_shortname', ''))
-        body['channel_shortname'] = channel[0]
+        if channel:
+            body['channel_shortname'] = channel[0]
 
     return {
         "space_name": space_name,
