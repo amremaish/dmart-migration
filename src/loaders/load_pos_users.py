@@ -3,7 +3,7 @@ import re
 from creator import creator
 from dmart.enums import UserType
 from dmart.helper import to_float, governorates_mapper, ICCID_REGEX
-from global_vars import channels
+from global_vars import global_vars
 from utils.db import db_manager
 from utils.decorators import process_mapper
 from utils.default_loader import default_loader, meta_fixer, callback_fixer, msisdn_fixer
@@ -87,7 +87,7 @@ def apply_modifier(
 
     # set channel shortname
     if body.get('channel_shortname'):
-        channel = channels.get(body.get('channel_shortname', ''))
+        channel = global_vars.channels.get(body.get('channel_shortname', ''))
         if channel:
             body['channel_shortname'] = channel[0]
 

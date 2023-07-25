@@ -2,7 +2,7 @@ from uuid import uuid4
 
 from creator import creator
 from dmart.helper import governorates_mapper
-from global_vars import channels
+from global_vars import global_vars
 from utils.decorators import process_mapper
 from utils.default_loader import default_loader, meta_fixer
 
@@ -10,6 +10,7 @@ from utils.default_loader import default_loader, meta_fixer
 @process_mapper(mapper="pos_channels", remove_null_field=True)
 def load(*args, **kwargs):
     default_loader(args, kwargs, apply_modifier)
+    print(len(global_vars.channels))
     print("Successfully done.")
 
 
@@ -28,16 +29,16 @@ def apply_modifier(
     # check channel if exists
     if meta.get('displayname', {}).get('ar'):
         name = meta['displayname']["ar"]
-        if not channels.get(name):
+        if not global_vars.channels.get(name):
             uuid = str(uuid4())
             shortname = uuid[:8]
             meta['shortname'] = shortname
             meta['uuid'] = uuid
-            channels[name] = [shortname, body.get('location', {}).get('line')]
-        elif channels[name] and channels[name][1] and body.get('location', {}).get('line'):
+            global_vars.channels[name] = [shortname, body.get('location', {}).get('line')]
+        elif global_vars.channels[name] and global_vars.channels[name][1] and body.get('location', {}).get('line'):
             # if channels exists but has a valid value then replace it
-            channels[name][1] = body.get('location', {}).get('line')
-            meta['shortname'] = channels[name][0]
+            global_vars.channels[name][1] = body.get('location', {}).get('line')
+            meta['shortname'] = global_vars.channels[name][0]
         else:
             ignore = True
 
