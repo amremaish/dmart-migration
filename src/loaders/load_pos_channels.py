@@ -1,4 +1,4 @@
-import dbm
+import shelve
 from uuid import uuid4
 
 from creator import creator
@@ -42,7 +42,7 @@ def apply_modifier(
         else:
             ignore = True
 
-    with dbm.open('channels', 'c') as db:
+    with shelve.open('channels', 'c') as db:
         db['channels'] = global_vars.channels
 
     if body.get('location', {}).get('governorate', {}).get('shortname'):

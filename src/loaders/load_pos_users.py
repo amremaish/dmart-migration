@@ -1,4 +1,4 @@
-import dbm
+import shelve
 import re
 
 from creator import creator
@@ -90,7 +90,7 @@ def apply_modifier(
 
     # set channel shortname
     if body.get('channel_shortname'):
-        with dbm.open('channels', 'c') as channels:
+        with shelve.open('channels', 'c') as channels:
             print(len(channels))
             channel = channels.get(body.get('channel_shortname', ''))
             if channel:
