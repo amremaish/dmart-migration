@@ -130,7 +130,7 @@ class SpaceCreator:
             body=f'{meta_obj.shortname}.json'
         )
 
-        if not appended_list:
+        if mata_path.is_file() and body_path.is_file() and not appended_list:
             return
 
         # save meta
