@@ -31,7 +31,7 @@ def apply_modifier(
     # check channel if exists
     if meta.get('displayname', {}).get('ar'):
         name = meta['displayname']["ar"]
-        if not channels[name]:
+        if not channels.get(name):
             shortname = str(uuid4())[:8]
             meta['shortname'] = shortname
             channels[name] = [shortname, body.get('location', {}).get('line')]
