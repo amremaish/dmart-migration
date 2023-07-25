@@ -5,6 +5,7 @@ import sys
 from datetime import datetime
 from pathlib import Path
 from typing import Type, TypeVar
+from uuid import uuid4
 
 import jsonschema
 
@@ -122,6 +123,9 @@ class SpaceCreator:
 
         if path and not path.is_dir():
             os.makedirs(path)
+
+        if not meta.get('uuid'):
+            meta['uuid'] = str(uuid4())
 
         meta_obj = resource_class.parse_raw(json.dumps(meta))
         meta_obj.payload = core.Payload(

@@ -3,6 +3,7 @@ import re
 import time
 from datetime import datetime
 from multiprocessing import Process
+from uuid import uuid4
 from creator import creator
 from dmart.core import Meta, Payload
 from dmart.enums import ContentType
@@ -209,6 +210,7 @@ def create_meta_folder(space_name: str, subpath: str, shortname: str, displaynam
         os.makedirs(directory)
 
     payload = Payload(content_type=ContentType.json, schema_shortname='folder_rendering', body=f'{shortname}.json')
-    meta_obj = Meta(shortname=shortname, displayname=displayname, owner_shortname='dmart', payload=payload)
+    meta_obj = Meta(uuid=str(uuid4()), shortname=shortname, displayname=displayname, owner_shortname='dmart',
+                    payload=payload)
     with open(path, "w") as f:
         f.write(meta_obj.json(exclude_none=True))

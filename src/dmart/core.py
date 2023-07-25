@@ -54,7 +54,7 @@ class Translation(Resource):
 
 
 class Meta(Resource):
-    uuid: UUID = Field(default_factory=uuid4)
+    uuid: str
     shortname: str
     is_active: bool = True
     displayname: Translation | None = None

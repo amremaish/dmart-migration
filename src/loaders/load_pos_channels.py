@@ -32,8 +32,10 @@ def apply_modifier(
     if meta.get('displayname', {}).get('ar'):
         name = meta['displayname']["ar"]
         if not channels.get(name):
-            shortname = str(meta['uuid'])[:8]
+            uuid = str(uuid4())
+            shortname = uuid[:8]
             meta['shortname'] = shortname
+            meta['uuid'] = uuid
             channels[name] = [shortname, body.get('location', {}).get('line')]
         elif channels[name] and channels[name][1] and body.get('location', {}).get('line'):
             # if channels exists but has a valid value then replace it
