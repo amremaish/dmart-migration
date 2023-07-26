@@ -35,9 +35,7 @@ def load_channels():
                 meta = json.load(json_file)
                 name = meta.get('displayname', {}).get('ar')
                 channels[name] = meta.get('shortname')
-                if '7813129450' in name:
-                    print("=============>", name)
-                    print("=============>", meta['shortname'])
+
 
 def apply_modifier(
         space_name: str,
@@ -106,6 +104,9 @@ def apply_modifier(
     elif role == 'zain_light':
         meta['roles'] = ['zain_lite', "sim_swap", "order"]
 
+    if '7813129450' in body.get('channel_shortname'):
+        print("=============>", body.get('channel_shortname'))
+        print("=============>", meta['shortname'])
     # set channel shortname
     if body.get('channel_shortname'):
         channel = channels.get(body['channel_shortname'])
