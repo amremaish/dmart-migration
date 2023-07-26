@@ -34,7 +34,6 @@ def load_channels():
             with open(Path(path / entry.name / "meta.content.json"), "r") as json_file:
                 meta = json.load(json_file)
                 channels[meta.get('displayname', {}).get('ar')] = meta.get('shortname')
-    print(len(channels))
 
 def apply_modifier(
         space_name: str,
@@ -104,11 +103,10 @@ def apply_modifier(
         meta['roles'] = ['zain_lite', "sim_swap", "order"]
 
     # set channel shortname
-    print(len(channels))
     if body.get('channel_shortname'):
         channel = channels.get(body.get('channel_shortname', ''))
         if channel:
-            body['channel_shortname'] = channel[0]
+            body['channel_shortname'] = channel
 
     return {
         "space_name": space_name,
