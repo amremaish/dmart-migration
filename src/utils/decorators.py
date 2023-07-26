@@ -7,8 +7,7 @@ def process_mapper(
         remove_null_field: bool = False,
         only_matched_schema: bool = False,
         appended_list: list = None,
-        disable_duplication_appended_list: bool = False,
-        exclude_fixer_shortnames: list = None
+        disable_duplication_appended_list: bool = False
 ):
     def decorator(function):
         def wrapper(*args, **kwargs):
@@ -22,7 +21,6 @@ def process_mapper(
             kwargs['only_matched_schema'] = only_matched_schema
             kwargs['appended_list'] = appended_list
             kwargs['disable_duplication_appended_list'] = disable_duplication_appended_list
-            kwargs['exclude_fixer_shortnames'] = exclude_fixer_shortnames if exclude_fixer_shortnames else []
 
             function(*args, **kwargs)
 
