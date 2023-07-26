@@ -331,14 +331,5 @@
         }
       }
     }
-  },
-  "required": [
-    "type",
-    "zain_signage",
-    "outlet_type",
-    "competitor_signage",
-    "internet_availability",
-    "shop_size",
-    "location"
-  ]
+  }
 }
