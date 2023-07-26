@@ -106,7 +106,6 @@ def apply_modifier(
     # set channel shortname
     if body.get('channel_shortname'):
         channel = channels.get(body.get('channel_shortname', ''))
-        print(channel, len(channels), body.get('channel_shortname', ''))
         if channel:
             body['channel_shortname'] = channel
 
