@@ -42,20 +42,20 @@ class SpaceCreator:
         shortname = shortname.replace('-', '_')
         return shortname.strip().lower().replace(' ', '')
 
-    def shortname_deep_fixer(self, body: dict):
+    def shortname_deep_fixer(self, body: dict, exclude_fixer_shortnames):
         if not body:
             return {}
         for k, v in body.items():
             if isinstance(v, dict):
-                self.shortname_deep_fixer(body.get(k, {}))
+                self.shortname_deep_fixer(body.get(k, {}), exclude_fixer_shortnames)
             elif isinstance(v, list) and 'shortname' in k:
                 for i in range(len(v)):
                     if v[i]:
-                        v[i] = self.shortname_fixer(v[i])
+                        v[i] = v[i] if v[i] in exclude_fixer_shortnames else self.shortname_fixer(v[i])
                     else:
                         v.pop(i)
             elif isinstance(v, str) and 'shortname' in k:
-                body[k] = self.shortname_fixer(v)
+                body[k] = v if v in exclude_fixer_shortnames else self.shortname_fixer(v)
 
     def save(
             self,

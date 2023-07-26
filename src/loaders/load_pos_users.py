@@ -3,7 +3,6 @@ import os
 import re
 from pathlib import Path
 
-import settings
 from creator import creator
 from dmart.enums import UserType
 from dmart.helper import to_float, governorates_mapper, ICCID_REGEX
@@ -14,6 +13,7 @@ from utils.default_loader import default_loader, meta_fixer, callback_fixer, msi
 
 @process_mapper(
     mapper="pos_users",
+    exclude_fixer_shortnames=["channel_shortname"],
     remove_null_field=True
 )
 def load(*args, **kwargs):
@@ -104,9 +104,6 @@ def apply_modifier(
     elif role == 'zain_light':
         meta['roles'] = ['zain_lite', "sim_swap", "order"]
 
-    if '7813129450' in body.get('channel_shortname'):
-        print("=============>", body.get('channel_shortname'))
-        print("=============>", meta['shortname'])
     # set channel shortname
     if body.get('channel_shortname'):
         channel = channels.get(body['channel_shortname'])

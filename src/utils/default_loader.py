@@ -49,6 +49,7 @@ def execute(kwargs, apply_modifier, offset, lookup):
     only_matched_schema: bool = kwargs['only_matched_schema']
     appended_list: list = kwargs['appended_list']
     disable_duplication_appended_list: bool = kwargs['disable_duplication_appended_list']
+    exclude_fixer_shortnames: list = kwargs['exclude_fixer_shortnames']
 
     db_manager.refresh_connection()
     db_result = db_manager.select_query(
@@ -70,8 +71,8 @@ def execute(kwargs, apply_modifier, offset, lookup):
         history_obj = None
 
         meta, body = creator.convert_db_to_meta(row, mapper_data)
-        creator.shortname_deep_fixer(meta)
-        creator.shortname_deep_fixer(body)
+        creator.shortname_deep_fixer(meta, exclude_fixer_shortnames)
+        creator.shortname_deep_fixer(body, exclude_fixer_shortnames)
         meta, body = fix_for_all(meta, body, lookup)
         if apply_modifier:
             modified = apply_modifier(
