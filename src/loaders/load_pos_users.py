@@ -33,7 +33,7 @@ def load_channels():
         if entry.is_dir():
             with open(Path(path / entry.name / "meta.content.json"), "r", encoding="utf-8") as json_file:
                 meta = json.load(json_file)
-                name = meta.get('displayname', {}).get('ar')
+                name = creator.shortname_fixer(meta.get('displayname', {}).get('ar'))
                 channels[name] = meta.get('shortname')
 
 
@@ -104,9 +104,6 @@ def apply_modifier(
     elif role == 'zain_light':
         meta['roles'] = ['zain_lite', "sim_swap", "order"]
 
-    if '7813129450' in body.get('channel_shortname'):
-        print("=============>", body.get('channel_shortname'))
-        print("=============>", meta['shortname'])
     # set channel shortname
     if body.get('channel_shortname'):
         channel = channels.get(body['channel_shortname'])
