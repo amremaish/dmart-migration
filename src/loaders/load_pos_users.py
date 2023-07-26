@@ -31,9 +31,13 @@ def load_channels():
     path = creator.spaces_path / "management/collections/channels/.dm"
     for entry in os.scandir(path):
         if entry.is_dir():
-            with open(Path(path / entry.name / "meta.content.json"), "r") as json_file:
+            with open(Path(path / entry.name / "meta.content.json"), "r", encoding="utf-8") as json_file:
                 meta = json.load(json_file)
-                channels[meta.get('displayname', {}).get('ar')] = meta.get('shortname')
+                name = meta.get('displayname', {}).get('ar')
+                channels[name] = meta.get('shortname')
+                if '7813129450' in name:
+                    print("=============>", name)
+                    print("=============>", meta['shortname'])
 
 def apply_modifier(
         space_name: str,

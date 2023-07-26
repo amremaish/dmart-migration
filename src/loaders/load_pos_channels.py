@@ -44,10 +44,6 @@ def apply_modifier(
         else:
             ignore = True
 
-        if '7813129450' in name:
-            print("=============>", name)
-            print("=============>", meta['shortname'])
-
     if body.get('location', {}).get('governorate', {}).get('shortname'):
         governorate = body.get('location', {}).get('governorate', {}).get('shortname')
         if governorate:
