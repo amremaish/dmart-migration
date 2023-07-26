@@ -34,6 +34,7 @@ def load_channels():
             with open(Path(path / entry.name / "meta.content.json"), "r") as json_file:
                 meta = json.load(json_file)
                 channels[meta.get('displayname', {}).get('ar')] = meta.get('shortname')
+                print(meta.get('displayname', {}).get('ar') + " " + meta.get('shortname'))
 
 def apply_modifier(
         space_name: str,
@@ -105,6 +106,7 @@ def apply_modifier(
     # set channel shortname
     if body.get('channel_shortname'):
         channel = channels.get(body.get('channel_shortname', ''))
+        print(channel, len(channels), body.get('channel_shortname', ''))
         if channel:
             body['channel_shortname'] = channel
 
