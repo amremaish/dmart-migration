@@ -1,14 +1,15 @@
-import shelve
+import json
+import os
 import re
+from pathlib import Path
 
+import settings
 from creator import creator
 from dmart.enums import UserType
 from dmart.helper import to_float, governorates_mapper, ICCID_REGEX
-from global_vars import global_vars
 from utils.db import db_manager
 from utils.decorators import process_mapper
 from utils.default_loader import default_loader, meta_fixer, callback_fixer, msisdn_fixer
-
 
 
 @process_mapper(
@@ -16,8 +17,23 @@ from utils.default_loader import default_loader, meta_fixer, callback_fixer, msi
     remove_null_field=True
 )
 def load(*args, **kwargs):
+    load_channels()
     default_loader(args, kwargs, apply_modifier)
     print("Successfully done.")
+
+
+# contains key => channel name, value => (uuid) shortname
+channels: dict = {}
+
+
+def load_channels():
+    print("loading channels ...")
+    path = creator.spaces_path / "management/collections/channels/.dm"
+    for entry in os.scandir(path):
+        if entry.is_dir():
+            with open(Path(path / entry.name / "meta.content.json"), "r") as json_file:
+                meta = json.load(json_file)
+                channels[meta.get('displayname', {}).get('ar')] = meta.get('shortname')
 
 
 def apply_modifier(
@@ -54,7 +70,7 @@ def apply_modifier(
             body['address']['latitude'] = to_float(body['address']['latitude'])
 
     if body.get('address', {}).get('governorate', {}).get('shortname'):
-        governorate = body.get('address',).get('governorate').get('shortname')
+        governorate = body.get('address', ).get('governorate').get('shortname')
         if governorate:
             governorate = governorates_mapper.get(creator.shortname_fixer(governorate))
             if governorate:
@@ -87,14 +103,11 @@ def apply_modifier(
     elif role == 'zain_light':
         meta['roles'] = ['zain_lite', "sim_swap", "order"]
 
-
     # set channel shortname
     if body.get('channel_shortname'):
-        with shelve.open('channels', 'c') as channels:
-            print(len(channels))
-            channel = channels.get(body.get('channel_shortname', ''))
-            if channel:
-                body['channel_shortname'] = channel[0]
+        channel = channels.get(body.get('channel_shortname', ''))
+        if channel:
+            body['channel_shortname'] = channel[0]
 
     return {
         "space_name": space_name,
