@@ -31,8 +31,6 @@ def apply_modifier(
     # check channel if exists
     if meta.get('displayname', {}).get('ar'):
         name = meta['displayname']["ar"]
-        if '7813129450' in name:
-            print("=============>", name)
         if not channels.get(name):
             uuid = str(uuid4())
             shortname = uuid[:8]
@@ -45,6 +43,10 @@ def apply_modifier(
             meta['shortname'] = channels[name][0]
         else:
             ignore = True
+
+        if '7813129450' in name:
+            print("=============>", name)
+            print("=============>", meta['shortname'])
 
     if body.get('location', {}).get('governorate', {}).get('shortname'):
         governorate = body.get('location', {}).get('governorate', {}).get('shortname')
