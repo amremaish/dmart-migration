@@ -8,13 +8,12 @@
       "type": "string",
       "title": "Channel type",
       "enum": [
-        "distributor_direct_sales",
-        "franchise_store",
+        "franchise",
         "ros",
-        "sub_dealer",
-        "supermarket",
-        "universal_point_of_sale_pos",
-        "zain_cash"
+        "activating_pos",
+        "d2d_promoter",
+        "zain_lite",
+        "voucher_pos"
       ]
     },
     "outlet_type": {
@@ -190,12 +189,8 @@
           "type": "string",
           "title": "Channel WhatsApp number",
           "pattern": "^7[5789]\\d{8}$"
-
         }
-      },
-      "required": [
-        "msisdn"
-      ]
+      }
     },
     "owner_shortname": {
       "type": "string",
@@ -233,10 +228,7 @@
                 }
               }
             }
-          },
-          "required": [
-            "activation_tool_available"
-          ]
+          }
         },
         "mvd_line": {
           "type": "object",
@@ -256,10 +248,7 @@
               },
               "title": "MSISDN of MVD line"
             }
-          },
-          "required": [
-            "mvd_line_available"
-          ]
+          }
         },
         "evd_terminal": {
           "type": "object",
@@ -287,10 +276,7 @@
                 }
               }
             }
-          },
-          "required": [
-            "evd_terminal_available"
-          ]
+          }
         }
       },
       "required": []
@@ -317,10 +303,7 @@
         "sim_swap_service_available": {
           "type": "string"
         }
-      },
-      "required": [
-        "zaincash_service_available"
-      ]
+      }
     },
     "sub_account": {
       "type": "object",
@@ -331,5 +314,6 @@
         }
       }
     }
-  }
+  },
+  "required": []
 }
