@@ -55,6 +55,23 @@ def apply_modifier(
             else:
                 body['location']['governorate']['shortname'] = None
 
+    if body.get('type'):
+        role = body.get('type')
+        role = role.lower() if role else ""
+        if role:
+            if role == 'fs' or role == 'franshise':
+                body['type'] = 'franchise'
+            elif role == 'supermarket':
+                body['type'] = 'voucher_pos'
+            elif role == 'ros':
+                body['type'] = 'ros'
+            elif role == 'pos':
+                body['type'] = 'activating_pos'
+            elif role == 'zain_light':
+                body['type'] = 'zain_lite'
+            else:
+                del body['type']
+
     return {
         "space_name": space_name,
         "subpath": subpath,
